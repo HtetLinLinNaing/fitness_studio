@@ -88,7 +88,7 @@ ESLint 9 and TypeScript 5.9 are selected for compatibility with the installed Ne
 
 HeroUI supplies only non-table primitives (Skeleton and Retry Button). The table itself uses native HTML and custom layout; no table/grid library is included.
 
-## Table usage — through Step 9
+## Table usage — through Step 10
 
 `DataTable<T>` is in `src/components/data-table/`. Supply typed columns, data, a stable string row ID, dataset key, accessible caption, and optional request/empty state. A column chooses either a scalar property accessor or a scalar-producing function; custom cells receive the full typed row. Pinned columns require pixel widths and are grouped on the left. Unpinned columns share extra desktop space while preserving the declared minimum table width.
 
@@ -127,7 +127,7 @@ Manual sorting requires controlled state and trusts supplied row order. Manual p
 
 Page indexes are zero-based in the API and one-based in labels. Invalid sizes fall back to 10; options are sanitized/deduplicated and include the current valid size. Out-of-range client pages clamp to a valid page and stay clamped when data grows again. Controlled state is validated for display without repair callbacks; the manual parent owns normalization/refetch when totals shrink. Empty/loading/error states disable navigation, and pending/error requests disable sort headers. `aria-sort`, labeled buttons/selects, visible focus, and live range summaries support keyboard and screen-reader use.
 
-The timetable displays 12 classes across two default pages, with inline attendee details. Navigation currently exposes only the timetable route; inventory and scenario controls belong to Step 10 and require separate approval.
+The timetable displays 12 classes across two default pages, with inline attendee details. Shared navigation links it to the inventory demo at `/inventory`.
 
 ### Row expansion
 
@@ -144,7 +144,20 @@ expansion={{
 
 Multiple rows can stay open. Open state and successful child results, including empty lists, are retained by stable row ID across sorting and pagination. Pending requests deduplicate; errors and Retry remain local to the row. Collapsing allows an existing request to finish and cache its result without reopening the row. Replacing `datasetKey` or unmounting aborts pending work and ignores late results. Change the dataset key when cached child data should be invalidated.
 
-Details occupy a full-width cell below their parent and do not affect pagination totals. Disclosure buttons expose expanded state and associated panel IDs. Collapsed panels are inert and hidden from assistive technology; closing markup is released after the transition. Reduced-motion settings disable animation. The timetable demonstrates inline attendees; lazy loading is protected by focused component tests and will be connected to inventory in Step 10.
+Details occupy a full-width cell below their parent and do not affect pagination totals. Disclosure buttons expose expanded state and associated panel IDs. Collapsed panels are inert and hidden from assistive technology; closing markup is released after the transition. Reduced-motion settings disable animation. The timetable demonstrates inline attendees; inventory demonstrates lazy stock movements.
+
+## Inventory demo
+
+Open [Inventory](http://localhost:3000/inventory), or use the shared navigation. It uses the same DataTable with item/SKU/category/stock/unit-price columns, 100 fictional items, S$ prices and Singapore stock-movement timestamps.
+
+- **Client:** fetches the complete dataset once; controlled sorting and pagination run inside the table.
+- **Simulated server:** fetches the sorted page from `queryInventory`; the table receives manual configurations and the full total. This is a local asynchronous simulation, with no API endpoint.
+- **List response / Detail response:** independently choose Normal (500ms), Slow (2s), Empty or Error. Error fails once for the operation, then Retry succeeds. Detail errors leave the parent table usable.
+- **Reset demo:** restores Client/Normal defaults, re-arms errors and clears cached/open details. Changing any demo setting also clears details and returns to page 1; mode/scenario changes preserve sort and page size. Ordinary sorting and pagination preserve record-linked details within the current scope.
+
+Expand an item to load Date/time, Quantity change and Reason. Successful/empty results cache until the scope changes. Request cleanup and latest-result guards prevent replaced list/detail responses from appearing. Manual totals that shrink clamp the requested page and refetch it.
+
+The focused hook/component checks protect request races, page resets, manual clamping, SGD formatting and independent detail recovery. Production browser journeys exercise both routes and both processing modes, scenario replacement, retries, empty results, keyboard controls and mobile pinned-column scrolling.
 
 ## Approval workflow
 
@@ -152,4 +165,4 @@ Before each step, propose its scope and any dependency, style, or behavior decis
 
 Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
 
-Steps 1–8 are accepted. Step 9 is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Future steps require separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 9 execution record](docs/superpowers/plans/2026-11-01-row-expansion.md).
+Steps 1–9 are accepted. Step 10 is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Future steps require separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 10 execution record](docs/superpowers/plans/2026-11-01-inventory-demo.md).

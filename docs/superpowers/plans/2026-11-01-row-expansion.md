@@ -50,4 +50,4 @@
 - RED: four focused expansion checks failed before implementation because disclosure controls did not exist. GREEN: all 26 unit checks pass, including inline/lazy, empty cache, independent failures, retry, collapse during pending work, and ignored old-scope responses. Compile-time checks reject mixed sources and incorrect child shapes.
 - Verification: lint and typecheck pass. Production Playwright desktop/mobile journeys pass, covering actual panel height, keyboard disclosure, inert collapse, empty details, reduced motion, existing sorting/pagination and pinned-column behavior. Desktop/mobile screenshots inspected. First browser run exposed a punctuation mismatch in the test's expected empty copy; assertion aligned to actual copy, both journeys passed on rerun.
 - Fresh read-only review: no Critical/Important findings, no deferred minors or declined judgments. No implementation corrections required.
-- Step 9 is ready for user review; Step 10 remains unapproved.
+- The user accepted Step 9 after reviewing commit `48428a2`. Step 10 remains unapproved.

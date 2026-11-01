@@ -1,0 +1,32 @@
+.main { max-width: 1300px; padding: 45px 48px 32px; margin: 0 auto; }
+.eyebrow { margin: 0 0 13px; color: #36644b; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; }
+.main h1 { font-size: 36px; font-weight: 700; line-height: 1.2; letter-spacing: -1.2px; margin: 0; }
+.description { color: #4b6055; font-size: 14px; line-height: 1.7; margin: 13px 0 28px; }
+.controls { padding: 22px 24px; background: #e3ece5; border: 1px solid #c8d5cc; border-radius: 10px; margin-bottom: 26px; }
+.controlsHeading { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.controls h2, .cardHeader h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.controlsHeading > span, .cardHeader > span { color: #4b6055; font-size: 12px; }
+.controlFields { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; margin-top: 18px; }
+.controlFields label { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; color: #344e40; }
+.controlFields select, .controlFields button { min-height: 40px; padding: 8px 12px; border: 1px solid #9db8a5; border-radius: 6px; background: white; color: #244e36; font: inherit; cursor: pointer; }
+.controlFields select { min-width: 158px; font-size: 13px; }
+.controlFields button { font-size: 13px; font-weight: 600; }
+.controlFields button:hover { background: #edf5ef; }
+.controls p { margin: 15px 0 0; font-size: 12px; line-height: 1.6; color: #4b6055; }
+.card { overflow: hidden; background: #fff; border: 1px solid #c8d5cc; border-radius: 13px; box-shadow: 0 6px 22px #183b2b0b; }
+.cardHeader { padding: 23px 25px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid #c8d5cc; }
+.footnote { font-size: 12px; color: #53675a; margin: 19px 0 0; }
+.itemName { color: #193b2b; font-weight: 600; font-size: 14px; line-height: 1.5; }
+.stock, .price, .quantity { font-variant-numeric: tabular-nums; font-weight: 600; }
+.stock > span { font-size: 12px; font-weight: 400; color: #52685a; }
+.stock[data-empty="true"] { color: #8b362d; }
+.detailHeading { margin: 0 0 14px; color: #244c35; font-size: 13px; font-weight: 700; }
+.detailHeading span { font-size: 11px; margin-left: 16px; font-weight: 400; color: #52685a; }
+.movements { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 13px; color: #2d4b38; }
+.movements th { padding: 9px 12px; text-align: left; font-size: 11px; font-weight: 600; border-bottom: 1px solid #ccdacd; }
+.movements td { padding: 11px 12px; border-bottom: 1px solid #dde6dd; overflow-wrap: anywhere; }
+.movements tbody tr:last-child td { border-bottom: 0; }
+.quantity { color: #245b35; }
+.quantity[data-negative="true"] { color: #8b362d; }
+@media (max-width: 800px) { .main { padding: 35px 24px 28px; } }
+@media (max-width: 520px) { .main { padding: 29px 16px 24px; }.main h1 { font-size: 30px; }.description { font-size: 13px; }.controls { padding: 18px; }.controlFields { gap: 14px; }.controlFields label { flex: 1 1 100%; }.controlFields select { width: 100%; min-height: 44px; font-size: 16px; }.controlFields button { min-height: 44px; }.cardHeader { padding: 20px 18px; flex-wrap: wrap; gap: 7px; } }

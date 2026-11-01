@@ -1,7 +1,7 @@
 "use client";
 
 import { DataTable } from "@/components/data-table/DataTable";
-import { STUDIO_SETTINGS } from "@/config/studio";
+import { StudioShell } from "@/components/studio-shell/StudioShell";
 import { classColumns } from "./columns";
 import { formatClassDay } from "./formatters";
 import type { Attendee, ClassRow } from "./types";
@@ -29,16 +29,7 @@ export function Timetable() {
   ];
 
   return (
-    <div className={styles.page}>
-      <a className={styles.skip} href="#timetable-main">Skip to timetable</a>
-      <header className={styles.header}>
-        <div className={styles.headerInner}>
-          <div className={styles.brand}><span className={styles.brandMark} aria-hidden="true">HL</span>
-            <span>{STUDIO_SETTINGS.name}</span></div>
-          <nav className={styles.navigation} aria-label="Main navigation"><span aria-current="page">Class timetable</span></nav>
-          <span className={styles.location}>Singapore <span>SGT</span></span>
-        </div>
-      </header>
+    <StudioShell active="timetable">
       <main className={styles.main} id="timetable-main">
         <p className={styles.eyebrow}>Your studio, at a glance</p>
         <div className={styles.heading}><h1>Class timetable</h1>
@@ -58,6 +49,6 @@ export function Timetable() {
         </section>
         <p className={styles.footnote}>Sample timetable · Fictional studio data</p>
       </main>
-    </div>
+    </StudioShell>
   );
 }

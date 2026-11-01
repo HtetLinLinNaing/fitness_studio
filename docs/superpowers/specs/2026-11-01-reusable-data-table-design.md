@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–8 are complete and accepted. Step 9 has approved scope and is implemented, awaiting user review. Steps 10–12 require separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
+Status: Steps 1–9 are complete and accepted. Step 10 has approved scope and is implemented, awaiting user review. Steps 11–12 require separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
 Date: 2026-11-01
 
 ## Approval boundary
@@ -196,4 +196,6 @@ The user accepted Step 7 after reviewing the basic timetable and approving a str
 
 The user accepted the completed Step 8 implementation. Grouped sorting/pagination, sortable/custom comparator columns, client and controlled/manual processing, page resets and normalization, accessible controls, and focused behavior/type/browser checks are implemented. Sorting configuration is now active rather than deferred. Commit: `dd4f95b`. Expansion and the inventory demo UI remain later milestones requiring approval.
 
-Step 9 scope was approved and implemented: typed inline/lazy expansion, independent row requests and retry, successful/empty cache, stale-result protection, accessible animated detail rows, and inline timetable attendees. Unit/type/lint and production desktop/mobile checks pass. User review is pending; inventory UI remains Step 10 and requires separate approval.
+Step 9 was accepted after review of commit `48428a2`: typed inline/lazy expansion, independent row requests and retry, successful/empty cache, stale-result protection, accessible animated detail rows, and inline timetable attendees. Unit/type/lint and production desktop/mobile checks pass. Inventory UI remains Step 10 and requires separate approval.
+
+Step 10 scope and plan were approved and implemented: `/inventory`, shared navigation, 100 items, controlled client/manual processing, lazy stock movements and independent list/detail scenarios. Existing generic table internals were reused without domain changes. Unit/lint/type checks and production desktop/mobile journeys pass; fresh review found no material issues. User review is pending, and Steps 11/12 remain unapproved.
