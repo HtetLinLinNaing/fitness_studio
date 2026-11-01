@@ -53,4 +53,4 @@
 - Fresh read-only review: no Critical/Important findings, deferred minors or declined judgments. No production corrections required.
 - First production browser run passed desktop modes, tablet and both inventory journeys; mobile pinning assertion used an unscoped descendant selector that also matched closing attendee markup. Scoped it to the parent row, then reran the browser suite.
 - Full production browser rerun: 5 journeys passed, duplicate mobile-project tablet case intentionally skipped. Screenshots inspected. Tightened the final screenshot check to wait for the whole expansion transition so records are not captured mid-animation; final focused desktop/mobile timetable journeys rerun for that artifact change.
-- No generic table, inventory implementation, dependencies or fixtures changed. Local review uses the production preview on port 3001; source publication waits for user review.
+- No generic table, inventory implementation, dependencies or fixtures changed. The user reviewed the local production preview and approved commit/push of both attendee modes at `2db0243`. Deployment remains user-managed.
