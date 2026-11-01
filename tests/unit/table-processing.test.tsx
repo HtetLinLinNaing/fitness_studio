@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, test, vi } from "vitest";
 import { DataTable } from "@/components/data-table/DataTable";
-import type { ColumnDef } from "@/components/data-table/types";
+import type { ColumnDef } from "@/types/table";
 
 type Row = { id: string; label: string; score: number | null };
 const data: readonly Row[] = Object.freeze([

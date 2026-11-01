@@ -4,9 +4,9 @@
 
 **Goal:** Build the approved basic reusable table and class timetable screen, verify it, and create a separate Step 7 commit.
 
-**Architecture:** Native semantic table driven by typed column definitions. A feature-owned timetable component fetches the existing class mock service with cancellation and stale-result protection. CSS Modules apply the approved Calm studio direction; HeroUI supplies only loading skeletons and Retry controls.
+**Architecture:** Native semantic table driven by typed column definitions. A feature-owned timetable component fetches the existing class mock service with cancellation and stale-result protection. Tailwind utilities and shared global CSS apply the approved Calm studio direction; HeroUI supplies only loading skeletons and Retry controls.
 
-**Tech Stack:** existing Next.js/React/TypeScript/HeroUI/CSS Modules, Vitest/RTL and Playwright. No new dependencies.
+**Tech Stack:** existing Next.js/React/TypeScript/HeroUI/Tailwind utilities and shared global CSS, Vitest/RTL and Playwright. No new dependencies.
 
 **Spec:** approved PRD, API design, and visual design under `docs/superpowers/specs/`. User explicitly approved Step 7 and a separate non-Codex-prefixed commit.
 
@@ -29,7 +29,7 @@
 
 ## Task 1: Basic table and screen
 
-**Files:** `src/components/data-table/{types.ts,DataTable.tsx,data-table.module.css}`, `src/features/timetable/{Timetable.tsx,use-class-timetable.ts,columns.tsx,formatters.ts,timetable.module.css}`, app page/layout/globals, focused unit/browser tests, README/spec status.
+**Files:** `src/types/table.ts`, `src/types/timetable.ts`, `src/components/data-table/DataTable.tsx`, `src/features/timetable/{ClassTimetable.tsx,use-class-timetable.ts,columns.tsx,formatters.ts}`, app page/layout/globals, focused unit/browser tests, README/spec status.
 
 **Interfaces:** `ColumnDef<T>`, `RequestState`, foundation `DataTableProps<T>` with data/columns/getRowId/datasetKey/caption/request/emptyMessage. `Timetable` renders the real timetable route; `useClassTimetable` owns the request lifecycle. Later milestones extend the foundation with the approved grouped configurations.
 

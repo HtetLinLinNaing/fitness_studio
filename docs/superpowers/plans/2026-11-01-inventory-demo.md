@@ -6,7 +6,7 @@
 
 **Architecture:** A feature hook owns query, mode, scenario and list requests. The existing generic table processes complete client datasets or trusts manually sorted/paged results. Feature-owned columns and movement markup format SGD prices and Singapore timestamps. A shared page shell preserves the accepted branding and navigation.
 
-**Tech Stack:** existing Next.js, React, strict TypeScript, CSS Modules, native table, HeroUI non-table primitives, Vitest/RTL and Playwright. No new dependencies or backend.
+**Tech Stack:** existing Next.js, React, strict TypeScript, Tailwind utilities and shared global CSS, native table, HeroUI non-table primitives, Vitest/RTL and Playwright. No new dependencies or backend.
 
 **Spec:** `../specs/2026-11-01-reusable-data-table-design.md` and `../specs/2026-11-01-data-table-api-design.md`. User approved the inventory direction and then this implementation plan before product code changes.
 
@@ -41,7 +41,7 @@
 
 ## Task 1: Inventory request owner
 
-**Files:** create `src/features/demo/use-inventory-demo.ts`; tests `tests/unit/inventory-demo.test.tsx`. Consume existing models in `src/features/demo/types.ts`, service interfaces in `src/mocks/services.ts`, and table state types.
+**Files:** create `src/features/demo/use-inventory-demo.ts`; tests `tests/unit/inventory-demo.test.tsx`. Consume existing models in `src/types/inventory.ts`, service interfaces in `src/mocks/services.ts`, and table state types.
 
 **Interfaces:** `useInventoryDemo()` returns rows, totalRows, request, query, mode, listScenario, childScenario, datasetKey, and actions for sort/page/mode/scenarios/reset. Mode is `client | manual`. List service is loadInventory in client mode and queryInventory in manual mode. Query uses existing ListQuery.
 
@@ -52,7 +52,7 @@
 
 ## Task 2: Inventory page and lazy details
 
-**Files:** create `src/app/inventory/page.tsx`, `src/features/demo/InventoryDemo.tsx`, `inventory-columns.tsx`, `StockMovementList.tsx`, `inventory-demo.module.css`, `src/components/studio-shell/StudioShell.tsx` and shell CSS. Modify Timetable to use the shared shell without changing its content. Extend `tests/unit/inventory-demo.test.tsx` and add `tests/e2e/inventory.spec.ts`.
+**Files:** `src/app/inventory/page.tsx`, `src/features/demo/InventoryDemo.tsx`, `inventory-columns.tsx`, `StockMovementList.tsx`, and shared `src/app/globals.css`. Shared presentation now lives directly under `src/components/`: `StudioHeader.tsx`, `StudioPage.tsx`, and `SectionCard.tsx`, styled with Tailwind utilities. The root layout renders the header; both feature pages reuse StudioPage and SectionCard. Extend `tests/unit/inventory-demo.test.tsx` and add `tests/e2e/inventory.spec.ts`.
 
 **Interfaces:** `InventoryDemo()` consumes Task 1. Columns are `readonly ColumnDef<InventoryRow>[]` with existing service sort IDs name/sku/category/stock/unitPriceCents. `StockMovementList({ movements })` receives readonly StockMovement[]. Expansion calls `loadStockMovements(row.id, { signal, scenario: childScenario })` and uses datasetKey to invalidate results intentionally.
 

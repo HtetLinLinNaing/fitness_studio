@@ -1,6 +1,23 @@
 # HL Fitness Studio — Dashboard Visual Options — Step 3
 
-Status: Calm studio direction and HL Fitness Studio name are approved. The user accepted the implemented stronger sans-serif/contrast revision, completing Step 7 review.
+Status: The user selected and approved the Compact workspace preview on 2026-11-01. The revision below supersedes the earlier Calm studio page presentation. The HL Fitness Studio name and generic table requirements remain approved.
+
+## Compact workspace revision
+
+The user subsequently approved Tailwind CSS utilities with a single `src/app/globals.css` stylesheet. This replaces CSS Modules without changing the selected visual direction. Shared colors, base defaults, direct-child table selectors and the skeleton reduced-motion fallback live in the global stylesheet; component layout and state styling use Tailwind.
+
+The user compared the interactive Compact workspace and Minimal ledger samples, selected Compact workspace, and confirmed the direction in chat. Apply it to both timetable and inventory.
+
+- Use a neutral light gray canvas, white surfaces, restrained borders, and no card shadows.
+- Widen page content with 24px desktop and 16px mobile side padding.
+- Keep the green typographic HL Fitness Studio brand, subtle reduced-motion-aware logo hover, sticky header, and right-aligned navigation.
+- Present a compact page heading with date/context alongside it and a small summary beneath. Remove the eyebrow and promotional tagline.
+- Use one compact table toolbar combining the section title, timezone/currency context and optional controls. Keep the attendee mode label and accessible explanation.
+- Increase the class column width; remove instructor initials and attendance progress bars. Retain readable duration, counts and text-labeled statuses.
+- Reduce table row spacing while preserving touch targets, keyboard behavior, expansion animation, and mobile horizontal scrolling with a pinned first column.
+- Keep inventory demo controls available for assessment scenarios. Both routes share StudioPage and SectionCard rather than duplicating page framing.
+
+The mockup's six displayed rows and shortened time strings were sample presentation. Keep the implemented pagination defaults and explicit studio-time formatting. No data or table API changes are included.
 
 ## Authorized scope
 

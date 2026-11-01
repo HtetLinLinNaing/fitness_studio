@@ -28,9 +28,9 @@
 
 ## Task 1: Fixtures and asynchronous data contract
 
-**Files:** `src/config/studio.ts`, `src/types/table-state.ts`, feature `types.ts` files under timetable/demo, mock `types.ts`, `request.ts`, `data.ts`, `services.ts`, JSON under `src/mocks/data/`, deterministic `scripts/generate-mock-data.mjs`, focused `tests/unit/mock-services.test.ts`, README and spec updates.
+**Files:** shared contracts in `src/types/{table,timetable,inventory,mock}.ts`, timetable `formatters.ts`, inventory `inventory-columns.tsx`, mock `request.ts` and `services.ts`, JSON under `src/mocks/data/`, deterministic `scripts/generate-mock-data.mjs`, focused `tests/unit/mock-services.test.ts`, README and spec updates. The former `data.ts` readers are merged into the async services; `simulateRequest` handles shared request behavior.
 
-**Interfaces:** `loadClasses`, `loadInventory`, `queryInventory`, `loadStockMovements` from the approved API; `resetMockFailures` for reproducible demo scenarios; `STUDIO_SETTINGS` for explicit presentation defaults. Fixture generation is available through `npm run mocks:generate`.
+**Interfaces:** `loadClasses`, `loadInventory`, `queryInventory`, `loadStockMovements` from the approved API; `resetMockFailures` for reproducible demo scenarios. Timetable locale and timezone are defined locally in `src/features/timetable/formatters.ts`; inventory currency formatting is defined in `src/features/demo/inventory-columns.tsx`. Fixture generation is available through `npm run mocks:generate`.
 
 - [x] Write focused service/fixture behavior checks and observe the expected missing-service failure.
 - [x] Implement typed models, deterministic JSON records, cancellable requests, and mock services; run the focused checks.

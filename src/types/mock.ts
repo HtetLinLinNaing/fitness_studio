@@ -1,4 +1,4 @@
-import type { PaginationState, SortState } from "@/types/table-state";
+import type { PaginationState, SortState } from "@/types/table";
 
 export type MockScenario = "normal" | "slow" | "empty" | "error";
 export type MockContext = { signal?: AbortSignal; scenario?: MockScenario };

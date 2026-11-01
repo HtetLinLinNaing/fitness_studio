@@ -1,13 +1,69 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
+@theme {
+  --color-canvas: #f6f7f6;
+  --color-ink: #202923;
+  --color-subtle: #657168;
+  --color-line: #e1e6e2;
+  --color-studio: #145e42;
+  --color-soft: #f7f9f7;
 }
 
-* { box-sizing: border-box; }
-:root { color-scheme: light; }
-:focus-visible { outline: 2px solid #145e42; outline-offset: 3px; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@layer base {
+  body {
+    min-height: 100vh;
+    background: #f6f7f6;
+    color: #202923;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  :root {
+    color-scheme: light;
+  }
+  :focus-visible {
+    outline: 2px solid #145e42;
+    outline-offset: 3px;
+  }
+}
+
+/* Direct-child selectors keep parent-row styling out of nested detail tables. */
+@layer components {
+  .data-table > thead > tr > th {
+    @apply h-[42px] bg-soft text-left text-xs font-medium text-subtle;
+  }
+
+  .data-table > tbody > tr > td {
+    @apply h-15 bg-white;
+  }
+
+  .data-table > thead > tr > th,
+  .data-table > tbody > tr > td {
+    @apply border-b border-line px-[18px] py-2.5 align-middle wrap-anywhere;
+  }
+
+  .data-table > tbody > tr:last-child > td {
+    border-bottom: 0;
+  }
+
+  .data-table > tbody > tr:hover > td:not(.data-table-detail) {
+    @apply bg-soft;
+  }
+
+  .data-table > tbody > tr > td.data-table-detail {
+    @apply h-auto border-b-0 bg-soft p-0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .table-skeleton,
+  .table-skeleton::before,
+  .table-skeleton::after {
+    animation: none !important;
+  }
+}

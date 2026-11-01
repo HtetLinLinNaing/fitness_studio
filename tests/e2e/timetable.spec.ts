@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("timetable renders real classes and keeps the class column pinned on narrow screens", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/classTimetable");
 
   await expect(page).toHaveTitle("HL Fitness Studio | Class timetable");
   await expect(page.getByRole("heading", { name: "Class timetable", exact: true })).toBeVisible();

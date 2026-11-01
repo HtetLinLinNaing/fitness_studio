@@ -1,5 +1,5 @@
-import { Timetable } from "@/features/timetable/Timetable";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return <Timetable />;
+  redirect("/classTimetable");
 }

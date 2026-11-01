@@ -51,7 +51,7 @@ src/app/                       routes, shared layout, global styles
 src/app/inventory/             reuse and controlled-mode demo
 src/components/data-table/     public types, table rendering, local state helpers
 src/components/ui/             shared non-table wrappers only when useful
-src/features/timetable/        class columns, attendee presentation, dashboard
+src/features/classTimetable/        class columns, attendee presentation, dashboard
 src/features/demo/             unrelated dataset, columns, demo controls
 src/mocks/                     seeded fixtures and async mock functions
 tests/                         table behavior and browser acceptance checks
@@ -65,7 +65,9 @@ The foundation includes an npm lockfile and scripts for development, production 
 
 Approved during Step 2 PRD review: two pages, a class timetable with inline attendee details and an inventory demo with on-demand stock movements, simulated server sorting/pagination, and controls demonstrating loading, empty, and error states. The app supports viewing and inspecting data. Class creation, booking edits, and payment management are outside scope.
 
-### Timetable route `/`
+### Timetable route `/classTimetable`
+
+Approved route-structure revision: `/` redirects to `/classTimetable`. Timetable and inventory now have matching route folders. This supersedes earlier references to `/` as the timetable route.
 
 Show mock fitness classes in a SaaS-style layout with clear hierarchy. Columns include class name pinned left, instructor, time, attendance, and status. Parent rows expand below their class to show customer name, payment type, and booking status. Inline attendees are the default. An approved follow-up adds an Attendee loading switch to On-demand, so the same attendee data demonstrates both expansion modes as the original brief asks. Mode changes reset table/cache state and cancel pending details. A short initial mocked fetch makes matching skeleton rows observable. Include a retry action for initial errors and clear empty messaging.
 

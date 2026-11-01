@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, test, vi } from "vitest";
 import { DataTable } from "@/components/data-table/DataTable";
-import type { ColumnDef } from "@/components/data-table/types";
+import type { ColumnDef } from "@/types/table";
 
 type Sample = { id: string; label: string; amount: number };
 const data: readonly Sample[] = [{ id: "sample-1", label: "Balance pad", amount: 3500 }];

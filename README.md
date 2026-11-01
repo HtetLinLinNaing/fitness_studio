@@ -15,7 +15,9 @@ npm ci
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). The HL Fitness Studio timetable loads 12 mock classes and displays the approved Calm studio design in Singapore time.
+Open [localhost:3000](http://localhost:3000). The HL Fitness Studio timetable loads 12 mock classes in Singapore time.
+
+The root URL redirects to `/classTimetable`. The two feature routes are `/classTimetable` and `/inventory`, each with its own `src/app/<route>/page.tsx`. Both share the root layout and compact workspace presentation.
 
 ## Verify
 
@@ -55,7 +57,13 @@ The [verification record](docs/verification.md) maps the assessment requirements
 
 Local JSON under `src/mocks/data/` stores **12 classes** with inline attendees, **100 inventory items**, and separate per-item stock movements. There are no API endpoints or backend. This smaller dataset replaces the earlier large stress-test proposal.
 
-Studio defaults in `src/config/studio.ts` explicitly use **HL Fitness Studio**, Singapore time (`Asia/Singapore`), and Singapore dollars (`SGD`, shown as `S$`). Fixture timestamps include `+08:00`; inventory prices use integer cents. All records are fictional and deterministic.
+`services.ts` imports the JSON directly. Each async service waits for the simulated request, handles the empty scenario, and returns a copy of its data. `request.ts` handles shared delays, cancellation and one-shot failures; `src/types/mock.ts` contains the small shared contracts. Fixture status values are checked by tests rather than a runtime validation layer for these owned JSON files.
+
+Shared types live in `src/types/`: `table.ts` defines the generic table contract and sort/page state, `timetable.ts` defines class/attendee models, `inventory.ts` defines inventory/stock-movement models, and `mock.ts` defines mock request contracts. Component-only props stay with their components.
+
+Styling uses Tailwind CSS 4 utilities in the components. `src/app/globals.css` is the only stylesheet: it defines shared color tokens, base defaults, direct-child table rules that avoid styling nested detail tables, and a reduced-motion fallback for loading skeletons. There are no CSS Modules or separate styles folder. Dynamic column widths and pinned offsets remain inline because they come from the table configuration.
+
+The timetable formatter holds its locale (`en-SG`) and timezone (`Asia/Singapore`) locally. Inventory prices use Singapore dollars (`SGD`, shown as `S$`) in the inventory column formatter. Fixture timestamps include `+08:00`; inventory prices use integer cents. All records are fictional and deterministic.
 
 Import these asynchronous services from `@/mocks/services`:
 
@@ -97,7 +105,7 @@ HeroUI supplies only non-table primitives (Skeleton and Retry Button). The table
 
 ```tsx
 import { DataTable } from "@/components/data-table/DataTable";
-import type { ColumnDef } from "@/components/data-table/types";
+import type { ColumnDef } from "@/types/table";
 
 type Product = { id: string; name: string; stock: number };
 const columns: readonly ColumnDef<Product>[] = [

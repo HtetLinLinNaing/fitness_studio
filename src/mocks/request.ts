@@ -1,48 +1,53 @@
-import type { MockContext } from "./types";
+import type { MockContext } from "@/types/mock";
 
-const injectedFailures = new Set<string>();
+const failedOperations = new Set<string>();
 
-/** Re-arm one-shot errors when the demo selects a new failure scenario. */
 export function resetMockFailures(): void {
-  injectedFailures.clear();
+  failedOperations.clear();
 }
 
-export function mockRequest<T>(
-  operation: string,
-  errorMessage: string,
-  read: () => T,
-  { signal, scenario = "normal" }: MockContext = {},
-): Promise<T> {
-  return new Promise<T>((resolve, reject) => {
-    const abortError = () => new DOMException("Request cancelled", "AbortError");
+function cancellationError() {
+  return new DOMException("Request cancelled", "AbortError");
+}
 
+function waitForDelay(delay: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
     if (signal?.aborted) {
-      reject(abortError());
+      reject(cancellationError());
       return;
     }
 
-    const onAbort = () => {
+    function cancel() {
       clearTimeout(timer);
-      signal?.removeEventListener("abort", onAbort);
-      reject(abortError());
-    };
+      reject(cancellationError());
+    }
 
     const timer = setTimeout(() => {
-      signal?.removeEventListener("abort", onAbort);
+      signal?.removeEventListener("abort", cancel);
+      resolve();
+    }, delay);
 
-      if (scenario === "error" && !injectedFailures.has(operation)) {
-        injectedFailures.add(operation);
-        reject(new Error(errorMessage));
-        return;
-      }
-
-      try {
-        resolve(read());
-      } catch (error) {
-        reject(error);
-      }
-    }, scenario === "slow" ? 2_000 : 500);
-
-    signal?.addEventListener("abort", onAbort, { once: true });
+    signal?.addEventListener("abort", cancel, { once: true });
   });
+}
+
+/** Simulate a request before a service returns its local data. */
+export async function simulateRequest(
+  operation: string,
+  errorMessage: string,
+  { signal, scenario = "normal" }: MockContext = {},
+): Promise<void> {
+  const delay = scenario === "slow" ? 2_000 : 500;
+  await waitForDelay(delay, signal);
+
+  // Cancellation must not consume the failure reserved for the next retry.
+  if (signal?.aborted) {
+    throw cancellationError();
+  }
+
+  // Fail once per operation so clicking Retry can succeed.
+  if (scenario === "error" && !failedOperations.has(operation)) {
+    failedOperations.add(operation);
+    throw new Error(errorMessage);
+  }
 }

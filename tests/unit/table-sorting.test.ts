@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { sortRows } from "@/components/data-table/processing";
-import type { ColumnDef } from "@/components/data-table/types";
+import type { ColumnDef } from "@/types/table";
 
 type Row = { id: string; value: number | null; when: Date; active: boolean };
 const rows: readonly Row[] = Object.freeze([

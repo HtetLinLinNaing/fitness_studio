@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
-import { STUDIO_SETTINGS } from "@/config/studio";
+import type { ListQuery } from "@/types/mock";
 import {
   loadClasses,
   loadAttendees,
@@ -27,69 +27,125 @@ test("class fixtures have coherent inline bookings, unique IDs, and Singapore ti
   const classes = await complete(loadClasses());
 
   expect(classes).toHaveLength(12);
-  expect(new Set(classes.map(row => row.id)).size).toBe(classes.length);
-  expect(STUDIO_SETTINGS).toMatchObject({
-    timeZone: "Asia/Singapore", currency: "SGD", currencySymbol: "S$",
-  });
-  expect(classes.some(row => row.attendees.length === 0)).toBe(true);
-  expect(classes.some(row => row.status === "full")).toBe(true);
-  expect(classes.some(row => row.status === "cancelled")).toBe(true);
+  expect(new Set(classes.map((row) => row.id)).size).toBe(classes.length);
+  expect(classes.some((row) => row.attendees.length === 0)).toBe(true);
+  expect(classes.some((row) => row.status === "full")).toBe(true);
+  expect(classes.some((row) => row.status === "cancelled")).toBe(true);
 
   for (const row of classes) {
+    expect(["scheduled", "full", "cancelled"]).toContain(row.status);
+    for (const attendee of row.attendees) {
+      expect(["one-time", "package", "membership"]).toContain(
+        attendee.paymentType,
+      );
+      expect(["booked", "checked-in", "cancelled", "no-show"]).toContain(
+        attendee.bookingStatus,
+      );
+    }
     expect(row.startsAt).toMatch(/\+08:00$/);
     expect(Date.parse(row.endsAt)).toBeGreaterThan(Date.parse(row.startsAt));
     expect(row.bookedCount).toBeLessThanOrEqual(row.capacity);
-    expect(row.bookedCount).toBe(row.attendees.filter(attendee =>
-      attendee.bookingStatus === "booked" || attendee.bookingStatus === "checked-in",
-    ).length);
-    expect(new Set(row.attendees.map(attendee => attendee.id)).size)
-      .toBe(row.attendees.length);
+    expect(row.bookedCount).toBe(
+      row.attendees.filter(
+        (attendee) =>
+          attendee.bookingStatus === "booked" ||
+          attendee.bookingStatus === "checked-in",
+      ).length,
+    );
+    expect(new Set(row.attendees.map((attendee) => attendee.id)).size).toBe(
+      row.attendees.length,
+    );
   }
 });
 
 test("inventory is sorted numerically before pagination without changing original order", async () => {
   const original = await complete(loadInventory());
   expect(original).toHaveLength(100);
-  expect(new Set(original.map(row => row.id)).size).toBe(100);
-  expect(original.every(row => Number.isInteger(row.unitPriceCents))).toBe(true);
+  expect(new Set(original.map((row) => row.id)).size).toBe(100);
+  expect(original.every((row) => Number.isInteger(row.unitPriceCents))).toBe(
+    true,
+  );
 
-  const expected = [...original].sort((left, right) => left.unitPriceCents - right.unitPriceCents);
-  const page = await complete(queryInventory({
-    sort: { columnId: "unitPriceCents", direction: "asc" },
-    pagination: { pageIndex: 1, pageSize: 10 },
-  }));
+  const expected = [...original].sort(
+    (left, right) => left.unitPriceCents - right.unitPriceCents,
+  );
+  const page = await complete(
+    queryInventory({
+      sort: { columnId: "unitPriceCents", direction: "asc" },
+      pagination: { pageIndex: 1, pageSize: 10 },
+    }),
+  );
   expect(page.totalRows).toBe(100);
   expect(page.rows).toEqual(expected.slice(10, 20));
 
-  const descending = await complete(queryInventory({
-    sort: { columnId: "unitPriceCents", direction: "desc" },
-    pagination: { pageIndex: 0, pageSize: 10 },
-  }));
-  expect(descending.rows.map(row => row.unitPriceCents))
-    .toEqual([...original.map(row => row.unitPriceCents)].sort((a, b) => b - a).slice(0, 10));
+  const descending = await complete(
+    queryInventory({
+      sort: { columnId: "unitPriceCents", direction: "desc" },
+      pagination: { pageIndex: 0, pageSize: 10 },
+    }),
+  );
+  expect(descending.rows.map((row) => row.unitPriceCents)).toEqual(
+    [...original.map((row) => row.unitPriceCents)]
+      .sort((a, b) => b - a)
+      .slice(0, 10),
+  );
 
-  const unsorted = await complete(queryInventory({
-    sort: null, pagination: { pageIndex: 0, pageSize: 10 },
-  }));
+  const unsorted = await complete(
+    queryInventory({
+      sort: null,
+      pagination: { pageIndex: 0, pageSize: 10 },
+    }),
+  );
   expect(unsorted.rows).toEqual(original.slice(0, 10));
+});
+
+test("inventory requests keep their original query while waiting", async () => {
+  const inventory = await complete(loadInventory());
+  const query: ListQuery = {
+    sort: { columnId: "unitPriceCents", direction: "asc" },
+    pagination: { pageIndex: 1, pageSize: 10 },
+  };
+  const pending = queryInventory(query);
+
+  query.sort!.direction = "desc";
+  query.pagination.pageIndex = 9;
+  query.pagination.pageSize = 1;
+
+  const result = await complete(pending);
+  const expected = [...inventory].sort(
+    (left, right) => left.unitPriceCents - right.unitPriceCents,
+  );
+  expect(result.rows).toEqual(expected.slice(10, 20));
+  expect(result.totalRows).toBe(inventory.length);
 });
 
 test("invalid queries and empty scenarios return predictable rows and totals", async () => {
   const original = await complete(loadInventory());
-  const invalid = await complete(queryInventory({
-    sort: { columnId: "missing", direction: "asc" },
-    pagination: { pageIndex: -1, pageSize: 0 },
-  }));
+  const invalid = await complete(
+    queryInventory({
+      sort: { columnId: "missing", direction: "asc" },
+      pagination: { pageIndex: -1, pageSize: 0 },
+    }),
+  );
   expect(invalid.rows).toEqual(original.slice(0, 10));
 
-  const outOfRange = await complete(queryInventory({
-    sort: null, pagination: { pageIndex: 100, pageSize: 10 },
-  }));
+  const outOfRange = await complete(
+    queryInventory({
+      sort: null,
+      pagination: { pageIndex: 100, pageSize: 10 },
+    }),
+  );
   expect(outOfRange).toEqual({ rows: [], totalRows: 100 });
 
-  const empty = await complete(queryInventory({
-    sort: null, pagination: { pageIndex: 0, pageSize: 10 },
-  }, { scenario: "empty" }));
+  const empty = await complete(
+    queryInventory(
+      {
+        sort: null,
+        pagination: { pageIndex: 0, pageSize: 10 },
+      },
+      { scenario: "empty" },
+    ),
+  );
   expect(empty).toEqual({ rows: [], totalRows: 0 });
   expect(await complete(loadClasses({ scenario: "empty" }))).toEqual([]);
 });
@@ -97,10 +153,12 @@ test("invalid queries and empty scenarios return predictable rows and totals", a
 test("lazy details belong to the requested item and support empty results", async () => {
   const movements = await complete(loadStockMovements("item-001"));
   expect(movements.length).toBeGreaterThan(0);
-  expect(movements.every(row => row.itemId === "item-001")).toBe(true);
-  expect(new Set(movements.map(row => row.id)).size).toBe(movements.length);
+  expect(movements.every((row) => row.itemId === "item-001")).toBe(true);
+  expect(new Set(movements.map((row) => row.id)).size).toBe(movements.length);
   expect(await complete(loadStockMovements("item-008"))).toEqual([]);
-  expect(await complete(loadStockMovements("item-001", { scenario: "empty" }))).toEqual([]);
+  expect(
+    await complete(loadStockMovements("item-001", { scenario: "empty" })),
+  ).toEqual([]);
 });
 
 test("on-demand attendees match their class, are detached, and support empty and recoverable requests", async () => {
@@ -110,14 +168,24 @@ test("on-demand attendees match their class, are detached, and support empty and
   expect(attendees).toEqual(yoga.attendees);
   expect(attendees).not.toBe(yoga.attendees);
   expect(attendees[0]).not.toBe(yoga.attendees[0]);
-  expect(await complete(loadAttendees(classes.find(row => row.attendees.length === 0)!.id))).toEqual([]);
+  expect(
+    await complete(
+      loadAttendees(classes.find((row) => row.attendees.length === 0)!.id),
+    ),
+  ).toEqual([]);
   expect(await complete(loadAttendees("unknown"))).toEqual([]);
-  const failed = expect(loadAttendees(yoga.id, { scenario: "error" })).rejects.toThrow("Unable to load attendees");
+  const failed = expect(
+    loadAttendees(yoga.id, { scenario: "error" }),
+  ).rejects.toThrow("Unable to load attendees");
   await vi.advanceTimersByTimeAsync(500);
   await failed;
-  expect(await complete(loadAttendees(yoga.id, { scenario: "error" }))).toEqual(yoga.attendees);
+  expect(await complete(loadAttendees(yoga.id, { scenario: "error" }))).toEqual(
+    yoga.attendees,
+  );
   const controller = new AbortController();
-  const pending = expect(loadAttendees(yoga.id, { signal: controller.signal })).rejects.toMatchObject({ name: "AbortError" });
+  const pending = expect(
+    loadAttendees(yoga.id, { signal: controller.signal }),
+  ).rejects.toMatchObject({ name: "AbortError" });
   controller.abort();
   await pending;
 });
@@ -133,20 +201,26 @@ test("slow requests stay pending until the configured delay", async () => {
 });
 
 test("one-shot failures recover on retry without breaking independent requests", async () => {
-  const failed = expect(loadInventory({ scenario: "error" }))
-    .rejects.toThrow("Unable to load inventory");
+  const failed = expect(loadInventory({ scenario: "error" })).rejects.toThrow(
+    "Unable to load inventory",
+  );
   await vi.advanceTimersByTimeAsync(500);
   await failed;
-  expect(await complete(loadInventory({ scenario: "error" }))).toHaveLength(100);
+  expect(await complete(loadInventory({ scenario: "error" }))).toHaveLength(
+    100,
+  );
 
-  const failedChild = expect(loadStockMovements("item-001", { scenario: "error" }))
-    .rejects.toThrow("Unable to load stock movements");
+  const failedChild = expect(
+    loadStockMovements("item-001", { scenario: "error" }),
+  ).rejects.toThrow("Unable to load stock movements");
   const independentParent = loadInventory();
   await vi.advanceTimersByTimeAsync(500);
   await failedChild;
   expect(await independentParent).toHaveLength(100);
-  expect((await complete(loadStockMovements("item-001", { scenario: "error" }))).length)
-    .toBeGreaterThan(0);
+  expect(
+    (await complete(loadStockMovements("item-001", { scenario: "error" })))
+      .length,
+  ).toBeGreaterThan(0);
 
   resetMockFailures();
   const reset = expect(loadInventory({ scenario: "error" })).rejects.toThrow();
@@ -156,19 +230,23 @@ test("one-shot failures recover on retry without breaking independent requests",
 
 test("aborting prevents delivery and does not consume the recoverable failure", async () => {
   const controller = new AbortController();
-  const aborted = expect(loadInventory({ scenario: "error", signal: controller.signal }))
-    .rejects.toMatchObject({ name: "AbortError" });
+  const aborted = expect(
+    loadInventory({ scenario: "error", signal: controller.signal }),
+  ).rejects.toMatchObject({ name: "AbortError" });
   await vi.advanceTimersByTimeAsync(200);
   controller.abort();
   await aborted;
   await vi.advanceTimersByTimeAsync(2_000);
 
-  const stillFails = expect(loadInventory({ scenario: "error" })).rejects.toThrow();
+  const stillFails = expect(
+    loadInventory({ scenario: "error" }),
+  ).rejects.toThrow();
   await vi.advanceTimersByTimeAsync(500);
   await stillFails;
 
   const preAborted = new AbortController();
   preAborted.abort();
-  await expect(loadClasses({ signal: preAborted.signal }))
-    .rejects.toMatchObject({ name: "AbortError" });
+  await expect(
+    loadClasses({ signal: preAborted.signal }),
+  ).rejects.toMatchObject({ name: "AbortError" });
 });

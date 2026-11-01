@@ -1,4 +1,4 @@
-import type { ClientSorting, ColumnDef, DataTableProps, ExpansionConfig, ManualPagination } from "@/components/data-table/types";
+import type { ClientSorting, ColumnDef, DataTableProps, ExpansionConfig, ManualPagination } from "@/types/table";
 
 type Sample = { id: string; label: string };
 

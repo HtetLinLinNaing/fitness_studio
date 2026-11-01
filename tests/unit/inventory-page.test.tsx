@@ -8,7 +8,6 @@ beforeEach(resetMockFailures);
 test("inventory formats SGD and retries detail errors without disabling the parent table", async () => {
   const user = userEvent.setup();
   render(<InventoryDemo />);
-  expect(screen.getByRole("link", { name: "Class timetable" })).toHaveAttribute("href", "/");
   await screen.findByText("S$28.00");
   await user.selectOptions(screen.getByRole("combobox", { name: "Detail response" }), "error");
   const toggle = await screen.findByRole("button", { name: "Expand Yoga Mat — Classic stock movements" });

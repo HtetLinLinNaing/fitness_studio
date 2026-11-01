@@ -2,7 +2,7 @@ import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, test, vi } from "vitest";
 import { DataTable } from "@/components/data-table/DataTable";
-import type { ColumnDef, ExpansionConfig } from "@/components/data-table/types";
+import type { ColumnDef, ExpansionConfig } from "@/types/table";
 
 type Receipt = { token: string };
 type Row = { id: string; label: string; receipts: readonly Receipt[] };

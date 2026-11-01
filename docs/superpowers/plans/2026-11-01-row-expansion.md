@@ -29,7 +29,7 @@
 
 ## Task 1: Generic expansion behavior
 
-**Files:** data-table `types.ts`, `use-row-expansion.ts`, `RowDetails.tsx`, `DataTable.tsx`, CSS; focused unit/type checks.
+**Files:** `src/types/table.ts`, data-table `use-row-expansion.ts`, `RowDetails.tsx`, `DataTable.tsx`, CSS; focused unit/type checks.
 
 - [x] Write focused inline/lazy/cache/race checks and observe RED.
 - [x] Implement typed expansion, per-row requests, scoped cache and detail rows; pass focused checks.

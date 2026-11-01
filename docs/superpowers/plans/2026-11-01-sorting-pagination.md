@@ -6,7 +6,7 @@
 
 **Architecture:** Pure typed helpers provide sort validation, stable comparison, and pagination normalization. A focused hook manages uncontrolled state while reading controlled values directly and emitting user-event callbacks. The native table renders processed rows; manual mode leaves supplied rows untouched. A separate small footer owns presentation of page controls.
 
-**Tech Stack:** existing React/TypeScript/native HTML/CSS Modules and existing test tools. No new dependencies.
+**Tech Stack:** existing React/TypeScript/native HTML/Tailwind utilities and shared global CSS and existing test tools. No new dependencies.
 
 **Spec:** approved API/PRD in `docs/superpowers/specs/`, Step 8 scope approved in chat. The current stronger sans-serif/green visual direction remains in use.
 
@@ -29,7 +29,7 @@
 
 ## Task 1: Processing and state contract
 
-**Files:** extend data-table `types.ts`, create `processing.ts`, `use-table-processing.ts`, focused unit/type contract checks; consume neutral sort/page types from `src/types/table-state.ts`.
+**Files:** extend `src/types/table.ts`, create data-table `processing.ts`, `use-table-processing.ts`, and focused unit/type contract checks. Sort/page state and the generic table contract share the same type file.
 
 - [x] Write focused comparison/ownership/manual/page-reset checks and observe RED.
 - [x] Implement validated stable processing and state ownership; pass the checks.

@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, expect, test, vi } from "vitest";
 import { useInventoryDemo } from "@/features/demo/use-inventory-demo";
 import { loadInventory, queryInventory } from "@/mocks/services";
-import type { InventoryRow } from "@/features/demo/types";
+import type { InventoryRow } from "@/types/inventory";
 
 vi.mock("@/mocks/services", () => ({
   loadInventory: vi.fn(), queryInventory: vi.fn(), resetMockFailures: vi.fn(),

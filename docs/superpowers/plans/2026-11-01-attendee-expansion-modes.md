@@ -32,7 +32,7 @@
 
 - [x] Write checks for attendee identity/copy/empty/error-retry/cancellation and for Inline default, lazy skeleton/retry, switch cancellation and no stale delivery.
 - [x] Run focused tests and observe failures before implementation.
-- [x] Implement `loadAttendees(classId: string, context?: MockContext): Promise<readonly Attendee[]>`, with independent operation keys `attendees:${classId}`. Reuse mockRequest/readClasses; unknown/empty classes return empty lists.
+- [x] Implement `loadAttendees(classId: string, context?: MockContext): Promise<readonly Attendee[]>`, with independent operation keys `attendees:${classId}`. Use the shared `simulateRequest` helper, then find the class in the fixtures and return a copy of its attendees; unknown/empty classes return empty lists.
 - [x] Add mode state and labeled select, choose typed inline/lazy config and mode-scoped dataset key. Render the existing AttendeeList in both modes. Explain that switching resets the table.
 - [x] Run focused/full unit tests, lint and typecheck; expect PASS.
 

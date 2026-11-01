@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("inventory reuses the table across processing modes and independent recoverable scenarios", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/classTimetable");
   await page.getByRole("link", { name: "Inventory", exact: true }).click();
   await expect(page).toHaveTitle("HL Fitness Studio | Inventory");
   const table = page.getByRole("table", { name: "Studio inventory", exact: true });
