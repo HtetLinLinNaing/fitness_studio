@@ -1,6 +1,6 @@
 # HL Fitness Studio — Dashboard Visual Options — Step 3
 
-Status: user approved the written Calm studio visual design and HL Fitness Studio name. Step 3 is complete and accepted; dashboard implementation remains separately gated.
+Status: Calm studio direction and HL Fitness Studio name are approved. During Step 7 review, the user approved a stronger sans-serif/contrast revision, now implemented for review.
 
 ## Authorized scope
 
@@ -10,7 +10,7 @@ The user approved a visual direction step: present two dashboard mockups coverin
 
 - Warm white canvas with sage/forest-green accents.
 - Simple top navigation for Class timetable and Component demo.
-- Serif page heading with system sans-serif controls and data.
+- Original serif heading replaced by bold sans-serif during the approved Step 7 revision.
 - Spacious rows and a softly tinted expanded detail region.
 - Clear, text-labeled green, amber, and muted red status indicators.
 
@@ -48,11 +48,11 @@ The user selected A in chat. B remains an alternative considered; it is not the 
 
 **Layout:** top navigation for the two approved routes, page heading and date context, compact text summaries, then the timetable in a lightly bordered surface. Use generous spacing and a full-width softly tinted detail region below expanded parents. The inventory demo follows the same visual language; its detailed screen and state layouts require later review.
 
-**Colors:** warm off-white page (`#f7f8f3`), white table and navigation, forest green accent (`#285e4d`), dark green-gray text (`#29382f`), and quiet borders (`#e4e7df`). Status labels pair readable text with green for Scheduled, amber for Full, and muted red for Cancelled. Exact secondary status shades and interactive focus/hover colors will be checked for readability during implementation.
+**Colors (revised during Step 7 review):** pale green-gray page (`#eef2ef`), white table/navigation, richer forest green (`#145e42`), dark charcoal-green text (`#172e25`), and clearer borders (`#c8d5cc`). Table headers use a stronger tint (`#e5ede7`). Status labels pair readable text with green for Scheduled, amber for Full, and muted red for Cancelled.
 
-**Typography:** Georgia/system serif for the main page heading; system sans-serif for navigation, controls, and table content. Do not add a downloaded font dependency.
+**Typography (revised during Step 7 review):** Arial/Helvetica/system sans-serif throughout. Use a bold 36px desktop heading, 30px mobile heading, stronger row labels, and larger secondary text. No downloaded font or dependency is added.
 
-**Spacing:** spacious desktop table rows, a compact header row, and smaller secondary labels. The mockup uses approximately 67px parent rows and a 34px page heading. These are visual targets; the implementation must keep essential text and controls readable at actual browser scale and provide usable keyboard/touch targets.
+**Spacing:** retain spacious table rows and a compact header row. Increase secondary label readability; body text and controls must remain readable at actual browser scale with usable keyboard/touch targets. The status column is slightly wider to accommodate larger labels.
 
 **Mobile:** let navigation and surrounding controls adapt to the available width; keep horizontal scrolling inside the table with the class/item column pinned. Table readability takes precedence over fitting every column at once. The pinned-column divider/shadow, visible focus, and reduced-motion behavior remain requirements from the PRD.
 
@@ -65,3 +65,7 @@ The user selected A in chat. B remains an alternative considered; it is not the 
 **Non-goals:** implementing the dashboard in this step, adding new screens or business actions, choosing testing tools, or changing the approved generic table behavior.
 
 **Approval:** the user approved the updated visual design with the HL Fitness Studio name, completing Step 3. A subsequent API or implementation step must be proposed and approved separately.
+
+## Step 7 style revision
+
+The user found the initial font style too soft and the palette too pale. They approved modern sans-serif throughout, darker text/stronger weights, richer forest-green accents, clearer borders/header contrast, and larger secondary labels. Implemented this within Step 7 without adding features or dependencies. Desktop/mobile production checks passed, including pinned-column behavior and no outer overflow. Selected normal-text palette pairs measured approximately 5.9:1–12.8:1 contrast; this is a palette measurement, not a claim that every app accessibility requirement has been audited.

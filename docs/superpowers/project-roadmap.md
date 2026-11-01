@@ -27,6 +27,7 @@ There are **12 proposed milestones**, including the six already accepted. Steps 
 - `6708dc2` — setup, design, and testing through Step 5.
 - `74e3eaa` — mock data and services for Step 6.
 - Step 7: `feat: build basic table and class timetable` (see the latest Git log for its hash). Commit subjects and the feature branch do not use a Codex prefix.
+- Step 7 review revision: `style: strengthen timetable typography and contrast`, following user approval of sans-serif typography and stronger colors. This remains part of Step 7; Step 8 has not started.
 
 The former combined commit `0f22600` was split at the user's request. Exact final-tree equality was checked after the split; source content was unchanged.
 

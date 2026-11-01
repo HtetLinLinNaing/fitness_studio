@@ -30,7 +30,7 @@ export const classColumns: readonly ColumnDef<ClassRow>[] = [
         `${row.capacity > 0 ? Math.min(100, Math.max(0, row.bookedCount / row.capacity * 100)) : 0}%` }} /></span></div>,
   },
   {
-    id: "status", accessorKey: "status", header: "Status", width: 135,
+    id: "status", accessorKey: "status", header: "Status", width: 150,
     cell: ({ row }) => <span className={styles.status} data-status={row.status}>{statusLabels[row.status]}</span>,
   },
 ];
