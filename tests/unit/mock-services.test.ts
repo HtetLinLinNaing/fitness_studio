@@ -2,6 +2,7 @@ import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import { STUDIO_SETTINGS } from "@/config/studio";
 import {
   loadClasses,
+  loadAttendees,
   loadInventory,
   loadStockMovements,
   queryInventory,
@@ -100,6 +101,25 @@ test("lazy details belong to the requested item and support empty results", asyn
   expect(new Set(movements.map(row => row.id)).size).toBe(movements.length);
   expect(await complete(loadStockMovements("item-008"))).toEqual([]);
   expect(await complete(loadStockMovements("item-001", { scenario: "empty" }))).toEqual([]);
+});
+
+test("on-demand attendees match their class, are detached, and support empty and recoverable requests", async () => {
+  const classes = await complete(loadClasses());
+  const yoga = classes[0];
+  const attendees = await complete(loadAttendees(yoga.id));
+  expect(attendees).toEqual(yoga.attendees);
+  expect(attendees).not.toBe(yoga.attendees);
+  expect(attendees[0]).not.toBe(yoga.attendees[0]);
+  expect(await complete(loadAttendees(classes.find(row => row.attendees.length === 0)!.id))).toEqual([]);
+  expect(await complete(loadAttendees("unknown"))).toEqual([]);
+  const failed = expect(loadAttendees(yoga.id, { scenario: "error" })).rejects.toThrow("Unable to load attendees");
+  await vi.advanceTimersByTimeAsync(500);
+  await failed;
+  expect(await complete(loadAttendees(yoga.id, { scenario: "error" }))).toEqual(yoga.attendees);
+  const controller = new AbortController();
+  const pending = expect(loadAttendees(yoga.id, { signal: controller.signal })).rejects.toMatchObject({ name: "AbortError" });
+  controller.abort();
+  await pending;
 });
 
 test("slow requests stay pending until the configured delay", async () => {

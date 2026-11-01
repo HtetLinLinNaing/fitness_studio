@@ -12,6 +12,11 @@
 .cardHeader { padding: 23px 25px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid #c8d5cc; }
 .cardHeader h2 { font-size: 15px; font-weight: 700; margin: 0; }
 .cardHeader>span { color: #4b6055; font-size: 12px; }
+.attendeeControls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 22px; padding: 16px 24px; border-bottom: 1px solid #c8d5cc; background: #f5f8f5; }
+.attendeeControls label { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; font-weight: 600; color: #344e40; }
+.attendeeControls select { min-height: 38px; padding: 7px 12px; border: 1px solid #9db8a5; border-radius: 6px; background: white; color: #244e36; font: inherit; font-size: 13px; cursor: pointer; }
+.attendeeControls p { margin: 0; color: #4b6055; font-size: 12px; line-height: 1.6; }
+@media (max-width: 520px) { .attendeeControls { padding: 16px 18px; }.attendeeControls select { min-height: 44px; font-size: 16px; } }
 .cardFooter { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 25px; border-top: 1px solid #c8d5cc; color: #4b6055; font-size: 12px; }
 .footnote { font-size: 12px; color: #53675a; margin: 19px 0 0; }
 .className { display: block; color: #193b2b; font-weight: 600; font-size: 15px; line-height: 1.4; }

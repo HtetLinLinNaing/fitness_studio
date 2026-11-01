@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { DataTable } from "@/components/data-table/DataTable";
 import { StudioShell } from "@/components/studio-shell/StudioShell";
+import { loadAttendees } from "@/mocks/services";
 import { classColumns } from "./columns";
 import { formatClassDay } from "./formatters";
 import type { Attendee, ClassRow } from "./types";
@@ -11,16 +13,18 @@ import { useClassTimetable } from "./use-class-timetable";
 import styles from "./timetable.module.css";
 
 const getRowId = (row: ClassRow) => row.id;
-const expansion: ExpansionConfig<ClassRow, Attendee> = {
-  mode: "inline",
-  getChildren: row => row.attendees,
+const presentation: Pick<ExpansionConfig<ClassRow, Attendee>, "emptyMessage" | "getLabel" | "renderChildren"> = {
   emptyMessage: "No attendees",
   getLabel: (row, expanded) => `${expanded ? "Collapse" : "Expand"} ${row.name} attendees`,
   renderChildren: ({ row, children }) => <AttendeeList classTitle={row.name} attendees={children} />,
 };
 
 export function Timetable() {
+  const [attendeeMode, setAttendeeMode] = useState<"inline" | "lazy">("inline");
   const { rows, request } = useClassTimetable();
+  const expansion: ExpansionConfig<ClassRow, Attendee> = attendeeMode === "inline"
+    ? { ...presentation, mode: "inline", getChildren: row => row.attendees }
+    : { ...presentation, mode: "lazy", loadChildren: (row, { signal }) => loadAttendees(row.id, { signal }) };
   const ready = request.status === "ready";
   const stats = [
     { label: "classes", value: rows.length },
@@ -43,7 +47,14 @@ export function Timetable() {
         <section className={styles.card} aria-labelledby="schedule-title">
           <div className={styles.cardHeader}><h2 id="schedule-title">Class schedule</h2>
             <span>Singapore time · UTC+08:00</span></div>
-          <DataTable<ClassRow, Attendee> caption="Class timetable" datasetKey="classes:v1" data={rows}
+          <div className={styles.attendeeControls}>
+            <label>Attendee loading<select value={attendeeMode} aria-describedby="attendee-mode-hint"
+              onChange={event => setAttendeeMode(event.target.value === "lazy" ? "lazy" : "inline")}>
+              <option value="inline">Inline</option><option value="lazy">On-demand</option>
+            </select></label>
+            <p id="attendee-mode-hint">On-demand loads attendees when expanded. Switching modes resets the table.</p>
+          </div>
+          <DataTable<ClassRow, Attendee> caption="Class timetable" datasetKey={`classes:v1:${attendeeMode}`} data={rows}
             columns={classColumns} getRowId={getRowId} request={request} emptyMessage="No classes available."
             expansion={expansion} />
         </section>

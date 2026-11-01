@@ -67,7 +67,7 @@ Approved during Step 2 PRD review: two pages, a class timetable with inline atte
 
 ### Timetable route `/`
 
-Show mock fitness classes in a SaaS-style layout with clear hierarchy. Columns include class name pinned left, instructor, time, attendance, and status. Parent rows expand below their class to show customer name, payment type, and booking status. Use inline attendees here to demonstrate expansion from already-loaded data. A short initial mocked fetch makes matching skeleton rows observable. Include a retry action for initial errors and clear empty messaging.
+Show mock fitness classes in a SaaS-style layout with clear hierarchy. Columns include class name pinned left, instructor, time, attendance, and status. Parent rows expand below their class to show customer name, payment type, and booking status. Inline attendees are the default. An approved follow-up adds an Attendee loading switch to On-demand, so the same attendee data demonstrates both expansion modes as the original brief asks. Mode changes reset table/cache state and cancel pending details. A short initial mocked fetch makes matching skeleton rows observable. Include a retry action for initial errors and clear empty messaging.
 
 ### Inventory demo route `/inventory`
 

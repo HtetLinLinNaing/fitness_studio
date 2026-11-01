@@ -11,8 +11,8 @@ Verified on 2026-11-01 against the supplied “Part 2 — Component Engineering 
 | Client sort asc/desc/none | Stable scalar sorting before slicing, original-order restoration, missing values last. Sorting/unit/browser checks cover numeric/text, ties, invalid IDs and finite numeric extremes. |
 | Controlled/uncontrolled sorting and pagination | Timetable uses table-owned state. Inventory uses parent-owned state in client/manual modes. Processing checks verify owner callbacks, page resets, clamping and trusted manual rows. |
 | Client pagination and optional server processing | Page sizes 10/25/50 and full parent counts. Inventory browser journey compares complete-dataset sort results across client/manual modes and navigates/changes page size. |
-| Inline expansion | Real timetable attendees with independent customer/payment/status columns. Stable-ID expansion survives sort/page changes. |
-| Lazy expansion | Inventory stock movements load on expansion. Loading/empty/error/retry remain row-local. Tests cover multiple concurrent rows, pending deduplication, cached empty results, collapse during loading, scope cancellation and ignored late results. |
+| Inline expansion | Default timetable mode shows real attendees with independent customer/payment/status columns. Stable-ID expansion survives sort/page changes. |
+| Lazy expansion | Timetable On-demand mode loads attendees when a class expands; inventory independently loads stock movements. Loading/empty/error/retry remain row-local. Tests cover multiple concurrent rows, pending deduplication, cached empty results, collapse during loading, scope cancellation and ignored late results. |
 | Full-width animated details | Detail cell spans all parent columns; feature owns nested child markup. Browser checks measure open/closed height, disclosure ARIA and reduced-motion behavior. Collapsed panels are inert and hidden from assistive technology. |
 | Pinned left column / scroll cue | Explicit widths/cumulative offsets and sticky positioning. Desktop/mobile checks verify position, shadow, scroll state and contained overflow. |
 | Matching skeletons / list states | Skeleton cells follow actual columns and page size. Component checks verify stale rows are replaced. Inventory controls reproduce slow, empty, failed initial requests and recoverable detail failures. |
@@ -25,7 +25,7 @@ Verified on 2026-11-01 against the supplied “Part 2 — Component Engineering 
 
 ## Commands and results
 
-- `npm test`: 31 unit/component checks passed, including real service integration and the generated 5,000-row/page-limited rendering check.
+- `npm test`: 33 unit/component checks passed after the attendee-mode follow-up, including real service integration, attendee source/cancellation behavior and the generated 5,000-row/page-limited rendering check.
 - `npm run lint`: passed with no warnings.
 - `npm run typecheck`: passed, including compile-time negative contract fixtures.
 - `npm run test:e2e`: production build succeeded; 5 browser journeys passed. One duplicate mobile-project tablet case is intentionally skipped because tablet verification runs once in the desktop Chromium project; both independent mobile journeys run and pass.
@@ -56,4 +56,4 @@ Generated browser reports/screenshots live in ignored `playwright-report/` and `
 
 ## Follow-up from the repeated brief check
 
-The brief specifically asks for attendee data to drive both expansion modes. Current demos cover inline attendees and lazy inventory stock movements. The generic component supports both modes, but a timetable on-demand attendee option remains a literal brief-alignment gap. This was identified after Step 11 acceptance; a switch was proposed and has not been approved or implemented yet.
+The brief specifically asks for attendee data to drive both expansion modes. After Step 11 acceptance, the user approved a timetable Inline / On-demand switch. The implementation now uses the same attendee renderer with either row.attendees or the new loadAttendees service. Switching resets the table/cache and aborts pending details; late responses cannot leak into the new mode. Focused checks exercise actual source selection, detached/empty service results, error/retry and cancellation. This closes the literal brief-alignment gap. The new feature awaits user review before publication; the supplied Vercel URL may still show the previously published version.

@@ -221,6 +221,12 @@ type MockContext = { signal?: AbortSignal; scenario?: MockScenario };
 declare function loadClasses(
   context?: MockContext,
 ): Promise<readonly ClassRow[]>;
+
+// Approved attendee-mode follow-up: the timetable can demonstrate lazy attendees too.
+declare function loadAttendees(
+  classId: string,
+  context?: MockContext,
+): Promise<readonly Attendee[]>;
 declare function loadInventory(
   context?: MockContext,
 ): Promise<readonly InventoryRow[]>;
@@ -282,7 +288,7 @@ const classColumns: readonly ColumnDef<ClassRow>[] = [
 />
 ```
 
-The classes page receives all rows from `loadClasses`, drives the request state, and delegates client sorting/pagination to the table. Feature columns and renderers remain inside the Next.js client subtree.
+The classes page receives all rows from `loadClasses`, drives the request state, and delegates client sorting/pagination to the table. Feature columns and renderers remain inside the Next.js client subtree. The approved attendee-mode follow-up retains this inline default and offers On-demand: replace the inline source with `loadChildren: (row, { signal }) => loadAttendees(row.id, { signal })`. A mode-specific dataset key resets table state/cache and cancels pending details when switching.
 
 ## Usage example 2: inventory with manual requests and lazy details
 

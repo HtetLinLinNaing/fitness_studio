@@ -1,5 +1,5 @@
 import type { InventoryRow, StockMovement } from "@/features/demo/types";
-import type { ClassRow } from "@/features/timetable/types";
+import type { Attendee, ClassRow } from "@/features/timetable/types";
 import { readClasses, readInventory, readStockMovements } from "./data";
 import { mockRequest } from "./request";
 import type { ListQuery, MockContext, PageResult } from "./types";
@@ -21,6 +21,11 @@ const sortColumns: readonly {
 export function loadClasses(context: MockContext = {}): Promise<readonly ClassRow[]> {
   return mockRequest("classes", "Unable to load classes. Please retry.",
     () => context.scenario === "empty" ? [] : readClasses(), context);
+}
+
+export function loadAttendees(classId: string, context: MockContext = {}): Promise<readonly Attendee[]> {
+  return mockRequest(`attendees:${classId}`, "Unable to load attendees. Please retry.",
+    () => context.scenario === "empty" ? [] : readClasses().find(row => row.id === classId)?.attendees ?? [], context);
 }
 
 export function loadInventory(context: MockContext = {}): Promise<readonly InventoryRow[]> {

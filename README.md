@@ -1,6 +1,6 @@
 # HL Fitness Studio
 
-Reusable, typed data table built from scratch for a fitness studio assessment. The class timetable demonstrates inline attendees; the inventory page demonstrates lazy details and controlled client/simulated-server processing. No table/grid library or backend is used.
+Reusable, typed data table built from scratch for a fitness studio assessment. The class timetable demonstrates both inline and on-demand attendees; the inventory page demonstrates lazy stock history and controlled client/simulated-server processing. No table/grid library or backend is used.
 
 **Live demo:** [HL Fitness Studio](https://fitnessstudio-beta.vercel.app/) · [Inventory demo](https://fitnessstudio-beta.vercel.app/inventory)
 
@@ -60,6 +60,7 @@ Studio defaults in `src/config/studio.ts` explicitly use **HL Fitness Studio**, 
 Import these asynchronous services from `@/mocks/services`:
 
 - `loadClasses(context?)`: all classes with their inline attendee arrays.
+- `loadAttendees(classId, context?)`: attendees for one class, delivered on demand through the same latency/error/cancellation simulator. Unknown classes return an empty list. Attendee failures are independent per class and independent of the class list.
 - `loadInventory(context?)`: all inventory rows for client processing.
 - `queryInventory({ sort, pagination }, context?)`: simulated server sorting/pagination, returning `{ rows, totalRows }`. Sort IDs are `name`, `sku`, `category`, `stock`, and `unitPriceCents`. English, case-insensitive, numeric-aware string comparison and numeric price/stock sorting are stable; sorting happens before pagination. Null/unknown sort IDs preserve fixture order.
 - `loadStockMovements(itemId, context?)`: details for one inventory row; some items intentionally have empty detail lists. Unknown item IDs also return an empty list.
@@ -129,7 +130,7 @@ Manual sorting requires controlled state and trusts supplied row order. Manual p
 
 Page indexes are zero-based in the API and one-based in labels. Invalid sizes fall back to 10; options are sanitized/deduplicated and include the current valid size. Out-of-range client pages clamp to a valid page and stay clamped when data grows again. Controlled state is validated for display without repair callbacks; the manual parent owns normalization/refetch when totals shrink. Empty/loading/error states disable navigation, and pending/error requests disable sort headers. `aria-sort`, labeled buttons/selects, visible focus, and live range summaries support keyboard and screen-reader use.
 
-The timetable displays 12 classes across two default pages, with inline attendee details. Shared navigation links it to the inventory demo at `/inventory`.
+The timetable displays 12 classes across two default pages. **Attendee loading** selects Inline (default, already-loaded attendees) or On-demand (calls `loadAttendees` only when a class expands). Both show the same customer/payment/status columns. On-demand includes row-local skeletons, empty/error/retry states and successful-result caching. Changing modes resets sorting, pagination and open/cached details, and cancels pending attendee requests. Shared navigation links the timetable to `/inventory`.
 
 ### Row expansion
 
@@ -147,7 +148,7 @@ expansion={{
 
 Multiple rows can stay open. Open state and successful child results, including empty lists, are retained by stable row ID across sorting and pagination. Pending requests deduplicate; errors and Retry remain local to the row. Collapsing allows an existing request to finish and cache its result without reopening the row. Replacing `datasetKey` or unmounting aborts pending work and ignores late results. Change the dataset key when cached child data should be invalidated.
 
-Details occupy a full-width cell below their parent and do not affect pagination totals. Disclosure buttons expose expanded state and associated panel IDs. Collapsed panels are inert and hidden from assistive technology; closing markup is released after the transition. Reduced-motion settings disable animation. The timetable demonstrates inline attendees; inventory demonstrates lazy stock movements.
+Details occupy a full-width cell below their parent and do not affect pagination totals. Disclosure buttons expose expanded state and associated panel IDs. Collapsed panels are inert and hidden from assistive technology; closing markup is released after the transition. Reduced-motion settings disable animation. The timetable demonstrates both modes with attendees; inventory demonstrates reuse with lazy stock movements.
 
 ## Inventory demo
 
@@ -166,7 +167,7 @@ The focused hook/component checks protect request races, page resets, manual cla
 
 The runnable integrations are [Timetable](src/features/timetable/Timetable.tsx) with [class columns](src/features/timetable/columns.tsx), and [InventoryDemo](src/features/demo/InventoryDemo.tsx) with [inventory columns](src/features/demo/inventory-columns.tsx). Column accessors provide sortable scalars; cells and child renderers retain their full independent row types.
 
-Timetable uses `DataTable<ClassRow, Attendee>` and table-owned sort/page state. Inside its client component, the expansion group is:
+Timetable uses `DataTable<ClassRow, Attendee>` and table-owned sort/page state. Its default inline expansion group is:
 
 ```tsx
 const expansion: ExpansionConfig<ClassRow, Attendee> = {
@@ -179,6 +180,8 @@ const expansion: ExpansionConfig<ClassRow, Attendee> = {
     <AttendeeList classTitle={row.name} attendees={children} />,
 };
 ```
+
+On-demand mode replaces `mode`/`getChildren` with `mode: "lazy"` and `loadChildren: (row, { signal }) => loadAttendees(row.id, { signal })`. Both share the same presentation options. A mode-specific dataset key clears the old scope when switching. These remain simulated asynchronous calls over local fixtures, not backend HTTP requests.
 
 Inventory uses `DataTable<InventoryRow, StockMovement>`. Its feature hook owns the query and fetches either complete rows or a single server-simulated page. In manual mode it passes:
 

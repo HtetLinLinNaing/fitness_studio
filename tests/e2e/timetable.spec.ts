@@ -60,9 +60,31 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   await page.getByRole("combobox", { name: "Rows per page" }).selectOption("10");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 
+  const attendeeMode = page.getByRole("combobox", { name: "Attendee loading" });
+  await attendeeMode.focus();
+  await attendeeMode.press("ArrowDown");
+  await attendeeMode.press("Enter");
+  await expect(attendeeMode).toHaveValue("lazy");
+  await expandYoga.click();
+  await expect(page.getByText("Loading details…", { exact: true })).toBeVisible();
+  await expect(attendees).toBeVisible();
+  await expect(attendees.getByRole("cell", { name: "Jamie Tan", exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Collapse Yoga Flow attendees" }).click();
+  await expandYoga.click();
+  await expect(attendees).toBeVisible();
+  await expect(page.getByText("Loading details…", { exact: true })).toHaveCount(0);
+  await page.getByRole("button", { name: "Expand Barre Foundations attendees" }).click();
+  await expect(page.getByText("No attendees", { exact: true })).toBeVisible();
+  await attendeeMode.selectOption("inline");
+  await expect(expandYoga).toHaveAttribute("aria-expanded", "false");
+  await expect(page.getByText("Page 1 of 2")).toBeVisible();
+  await expandYoga.click();
+  await expect(attendees).toBeVisible();
+  await page.getByRole("button", { name: "Collapse Yoga Flow attendees" }).click();
+
   if ((page.viewportSize()?.width ?? 0) < 600) {
     const region = page.getByRole("region", { name: "Class timetable, scrollable table" });
-    const pinnedCell = table.locator("tbody > tr:first-child > td:first-child");
+    const pinnedCell = parents.first().locator(":scope > td").first();
     const before = await pinnedCell.boundingBox();
     await region.focus();
     await region.press("ArrowRight");
@@ -77,6 +99,9 @@ test("timetable renders real classes and keeps the class column pinned on narrow
 
   expect(errors).toEqual([]);
   await expandYoga.click();
-  await expect.poll(() => panel.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThan(100);
+  const currentPanelId = await page.getByRole("button", { name: "Collapse Yoga Flow attendees" }).getAttribute("aria-controls");
+  const currentPanel = page.locator(`[id="${currentPanelId}"]`);
+  await expect.poll(() => currentPanel.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThan(100);
+  await expect.poll(() => currentPanel.evaluate(element => Math.abs(element.getBoundingClientRect().height - element.firstElementChild!.getBoundingClientRect().height))).toBeLessThan(2);
   await page.screenshot({ path: testInfo.outputPath("timetable.png"), fullPage: true });
 });
