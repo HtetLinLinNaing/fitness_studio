@@ -4,11 +4,20 @@ import { DataTable } from "@/components/data-table/DataTable";
 import { STUDIO_SETTINGS } from "@/config/studio";
 import { classColumns } from "./columns";
 import { formatClassDay } from "./formatters";
-import type { ClassRow } from "./types";
+import type { Attendee, ClassRow } from "./types";
+import type { ExpansionConfig } from "@/components/data-table/types";
+import { AttendeeList } from "./AttendeeList";
 import { useClassTimetable } from "./use-class-timetable";
 import styles from "./timetable.module.css";
 
 const getRowId = (row: ClassRow) => row.id;
+const expansion: ExpansionConfig<ClassRow, Attendee> = {
+  mode: "inline",
+  getChildren: row => row.attendees,
+  emptyMessage: "No attendees",
+  getLabel: (row, expanded) => `${expanded ? "Collapse" : "Expand"} ${row.name} attendees`,
+  renderChildren: ({ row, children }) => <AttendeeList classTitle={row.name} attendees={children} />,
+};
 
 export function Timetable() {
   const { rows, request } = useClassTimetable();
@@ -43,8 +52,9 @@ export function Timetable() {
         <section className={styles.card} aria-labelledby="schedule-title">
           <div className={styles.cardHeader}><h2 id="schedule-title">Class schedule</h2>
             <span>Singapore time · UTC+08:00</span></div>
-          <DataTable caption="Class timetable" datasetKey="classes:v1" data={rows}
-            columns={classColumns} getRowId={getRowId} request={request} emptyMessage="No classes available." />
+          <DataTable<ClassRow, Attendee> caption="Class timetable" datasetKey="classes:v1" data={rows}
+            columns={classColumns} getRowId={getRowId} request={request} emptyMessage="No classes available."
+            expansion={expansion} />
         </section>
         <p className={styles.footnote}>Sample timetable · Fictional studio data</p>
       </main>

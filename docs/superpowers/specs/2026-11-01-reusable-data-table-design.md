@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–7 are accepted. The user approved Step 8 sorting/pagination, now implemented and verified for user review. Every subsequent step still requires separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
+Status: Steps 1–8 are complete and accepted. Step 9 has approved scope and is implemented, awaiting user review. Steps 10–12 require separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
 Date: 2026-11-01
 
 ## Approval boundary
@@ -194,4 +194,6 @@ The user accepted lightweight testing following Step 5 setup with Vitest, React 
 
 The user accepted Step 7 after reviewing the basic timetable and approving a stronger sans-serif/contrast revision. It includes a generic basic table, pinned class column, skeleton loading, empty/error/retry states, and mock class data. Sorting, pagination, expansion, and the inventory demo UI remain later milestones requiring approval. The foundation deliberately omits unimplemented sorting configuration from its current TypeScript API. Step 7 and its style revision were committed separately.
 
-The user then approved Step 8. Grouped sorting/pagination, sortable/custom comparator columns, client and controlled/manual processing, page resets and normalization, accessible controls, and focused behavior/type/browser checks are implemented. Sorting configuration is now active rather than deferred. Expansion and the inventory demo UI remain later milestones. Step 8 has a separate commit and awaits user review.
+The user accepted the completed Step 8 implementation. Grouped sorting/pagination, sortable/custom comparator columns, client and controlled/manual processing, page resets and normalization, accessible controls, and focused behavior/type/browser checks are implemented. Sorting configuration is now active rather than deferred. Commit: `dd4f95b`. Expansion and the inventory demo UI remain later milestones requiring approval.
+
+Step 9 scope was approved and implemented: typed inline/lazy expansion, independent row requests and retry, successful/empty cache, stale-result protection, accessible animated detail rows, and inline timetable attendees. Unit/type/lint and production desktop/mobile checks pass. User review is pending; inventory UI remains Step 10 and requires separate approval.

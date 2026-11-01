@@ -1,10 +1,12 @@
 "use client";
 
 import { Button, Skeleton } from "@heroui/react";
-import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useId, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import type { ColumnDef, DataTableProps } from "./types";
 import { PaginationControls } from "./PaginationControls";
 import { useTableProcessing } from "./use-table-processing";
+import { useRowExpansion } from "./use-row-expansion";
+import { RowDetails } from "./RowDetails";
 import styles from "./data-table.module.css";
 
 function displayValue(value: unknown): ReactNode {
@@ -20,16 +22,18 @@ function renderCell<T>(column: ColumnDef<T>, row: T, rowId: string): ReactNode {
   return displayValue(column.accessorFn ? column.accessorFn(row) : row[column.accessorKey]);
 }
 
-export function DataTable<T>(props: DataTableProps<T>) {
+export function DataTable<T, TChild = never>(props: DataTableProps<T, TChild>) {
   // A new logical dataset resets local viewport state; ordinary array changes do not.
   return <TableContent key={props.datasetKey} {...props} />;
 }
 
-function TableContent<T>({ data, columns, getRowId, caption,
+function TableContent<T, TChild>({ data, columns, getRowId, caption,
   request = { status: "ready" }, emptyMessage = "No records available.",
-  sorting, pagination,
-}: DataTableProps<T>) {
+  sorting, pagination, expansion,
+}: DataTableProps<T, TChild>) {
   const [scrolled, setScrolled] = useState(false);
+  const detailPrefix = useId();
+  const details = useRowExpansion(expansion);
   const processing = useTableProcessing({ data, columns, sorting, pagination, ready: request.status === "ready" });
   const layout = useMemo(() => {
     if (columns.length === 0) throw new Error("DataTable requires at least one column.");
@@ -119,8 +123,26 @@ function TableContent<T>({ data, columns, getRowId, caption,
             {request.status === "ready" && rows.length === 0 && <tr><td colSpan={layout.cells.length}>
               <div className={styles.message}><strong>{emptyMessage}</strong><p>There’s nothing to display right now.</p></div>
             </td></tr>}
-            {rows.map(({ row, id }) => <tr key={id}>{layout.cells.map(cell => <td key={cell.column.id}
-              className={cellClass(cell)} style={cellStyle(cell)}>{renderCell(cell.column, row, id)}</td>)}</tr>)}
+            {rows.map(({ row, id }) => {
+              const canExpand = expansion && (expansion.canExpand?.(row) ?? true);
+              const expanded = details.openRows.has(id);
+              const detailId = `${detailPrefix}-details-${encodeURIComponent(id)}`;
+              return <Fragment key={id}>
+                <tr data-parent-row>{layout.cells.map((cell, index) => <td key={cell.column.id}
+                  className={cellClass(cell)} style={cellStyle(cell)}>
+                  {index === 0 && expansion ? <div className={styles.rowTitle}>
+                    {canExpand ? <button type="button" className={styles.expandButton}
+                      aria-label={expansion.getLabel?.(row, expanded) ?? `${expanded ? "Collapse" : "Expand"} details`}
+                      aria-expanded={expanded} aria-controls={detailId} onClick={() => details.toggle(row, id)}>
+                      <span aria-hidden="true">›</span></button> : <span className={styles.expandPlaceholder} aria-hidden="true" />}
+                    <div className={styles.rowContent}>{renderCell(cell.column, row, id)}</div>
+                  </div> : renderCell(cell.column, row, id)}
+                </td>)}</tr>
+                {canExpand && expansion && <RowDetails row={row} id={detailId} columns={layout.cells.length}
+                  expanded={expanded} expansion={expansion} request={details.requests.get(id)}
+                  onRetry={() => details.retry(row, id)} />}
+              </Fragment>;
+            })}
           </tbody>
         </table>
       </div>

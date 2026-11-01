@@ -1,4 +1,4 @@
-import type { ClientSorting, ColumnDef, DataTableProps, ManualPagination } from "@/components/data-table/types";
+import type { ClientSorting, ColumnDef, DataTableProps, ExpansionConfig, ManualPagination } from "@/components/data-table/types";
 
 type Sample = { id: string; label: string };
 
@@ -23,4 +23,20 @@ export const partialClientSort: DataTableProps<Sample> = { caption: "Invalid", d
 export const disabledSortManualPage: DataTableProps<Sample> = {
   caption: "Manual", datasetKey: "manual", data: [], columns: [column], getRowId: row => row.id,
   sorting: false, pagination: { mode: "manual", totalRows: 100, state: { pageIndex: 0, pageSize: 10 }, onChange: () => {} },
+};
+
+type Child = { token: string };
+export const inlineChildren: ExpansionConfig<Sample, Child> = {
+  mode: "inline", getChildren: () => [{ token: "receipt" }],
+  renderChildren: ({ children }) => children.map(child => child.token).join(", "),
+};
+
+// @ts-expect-error Inline and lazy child sources cannot be mixed.
+export const mixedChildSources: ExpansionConfig<Sample, Child> = { mode: "inline", getChildren: () => [], loadChildren: async () => [], renderChildren: () => null };
+
+export const wrongChildShape: ExpansionConfig<Sample, Child> = {
+  mode: "inline",
+  // @ts-expect-error Child records retain their own independently checked shape.
+  getChildren: () => [{ id: "parent", label: "Not a child" }],
+  renderChildren: () => null,
 };

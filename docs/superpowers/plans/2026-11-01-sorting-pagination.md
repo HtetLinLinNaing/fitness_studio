@@ -53,4 +53,4 @@
 - Final checks passed: full unit suite, type checking, lint, production build, and desktop/mobile browser journeys covering keyboard sort cycle, page navigation/sizes, pinned geometry and no outer overflow. Reviewed both screenshot artifacts.
 - Review's deferred topics remain deliberate: expansion/inventory UI are future milestones; manual refetch and controlled-state reconciliation remain parent-owned. Guarded own-state normalization never calls parents during render.
 - Preview root cause check: a second development preview was rejected because the project already has a development server on port 3000. Preserved that process, restored the separate production review preview on port 3001, and made no application workaround for the environment lock.
-- Step 8 uses the separate commit subject `feat: add table sorting and pagination`; user review is pending. Step 9 has not started.
+- The user accepted Step 8 after review. Commit: `dd4f95b` — `feat: add table sorting and pagination`. Step 9 has not started and needs separate approval.

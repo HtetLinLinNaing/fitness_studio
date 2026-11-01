@@ -41,8 +41,19 @@ export type RequestState =
   | { status: "loading"; skeletonRows?: number }
   | { status: "error"; message: string; onRetry: () => void };
 
+export type ExpansionConfig<T, TChild> = {
+  canExpand?: (row: T) => boolean;
+  renderChildren: (context: { row: T; children: readonly TChild[] }) => ReactNode;
+  emptyMessage?: string;
+  getLabel?: (row: T, expanded: boolean) => string;
+} & (
+  | { mode: "inline"; getChildren: (row: T) => readonly TChild[]; loadChildren?: never }
+  | { mode: "lazy"; getChildren?: never;
+      loadChildren: (row: T, context: { signal: AbortSignal }) => Promise<readonly TChild[]> }
+);
+
 /** Generic table with independent state ownership and data-processing configuration. */
-export type DataTableProps<T> = ProcessingConfig & {
+export type DataTableProps<T, TChild = never> = ProcessingConfig & {
   data: readonly T[];
   columns: readonly ColumnDef<T>[];
   getRowId: (row: T) => RowId;
@@ -50,4 +61,5 @@ export type DataTableProps<T> = ProcessingConfig & {
   caption: string;
   request?: RequestState;
   emptyMessage?: string;
+  expansion?: ExpansionConfig<T, TChild>;
 };

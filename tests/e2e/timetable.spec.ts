@@ -8,13 +8,38 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   await expect(page).toHaveTitle("HL Fitness Studio | Class timetable");
   await expect(page.getByRole("heading", { name: "Class timetable", exact: true })).toBeVisible();
   const table = page.getByRole("table", { name: "Class timetable", exact: true });
+  const parents = table.locator(":scope > tbody > tr[data-parent-row]");
   await expect(table).toHaveAttribute("aria-busy", "false");
-  await expect(table.getByRole("cell", { name: "Yoga Flow 60 min class" })).toBeVisible();
-  expect(await table.locator("tbody > tr").count()).toBe(10);
+  await expect(parents.first()).toContainText("Yoga Flow");
+  expect(await parents.count()).toBe(10);
+  const expandYoga = page.getByRole("button", { name: "Expand Yoga Flow attendees" });
+  await expandYoga.focus();
+  await expandYoga.press("Enter");
+  const yogaToggle = page.getByRole("button", { name: "Collapse Yoga Flow attendees" });
+  await expect(yogaToggle).toHaveAttribute("aria-expanded", "true");
+  const panelId = await yogaToggle.getAttribute("aria-controls");
+  const panel = page.locator(`[id="${panelId}"]`);
+  const attendees = page.getByRole("table", { name: "Yoga Flow attendees", exact: true });
+  await expect(attendees).toBeVisible();
+  await expect(attendees.getByRole("columnheader", { name: "Payment type" })).toBeVisible();
+  await expect.poll(() => panel.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThan(100);
+  await expect.poll(() => panel.evaluate(element => Math.abs(element.getBoundingClientRect().height - element.firstElementChild!.getBoundingClientRect().height))).toBeLessThan(2);
+  expect(await parents.count()).toBe(10);
+  await yogaToggle.click();
+  await expect(panel).toHaveAttribute("inert", "");
+  await expect.poll(() => panel.evaluate(element => element.getBoundingClientRect().height)).toBeLessThan(2);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expandYoga.click();
+  await expect(panel).toHaveCSS("transition-duration", "0s");
+  await yogaToggle.click();
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.getByRole("button", { name: "Expand Barre Foundations attendees" }).click();
+  await expect(page.getByText("No attendees", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Collapse Barre Foundations attendees" }).click();
   await expect(page.getByText("Page 1 of 2")).toBeVisible();
   await page.getByRole("button", { name: "Next page" }).click();
-  await expect(table.getByRole("cell", { name: "Evening Reset 45 min class" })).toBeVisible();
-  expect(await table.locator("tbody > tr").count()).toBe(2);
+  await expect(parents.last()).toContainText("Evening Reset");
+  expect(await parents.count()).toBe(2);
   await expect(page.getByText("11–12 of 12")).toBeVisible();
   await page.getByRole("button", { name: "Previous page" }).click();
 
@@ -27,10 +52,10 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   await expect(table.locator("thead th:first-child")).toHaveAttribute("aria-sort", "descending");
   await sortClass.press("Enter");
   await expect(table.locator("thead th:first-child")).toHaveAttribute("aria-sort", "none");
-  await expect(table.locator("tbody tr:nth-child(2) td:first-child")).toContainText("Reformer Pilates");
+  await expect(parents.nth(1)).toContainText("Reformer Pilates");
 
   await page.getByRole("combobox", { name: "Rows per page" }).selectOption("25");
-  expect(await table.locator("tbody > tr").count()).toBe(12);
+  expect(await parents.count()).toBe(12);
   await expect(page.getByRole("button", { name: "Next page" })).toBeDisabled();
   await page.getByRole("combobox", { name: "Rows per page" }).selectOption("10");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
@@ -51,5 +76,7 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   }
 
   expect(errors).toEqual([]);
+  await expandYoga.click();
+  await expect.poll(() => panel.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThan(100);
   await page.screenshot({ path: testInfo.outputPath("timetable.png"), fullPage: true });
 });
