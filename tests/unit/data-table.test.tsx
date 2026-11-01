@@ -47,3 +47,20 @@ test("an accessible error preserves the supplied retry action", async () => {
   await userEvent.setup().click(screen.getByRole("button", { name: "Retry" }));
   expect(onRetry).toHaveBeenCalledOnce();
 });
+
+test("a larger dataset sorts globally while rendering only the current parent page", async () => {
+  const rows = Array.from({ length: 5000 }, (_, index) => ({
+    id: `stress-${index}`, label: `Item ${5000 - index}`, amount: index,
+  }));
+  render(<DataTable {...base} data={rows} columns={[
+    { id: "label", accessorKey: "label", header: "Product", sortable: true },
+  ]} />);
+  const table = screen.getByRole("table", { name: "Sample inventory" });
+  expect(table.querySelectorAll("tbody > tr[data-parent-row]")).toHaveLength(10);
+  await userEvent.setup().click(screen.getByRole("button", { name: /^Sort by Product/ }));
+  expect(table.querySelector("tbody > tr > td")).toHaveTextContent(/^Item 1$/);
+  await userEvent.setup().click(screen.getByRole("button", { name: "Next page" }));
+  expect(table.querySelector("tbody > tr > td")).toHaveTextContent(/^Item 11$/);
+  expect(table.querySelectorAll("tbody > tr[data-parent-row]")).toHaveLength(10);
+  expect(screen.getByText("11–20 of 5000")).toBeInTheDocument();
+});

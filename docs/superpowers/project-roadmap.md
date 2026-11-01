@@ -15,11 +15,11 @@ This is the current project status and proposed remaining roadmap. A roadmap ent
 | 7 | Basic generic table and real timetable; pinned column and request states | Accepted, including the stronger sans-serif/contrast revision |
 | 8 | Sorting and pagination, including controlled/client/manual processing | Accepted |
 | 9 | Inline and lazy expansion, child caching/retry, transitions | Accepted |
-| 10 | Inventory demo route, simulated server mode, scenario controls | Approved scope; implemented, awaiting user review |
-| 11 | Final integrated verification, accessibility/performance checks, README | Proposed; needs scope approval |
+| 10 | Inventory demo route, simulated server mode, scenario controls | Accepted |
+| 11 | Final integrated verification, accessibility/performance checks, README | Approved scope; verified, awaiting user review |
 | 12 | Public repository and website deployment | Proposed; needs scope/provider/publication approval |
 
-There are **12 proposed milestones**. Steps 1–9 are accepted. Step 10 has approved scope and awaits review. Steps 11–12 remain unapproved. Existing acceptance of the PRD/API does not authorize all later implementation at once.
+There are **12 proposed milestones**. Steps 1–10 are accepted. Step 11 has approved scope and awaits user review. Step 12 remains unapproved. Existing acceptance of the PRD/API does not authorize all later implementation at once.
 
 ## Git milestones
 
@@ -30,6 +30,7 @@ There are **12 proposed milestones**. Steps 1–9 are accepted. Step 10 has appr
 - Step 7 review revision: `style: strengthen timetable typography and contrast`, following user approval of sans-serif typography and stronger colors.
 - `dd4f95b` — `feat: add table sorting and pagination`, accepted after user review.
 - `48428a2` — `feat: add inline and lazy row expansion`, accepted after user review.
+- `94c4d86` — `feat: add inventory demo and scenario controls`, accepted after user review.
 
 The former combined commit `0f22600` was split at the user's request. Exact final-tree equality was checked after the split; source content was unchanged.
 
@@ -39,7 +40,7 @@ The former combined commit `0f22600` was split at the user's request. Exact fina
 | --- | --- | --- |
 | `using-superpowers` | Identify applicable skills at conversation start | Skill instructions read at the start |
 | `brainstorming` | Requirements discussion, choices, visual options, written design and approval gates | Approved specs in `specs/` and the local visual companion |
-| `writing-plans` | Record the scope and implementation/verification sequence | Saved plans for Steps 1, 5, 6, and 7 in `plans/` |
+| `writing-plans` | Record the scope and implementation/verification sequence | Saved milestone plans in `plans/`, including final verification |
 | `executing-plans` | Implement approved milestones in this chat and maintain execution records | Task checklists and execution records in those plans |
 | `test-driven-development` | Observe checks failing before implementing new service/table behavior | Recorded RED→GREEN checks for Steps 6–8 |
 | `verification-before-completion` | Run and read checks before success claims and commits | Lint, type checks, focused unit checks, production build/browser records |

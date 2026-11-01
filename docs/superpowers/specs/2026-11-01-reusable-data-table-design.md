@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–9 are complete and accepted. Step 10 has approved scope and is implemented, awaiting user review. Steps 11–12 require separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
+Status: Steps 1–10 are complete and accepted. Step 11 has approved scope and is verified, awaiting user review. Step 12 requires separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
 Date: 2026-11-01
 
 ## Approval boundary
@@ -48,7 +48,7 @@ Proposed folder structure:
 
 ```text
 src/app/                       routes, shared layout, global styles
-src/app/demo/                  reuse and controlled-mode demo
+src/app/inventory/             reuse and controlled-mode demo
 src/components/data-table/     public types, table rendering, local state helpers
 src/components/ui/             shared non-table wrappers only when useful
 src/features/timetable/        class columns, attendee presentation, dashboard
@@ -69,7 +69,7 @@ Approved during Step 2 PRD review: two pages, a class timetable with inline atte
 
 Show mock fitness classes in a SaaS-style layout with clear hierarchy. Columns include class name pinned left, instructor, time, attendance, and status. Parent rows expand below their class to show customer name, payment type, and booking status. Use inline attendees here to demonstrate expansion from already-loaded data. A short initial mocked fetch makes matching skeleton rows observable. Include a retry action for initial errors and clear empty messaging.
 
-### Demo route `/demo`
+### Inventory demo route `/inventory`
 
 Reuse the same DataTable with a differently shaped inventory dataset: item, SKU, category, stock quantity, and unit price. Pin the item column. Expand items to fetch stock movements lazily, displayed as date, quantity change, and reason. Keep these child details feature-owned.
 
@@ -198,4 +198,6 @@ The user accepted the completed Step 8 implementation. Grouped sorting/paginatio
 
 Step 9 was accepted after review of commit `48428a2`: typed inline/lazy expansion, independent row requests and retry, successful/empty cache, stale-result protection, accessible animated detail rows, and inline timetable attendees. Unit/type/lint and production desktop/mobile checks pass. Inventory UI remains Step 10 and requires separate approval.
 
-Step 10 scope and plan were approved and implemented: `/inventory`, shared navigation, 100 items, controlled client/manual processing, lazy stock movements and independent list/detail scenarios. Existing generic table internals were reused without domain changes. Unit/lint/type checks and production desktop/mobile journeys pass; fresh review found no material issues. User review is pending, and Steps 11/12 remain unapproved.
+Step 10 scope and plan were approved and implemented: `/inventory`, shared navigation, 100 items, controlled client/manual processing, lazy stock movements and independent list/detail scenarios. Existing generic table internals were reused without domain changes. Unit/lint/type checks and production desktop/mobile journeys pass; fresh review found no material issues. The user accepted Step 10 at commit `94c4d86`. The route name `/inventory` supersedes the earlier `/demo` proposal.
+
+Step 11 scope was approved: final requirements verification, keyboard/mobile/performance checks, confirmed-issue fixes and README completion. No material implementation issues were found, so no product behavior or styling changed. The verification record is `../../verification.md`; it includes requirement evidence, measured performance, passing checks and limits. Step 11 awaits user review. Publication/deployment remain Step 12 and unapproved.

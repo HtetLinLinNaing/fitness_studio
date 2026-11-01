@@ -78,4 +78,4 @@
 - Refactored only the common header/navigation into StudioShell and removed obsolete timetable header rules. Generic DataTable internals did not change.
 - Fresh read-only review found no Critical/Important issues, deferred minors or declined judgments.
 - Context7 official React guidance supported effect cleanup/stale-response guards; Next.js guidance supported Link navigation and route metadata.
-- Final verification: 30 unit checks, lint and typecheck pass; production build and 4 desktop/mobile browser journeys pass. Step 10 awaits user review. No dependencies added; no Step 11/12 work started.
+- Final verification: 30 unit checks, lint and typecheck pass; production build and 4 desktop/mobile browser journeys pass. The user accepted Step 10 after reviewing commit `94c4d86`. No dependencies added; no Step 11/12 work started.

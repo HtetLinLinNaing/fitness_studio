@@ -1,6 +1,6 @@
 # HL Fitness Studio
 
-Reusable data table interview project with a sortable, paginated class timetable, local mock services, and an approved step-by-step roadmap.
+Reusable, typed data table built from scratch for a fitness studio assessment. The class timetable demonstrates inline attendees; the inventory page demonstrates lazy details and controlled client/simulated-server processing. No table/grid library or backend is used.
 
 See the [project roadmap and skill usage](docs/superpowers/project-roadmap.md) for the complete 12-milestone proposal, approval status, and Superpowers skills used.
 
@@ -49,6 +49,8 @@ Run the browser-install command once after installing packages, and again when a
 
 The browser HTML report is written to `playwright-report/`, with diagnostics under `test-results/`. These generated folders, as well as coverage output, are ignored by Git and ESLint.
 
+The [verification record](docs/verification.md) maps the assessment requirements to implementation and evidence, including measured performance and the checks' practical limits. A reproducible in-memory sorting measurement is available with `node scripts/measure-table.mjs` on Node 24; generated stress rows are never shipped as fixtures.
+
 ## Mock data and services
 
 Local JSON under `src/mocks/data/` stores **12 classes** with inline attendees, **100 inventory items**, and separate per-item stock movements. There are no API endpoints or backend. This smaller dataset replaces the earlier large stress-test proposal.
@@ -88,7 +90,7 @@ ESLint 9 and TypeScript 5.9 are selected for compatibility with the installed Ne
 
 HeroUI supplies only non-table primitives (Skeleton and Retry Button). The table itself uses native HTML and custom layout; no table/grid library is included.
 
-## Table usage — through Step 10
+## Table API
 
 `DataTable<T>` is in `src/components/data-table/`. Supply typed columns, data, a stable string row ID, dataset key, accessible caption, and optional request/empty state. A column chooses either a scalar property accessor or a scalar-producing function; custom cells receive the full typed row. Pinned columns require pixel widths and are grouped on the left. Unpinned columns share extra desktop space while preserving the declared minimum table width.
 
@@ -137,7 +139,8 @@ The timetable displays 12 classes across two default pages, with inline attendee
 expansion={{
   mode: "lazy",
   loadChildren: (row, { signal }) => loadStockMovements(row.id, { signal }),
-  renderChildren: ({ children }) => <MovementList movements={children} />,
+  renderChildren: ({ row, children }) =>
+    <StockMovementList itemName={row.name} movements={children} />,
   emptyMessage: "No stock movements",
 }}
 ```
@@ -159,10 +162,68 @@ Expand an item to load Date/time, Quantity change and Reason. Successful/empty r
 
 The focused hook/component checks protect request races, page resets, manual clamping, SGD formatting and independent detail recovery. Production browser journeys exercise both routes and both processing modes, scenario replacement, retries, empty results, keyboard controls and mobile pinned-column scrolling.
 
+## Examples from the two datasets
+
+The runnable integrations are [Timetable](src/features/timetable/Timetable.tsx) with [class columns](src/features/timetable/columns.tsx), and [InventoryDemo](src/features/demo/InventoryDemo.tsx) with [inventory columns](src/features/demo/inventory-columns.tsx). Column accessors provide sortable scalars; cells and child renderers retain their full independent row types.
+
+Timetable uses `DataTable<ClassRow, Attendee>` and table-owned sort/page state. Inside its client component, the expansion group is:
+
+```tsx
+const expansion: ExpansionConfig<ClassRow, Attendee> = {
+  mode: "inline",
+  getChildren: row => row.attendees,
+  getLabel: (row, expanded) =>
+    `${expanded ? "Collapse" : "Expand"} ${row.name} attendees`,
+  emptyMessage: "No attendees",
+  renderChildren: ({ row, children }) =>
+    <AttendeeList classTitle={row.name} attendees={children} />,
+};
+```
+
+Inventory uses `DataTable<InventoryRow, StockMovement>`. Its feature hook owns the query and fetches either complete rows or a single server-simulated page. In manual mode it passes:
+
+```tsx
+sorting={{ mode: "manual", state: demo.query.sort, onChange: demo.changeSort }}
+pagination={{
+  mode: "manual",
+  state: demo.query.pagination,
+  onChange: demo.changePage,
+  totalRows: demo.totalRows,
+}}
+expansion={{
+  mode: "lazy",
+  loadChildren: (row, { signal }) =>
+    loadStockMovements(row.id, { signal, scenario: demo.childScenario }),
+  renderChildren: ({ row, children }) =>
+    <StockMovementList itemName={row.name} movements={children} />,
+  emptyMessage: "No stock movements",
+}}
+```
+
+These are configuration excerpts; the linked components include imports, columns, request ownership and complete JSX. Client mode keeps the same parent-owned query while changing both processing groups to `client` and supplying all rows.
+
+## Design decisions and tradeoffs
+
+| Decision | Reason and limit |
+| --- | --- |
+| React state and focused hooks | Interaction state is local to one table/page; a global store would add coordination without a shared-data requirement. Controlled values have one parent owner; uncontrolled values stay inside the table. |
+| Column-driven generic API | Scalar accessors separate sort values from feature presentation. Discriminated configurations reject competing state owners and unsafe client sorting over manual pages. No public `any` is required. |
+| Native tables and CSS sticky | Pinned cells use explicit pixel widths, cumulative left offsets, opaque backgrounds and stacking order. Pinned columns are grouped first; a divider and scroll-dependent shadow show overlap. The surrounding region owns horizontal overflow, including child tables. |
+| Sort then paginate | Stable sorting processes the full client dataset; memoized processing and page-limited rendering keep the DOM small. There is no virtualization; unusually large pages or many open child records can still increase rendering cost. |
+| Feature-owned async requests | The generic component imports no fixture/domain model. AbortSignal and latest-result guards protect replaced requests; a dataset key deliberately scopes expansion/cache lifetime. |
+| Local JSON and simulated server | Deterministic fictional data makes failures and latency reviewable without infrastructure. Manual sorting/pagination demonstrate the real component contract, but do not prove remote network/backend performance. |
+| Successful child cache | Includes empty results and avoids repeated requests in one scope. Cache is in memory, has no time-based refresh and is cleared through a new dataset key. The fixtures are static; live mutable data would need an invalidation policy. |
+
+Assumptions: single-column sorting, English numeric-aware comparison, stable unique string IDs, static fictional records, Singapore time and SGD integer cents. Viewing and inspection are the complete product scope; editing, authentication, persistence and inventory operations are excluded. HeroUI supplies only non-table primitives.
+
+## Release status
+
+Both routes run locally and production build verification is complete. A public repository and deployed URL have **not** been published. They are the remaining Step 12 deliverables and require the user's provider/account approval. Production entry points are `npm run build` and `npm start`; no secrets, database or application environment variables are required by this implementation.
+
 ## Approval workflow
 
 Before each step, propose its scope and any dependency, style, or behavior decisions. Wait for user approval, build only the approved step, and stop for user review.
 
 Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
 
-Steps 1–9 are accepted. Step 10 is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Future steps require separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 10 execution record](docs/superpowers/plans/2026-11-01-inventory-demo.md).
+Steps 1–10 are accepted. Step 11 verification/documentation is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Publication requires separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [verification record](docs/verification.md).

@@ -1,6 +1,6 @@
 # HL Fitness Studio — Data Table API Design
 
-Status: user approved the written API design; Step 4 is complete and accepted. Table and mock-service implementation still require separate step approval.
+Status: user approved the written API design in Step 4. The API and mock services were subsequently implemented through accepted Steps 6–10. The signatures below preserve the approved design record; current exports are in `src/components/data-table/types.ts`. Final verification is recorded in `docs/verification.md`; publication remains unapproved Step 12.
 
 ## Intent and approved direction
 
