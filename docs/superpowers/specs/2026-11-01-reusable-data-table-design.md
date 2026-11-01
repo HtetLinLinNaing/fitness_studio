@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–6 are accepted. The user approved Step 7 implementation; the basic table/timetable is implemented and undergoing final handoff for user review. Every subsequent step still requires separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
+Status: Steps 1–7 are accepted. The user approved Step 8 sorting/pagination, now implemented and verified for user review. Every subsequent step still requires separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
 Date: 2026-11-01
 
 ## Approval boundary
@@ -192,4 +192,6 @@ The user approved Step 4 component API design with grouped configuration, comple
 
 The user accepted lightweight testing following Step 5 setup with Vitest, React Testing Library, and Playwright. Temporary tooling checks were removed after verification. The user selected Singapore time/SGD and accepted the smaller Step 6 mock-data scope, then approved the completed implementation after its checks and review. Table and dashboard implementation remain separately gated.
 
-The user approved Step 7: a generic basic table and real timetable using the Calm studio design, pinned class column, skeleton loading, empty/error/retry states, and mock class data. Sorting, pagination, expansion, and the inventory demo UI remain later approved milestones. The foundation deliberately omits unimplemented sorting configuration from its current TypeScript API. Step 7 is delivered for review with its own commit.
+The user accepted Step 7 after reviewing the basic timetable and approving a stronger sans-serif/contrast revision. It includes a generic basic table, pinned class column, skeleton loading, empty/error/retry states, and mock class data. Sorting, pagination, expansion, and the inventory demo UI remain later milestones requiring approval. The foundation deliberately omits unimplemented sorting configuration from its current TypeScript API. Step 7 and its style revision were committed separately.
+
+The user then approved Step 8. Grouped sorting/pagination, sortable/custom comparator columns, client and controlled/manual processing, page resets and normalization, accessible controls, and focused behavior/type/browser checks are implemented. Sorting configuration is now active rather than deferred. Expansion and the inventory demo UI remain later milestones. Step 8 has a separate commit and awaits user review.

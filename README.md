@@ -1,6 +1,6 @@
 # HL Fitness Studio
 
-Reusable data table interview project with a working basic class timetable, local mock services, and an approved step-by-step roadmap.
+Reusable data table interview project with a sortable, paginated class timetable, local mock services, and an approved step-by-step roadmap.
 
 See the [project roadmap and skill usage](docs/superpowers/project-roadmap.md) for the complete 12-milestone proposal, approval status, and Superpowers skills used.
 
@@ -33,7 +33,7 @@ npm start
 
 ## Tests
 
-The testing tools are configured for meaningful feature and regression checks. Current unit tests protect mock services, generic cells/request states, and timetable error/retry/cleanup behavior. Browser checks verify the production timetable on desktop and mobile, including actual pinned-column geometry and keyboard scrolling. Type-check fixtures also reject unavailable future sorting options. There are no placeholder tests or test-count/coverage targets.
+The testing tools are configured for meaningful feature and regression checks. Unit checks protect mock services, generic cells/request states, stable scalar sorting, pagination/reset behavior, controlled/manual processing, invalid input, and timetable error/retry/cleanup. Browser checks exercise keyboard sorting, page navigation, page sizes, and pinned-column behavior on desktop/mobile. Type fixtures reject competing state owners, missing callbacks/totals, and client sorting of manual pages. There are no placeholder tests or test-count/coverage targets.
 
 - Unit/component tests: `tests/unit/**/*.test.ts` or `.test.tsx` using Vitest, React Testing Library, DOM matchers, and user-event. React JSX, jsdom, automatic cleanup, and the `@/` source alias are configured. Import `test`, `expect`, and other test APIs from `vitest`; globals are disabled.
 - Browser tests: `tests/e2e/**/*.spec.ts` using Playwright. The same checks run in desktop Chromium and a 375px mobile Chromium viewport. The runner builds and starts the app on `127.0.0.1:3100` and closes that server when finished. It rejects an already occupied test port so it cannot silently exercise another server. Traces and screenshots are retained on failures.
@@ -88,14 +88,18 @@ ESLint 9 and TypeScript 5.9 are selected for compatibility with the installed Ne
 
 HeroUI supplies only non-table primitives (Skeleton and Retry Button). The table itself uses native HTML and custom layout; no table/grid library is included.
 
-## Basic table usage — Step 7
+## Table usage — through Step 8
 
 `DataTable<T>` is in `src/components/data-table/`. Supply typed columns, data, a stable string row ID, dataset key, accessible caption, and optional request/empty state. A column chooses either a scalar property accessor or a scalar-producing function; custom cells receive the full typed row. Pinned columns require pixel widths and are grouped on the left. Unpinned columns share extra desktop space while preserving the declared minimum table width.
 
 ```tsx
+import { DataTable } from "@/components/data-table/DataTable";
+import type { ColumnDef } from "@/components/data-table/types";
+
+type Product = { id: string; name: string; stock: number };
 const columns: readonly ColumnDef<Product>[] = [
-  { id: "name", accessorKey: "name", header: "Product", pinned: "left", width: 200 },
-  { id: "stock", accessorKey: "stock", header: "Stock", width: 140 },
+  { id: "name", accessorKey: "name", header: "Product", pinned: "left", width: 200, sortable: true },
+  { id: "stock", accessorKey: "stock", header: "Stock", width: 140, sortable: true },
 ];
 
 <DataTable<Product>
@@ -106,12 +110,24 @@ const columns: readonly ColumnDef<Product>[] = [
   getRowId={row => row.id}
   request={{ status: "ready" }}
   emptyMessage="No products available."
+  sorting={{ mode: "client", defaultState: null }}
+  pagination={{ defaultState: { pageIndex: 0, pageSize: 10 } }}
 />
 ```
 
-Changing datasetKey resets local viewport state; new data arrays in the same scope do not. Loading uses column-matched skeleton rows and an accessible announcement; errors expose the caller's Retry callback. Duplicate/empty row and column identities produce developer configuration errors. The feature page owns asynchronous fetching, cancellation, and stale-result guards; the table imports no fixture or feature model.
+Changing datasetKey resets local viewport and uncontrolled interaction state; new data arrays in the same scope do not. Loading uses column-matched skeleton rows (current page size by default) and an accessible announcement; errors expose the caller's Retry callback. Duplicate/empty row and column identities produce developer configuration errors. The feature page owns asynchronous fetching, cancellation, and stale-result guards; the table imports no fixture or feature model.
 
-This milestone is the foundation subset of the approved API. All 12 classes currently render together. Sorting metadata/configuration, pagination, expansion, and the inventory demo screen are introduced in later approved steps; unsupported props are rejected rather than accepted without behavior. Navigation currently exposes only the implemented timetable route. Error/retry and empty states are covered by component checks; reviewer scenario controls belong to the later demo route.
+### Sorting and pagination strategy
+
+Omitted sorting/pagination configuration defaults to client processing, no active sort, and 10 parent rows per page with 10/25/50 size options. `sorting={false}` or `pagination={false}` disables that feature independently. Sortable headers cycle ascending, descending, and original input order; sort happens over the full dataset before paging. Ties stay in original order, and null/undefined/non-finite numbers/invalid Dates stay last in both directions. String comparison is English, case-insensitive, and numeric-aware. Custom row comparators must return a finite ordering number; numeric default comparisons handle the full finite range without subtraction overflow. Input arrays are not mutated.
+
+Each group accepts either `defaultState` (table-owned state, optional notification callback), or `state` with required `onChange` (parent-owned state). State ownership is separate from processing: controlled values work in client mode too. Do not switch ownership on a mounted table; deliberately remount if required. Changes are emitted only from user actions, never while rendering. Sort/page-size actions reset to page index 0; controlled parents should compose sort and page callbacks using functional state updates.
+
+Manual sorting requires controlled state and trusts supplied row order. Manual pagination requires controlled state plus a non-negative integer `totalRows`, and renders supplied page data without slicing again. Combine it with manual or disabled sorting; client sorting of a partial server page is rejected by types and runtime validation. Manual sorting plus client pagination is supported when the parent supplies the complete sorted dataset. See the [API design's manual example](docs/superpowers/specs/2026-11-01-data-table-api-design.md) for callbacks and mock-service integration.
+
+Page indexes are zero-based in the API and one-based in labels. Invalid sizes fall back to 10; options are sanitized/deduplicated and include the current valid size. Out-of-range client pages clamp to a valid page and stay clamped when data grows again. Controlled state is validated for display without repair callbacks; the manual parent owns normalization/refetch when totals shrink. Empty/loading/error states disable navigation, and pending/error requests disable sort headers. `aria-sort`, labeled buttons/selects, visible focus, and live range summaries support keyboard and screen-reader use.
+
+The timetable now displays the 12 classes across two default pages. Expansion and the inventory demo UI are later milestones requiring separate approval. Navigation currently exposes only the timetable route; reviewer scenario controls belong to the later demo route.
 
 ## Approval workflow
 
@@ -119,4 +135,4 @@ Before each step, propose its scope and any dependency, style, or behavior decis
 
 Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
 
-Steps 1–6 are accepted. Step 7 (basic table/timetable) is implemented and awaiting user review. The selected design is Calm studio with the HL Fitness Studio name. Future steps require separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [visual design](docs/superpowers/specs/2026-11-01-dashboard-visual-options.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 7 execution record](docs/superpowers/plans/2026-11-01-basic-table-timetable.md).
+Steps 1–7 are accepted. Step 8 sorting/pagination is implemented and verified, awaiting user review. The selected design is Calm studio with stronger sans-serif typography/contrast and the HL Fitness Studio name. Future steps require separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [visual design](docs/superpowers/specs/2026-11-01-dashboard-visual-options.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 8 execution record](docs/superpowers/plans/2026-11-01-sorting-pagination.md).

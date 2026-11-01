@@ -1,6 +1,6 @@
 # HL Fitness Studio — Dashboard Visual Options — Step 3
 
-Status: Calm studio direction and HL Fitness Studio name are approved. During Step 7 review, the user approved a stronger sans-serif/contrast revision, now implemented for review.
+Status: Calm studio direction and HL Fitness Studio name are approved. The user accepted the implemented stronger sans-serif/contrast revision, completing Step 7 review.
 
 ## Authorized scope
 

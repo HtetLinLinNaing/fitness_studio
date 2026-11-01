@@ -12,14 +12,14 @@ This is the current project status and proposed remaining roadmap. A roadmap ent
 | 4 | Grouped reusable table API design | Accepted |
 | 5 | Quality-focused testing foundation | Accepted |
 | 6 | JSON fixtures and mock services; 12 classes, 100 items, Singapore/SGD | Accepted |
-| 7 | Basic generic table and real timetable; pinned column and request states | Implemented, verified, committed separately; user review pending |
-| 8 | Sorting and pagination, including controlled/client/manual processing | Proposed; needs scope approval |
+| 7 | Basic generic table and real timetable; pinned column and request states | Accepted, including the stronger sans-serif/contrast revision |
+| 8 | Sorting and pagination, including controlled/client/manual processing | Implemented and verified; user review pending |
 | 9 | Inline and lazy expansion, child caching/retry, transitions | Proposed; needs scope approval |
 | 10 | Inventory demo route, simulated server mode, scenario controls | Proposed; needs scope approval |
 | 11 | Final integrated verification, accessibility/performance checks, README | Proposed; needs scope approval |
 | 12 | Public repository and website deployment | Proposed; needs scope/provider/publication approval |
 
-There are **12 proposed milestones**, including the six already accepted. Steps 8–12 can be adjusted with the user. Existing acceptance of the PRD/API does not authorize all later implementation at once.
+There are **12 proposed milestones**. Steps 1–7 are accepted; Step 8 is implemented for review. Steps 9–12 can be adjusted with the user and remain unapproved. Existing acceptance of the PRD/API does not authorize all later implementation at once.
 
 ## Git milestones
 
@@ -27,7 +27,8 @@ There are **12 proposed milestones**, including the six already accepted. Steps 
 - `6708dc2` — setup, design, and testing through Step 5.
 - `74e3eaa` — mock data and services for Step 6.
 - Step 7: `feat: build basic table and class timetable` (see the latest Git log for its hash). Commit subjects and the feature branch do not use a Codex prefix.
-- Step 7 review revision: `style: strengthen timetable typography and contrast`, following user approval of sans-serif typography and stronger colors. This remains part of Step 7; Step 8 has not started.
+- Step 7 review revision: `style: strengthen timetable typography and contrast`, following user approval of sans-serif typography and stronger colors.
+- Step 8: `feat: add table sorting and pagination` (see Git log for its hash), with a separate user review gate after implementation.
 
 The former combined commit `0f22600` was split at the user's request. Exact final-tree equality was checked after the split; source content was unchanged.
 
@@ -39,10 +40,11 @@ The former combined commit `0f22600` was split at the user's request. Exact fina
 | `brainstorming` | Requirements discussion, choices, visual options, written design and approval gates | Approved specs in `specs/` and the local visual companion |
 | `writing-plans` | Record the scope and implementation/verification sequence | Saved plans for Steps 1, 5, 6, and 7 in `plans/` |
 | `executing-plans` | Implement approved milestones in this chat and maintain execution records | Task checklists and execution records in those plans |
-| `test-driven-development` | Observe checks failing before implementing new service/table behavior | Recorded RED→GREEN checks for Steps 6 and 7 |
+| `test-driven-development` | Observe checks failing before implementing new service/table behavior | Recorded RED→GREEN checks for Steps 6–8 |
 | `verification-before-completion` | Run and read checks before success claims and commits | Lint, type checks, focused unit checks, production build/browser records |
 | `requesting-code-review` template | Fresh read-only reviews of implementation | Used its reviewer prompt via the executing-plans workflow |
 | `receiving-code-review` | Verify review findings and correct them with regression protection | Step 7 deferred-sorting API finding and compile-time regression check |
+| `systematic-debugging` | Identify the cause of a preview environment conflict before changing the run method | Step 8 confirmed an existing project development server; preserved it and reused a separate production preview |
 
 Implementation is performed by the main assistant. Fresh subagents have been used for design checks and read-only reviews, not to approve scope on the user's behalf. The user's approval controls scope and progression.
 

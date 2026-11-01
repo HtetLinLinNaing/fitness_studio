@@ -10,8 +10,29 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   const table = page.getByRole("table", { name: "Class timetable", exact: true });
   await expect(table).toHaveAttribute("aria-busy", "false");
   await expect(table.getByRole("cell", { name: "Yoga Flow 60 min class" })).toBeVisible();
+  expect(await table.locator("tbody > tr").count()).toBe(10);
+  await expect(page.getByText("Page 1 of 2")).toBeVisible();
+  await page.getByRole("button", { name: "Next page" }).click();
   await expect(table.getByRole("cell", { name: "Evening Reset 45 min class" })).toBeVisible();
+  expect(await table.locator("tbody > tr").count()).toBe(2);
+  await expect(page.getByText("11–12 of 12")).toBeVisible();
+  await page.getByRole("button", { name: "Previous page" }).click();
+
+  const sortClass = page.getByRole("button", { name: /^Sort by Class,/ });
+  await sortClass.focus();
+  await sortClass.press("Enter");
+  await expect(table.locator("thead th:first-child")).toHaveAttribute("aria-sort", "ascending");
+  await expect(table.locator("tbody tr:first-child td:first-child")).toContainText("Barre Foundations");
+  await sortClass.press("Enter");
+  await expect(table.locator("thead th:first-child")).toHaveAttribute("aria-sort", "descending");
+  await sortClass.press("Enter");
+  await expect(table.locator("thead th:first-child")).toHaveAttribute("aria-sort", "none");
+  await expect(table.locator("tbody tr:nth-child(2) td:first-child")).toContainText("Reformer Pilates");
+
+  await page.getByRole("combobox", { name: "Rows per page" }).selectOption("25");
   expect(await table.locator("tbody > tr").count()).toBe(12);
+  await expect(page.getByRole("button", { name: "Next page" })).toBeDisabled();
+  await page.getByRole("combobox", { name: "Rows per page" }).selectOption("10");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 
   if ((page.viewportSize()?.width ?? 0) < 600) {

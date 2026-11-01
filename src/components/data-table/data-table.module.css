@@ -14,5 +14,21 @@
 .message { position: sticky; left: 0; width: min(360px, calc(100vw - 96px)); padding: 38px 0; color: #304e3b; }
 .message strong { font-size: 15px; font-weight: 600; }
 .message p { margin: 9px 0 18px; color: #4b6055; font-size: 14px; line-height: 1.7; }
+.sortButton { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 32px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; font-weight: inherit; text-align: left; cursor: pointer; transition: color 120ms ease; }
+.sortButton:hover:not(:disabled) { color: #0a5135; }
+.sortButton:disabled { cursor: default; }
+.sortIcon { color: #6b8172; font-size: 14px; }
+.activeSort { color: #0e623e; font-size: 15px; font-weight: 700; }
+.pagination { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px 24px; padding: 17px 24px; border-top: 1px solid #c8d5cc; color: #3f5848; font-size: 12px; background: white; }
+.sizeControl { display: flex; align-items: center; gap: 10px; }
+.sizeControl select { min-height: 36px; min-width: 62px; padding: 5px 8px; border: 1px solid #b6c9bc; border-radius: 6px; color: #244e36; background: white; font: inherit; cursor: pointer; }
+.sizeControl select:disabled { color: #738579; cursor: default; background: #f0f4f1; }
+.range { font-variant-numeric: tabular-nums; }
+.pageNavigation { display: flex; align-items: center; gap: 13px; }
+.pageNavigation span { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pageNavigation button { min-height: 36px; padding: 6px 12px; border: 1px solid #b6c9bc; border-radius: 6px; background: white; color: #245638; font: inherit; font-weight: 600; cursor: pointer; }
+.pageNavigation button:hover:not(:disabled) { background: #e4eee6; border-color: #7c9c87; }
+.pageNavigation button:disabled { color: #798c80; background: #f3f6f3; border-color: #d7e0d9; cursor: default; }
 @media (max-width: 600px) { .table th, .table td { padding-left: 18px; padding-right: 18px; } }
-@media (prefers-reduced-motion: reduce) { .skeleton, .skeleton::before, .skeleton::after { animation: none !important; } }
+@media (max-width: 520px) { .pagination { padding: 16px 18px; gap: 14px; }.pageNavigation { justify-content: space-between; width: 100%; gap: 8px; }.pageNavigation button { min-height: 44px; }.sizeControl select { min-height: 44px; font-size: 16px; }.sortButton { min-height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .skeleton, .skeleton::before, .skeleton::after { animation: none !important; }.sortButton { transition: none; } }

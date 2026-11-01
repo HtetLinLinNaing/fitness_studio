@@ -45,8 +45,6 @@ export function Timetable() {
             <span>Singapore time · UTC+08:00</span></div>
           <DataTable caption="Class timetable" datasetKey="classes:v1" data={rows}
             columns={classColumns} getRowId={getRowId} request={request} emptyMessage="No classes available." />
-          <div className={styles.cardFooter}><span>{ready ? `${rows.length} classes` : "Class timetable"}</span>
-            <span>HL Fitness Studio · Singapore</span></div>
         </section>
         <p className={styles.footnote}>Sample timetable · Fictional studio data</p>
       </main>

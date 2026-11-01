@@ -3,6 +3,8 @@
 import { Button, Skeleton } from "@heroui/react";
 import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import type { ColumnDef, DataTableProps } from "./types";
+import { PaginationControls } from "./PaginationControls";
+import { useTableProcessing } from "./use-table-processing";
 import styles from "./data-table.module.css";
 
 function displayValue(value: unknown): ReactNode {
@@ -25,8 +27,10 @@ export function DataTable<T>(props: DataTableProps<T>) {
 
 function TableContent<T>({ data, columns, getRowId, caption,
   request = { status: "ready" }, emptyMessage = "No records available.",
+  sorting, pagination,
 }: DataTableProps<T>) {
   const [scrolled, setScrolled] = useState(false);
+  const processing = useTableProcessing({ data, columns, sorting, pagination, ready: request.status === "ready" });
   const layout = useMemo(() => {
     if (columns.length === 0) throw new Error("DataTable requires at least one column.");
     const ids = new Set<string>();
@@ -51,21 +55,26 @@ function TableContent<T>({ data, columns, getRowId, caption,
       unpinnedWidth: cells.filter(cell => !cell.pinned).reduce((sum, cell) => sum + cell.width, 0) };
   }, [columns]);
 
-  const rows = useMemo(() => {
-    if (request.status !== "ready") return [];
+  const rowIds = useMemo(() => {
+    const result = new Map<T, string>();
+    if (request.status !== "ready") return result;
     const ids = new Set<string>();
-    return data.map(row => {
+    for (const row of data) {
       const id = getRowId(row);
       if (typeof id !== "string" || !id || ids.has(id)) {
         throw new Error("DataTable row IDs must be unique non-empty strings.");
       }
       ids.add(id);
-      return { row, id };
-    });
+      result.set(row, id);
+    }
+    return result;
   }, [data, getRowId, request.status]);
+  const rows = request.status === "ready"
+    ? processing.visibleData.map(row => ({ row, id: rowIds.get(row)! })) : [];
 
   const skeletonRows = request.status === "loading" && Number.isSafeInteger(request.skeletonRows)
-    && (request.skeletonRows ?? 0) > 0 ? request.skeletonRows! : 10;
+    && (request.skeletonRows ?? 0) > 0 ? request.skeletonRows!
+      : processing.paginationEnabled ? processing.page.pageSize : 10;
   const cellStyle = (cell: typeof layout.cells[number]): CSSProperties | undefined =>
     cell.pinned ? { left: cell.left } : undefined;
   const cellClass = (cell: typeof layout.cells[number]) =>
@@ -84,8 +93,20 @@ function TableContent<T>({ data, columns, getRowId, caption,
           <caption className="sr-only">{caption}</caption>
           <colgroup>{layout.cells.map(cell => <col key={cell.column.id} style={{ width: cell.pinned
             ? cell.width : `calc((100% - ${layout.pinnedWidth}px) * ${cell.width / layout.unpinnedWidth})` }} />)}</colgroup>
-          <thead><tr>{layout.cells.map(cell => <th key={cell.column.id} scope="col"
-            className={cellClass(cell)} style={cellStyle(cell)}>{cell.column.header}</th>)}</tr></thead>
+          <thead><tr>{layout.cells.map(cell => {
+            const sortable = processing.sortingEnabled && cell.column.sortable;
+            const active = processing.sort?.columnId === cell.column.id;
+            const next = !active ? "ascending" : processing.sort?.direction === "asc" ? "descending" : "restore original order";
+            return <th key={cell.column.id} scope="col" className={cellClass(cell)} style={cellStyle(cell)}
+              aria-sort={sortable ? active ? processing.sort?.direction === "asc" ? "ascending" : "descending" : "none" : undefined}>
+              {sortable ? <button type="button" className={styles.sortButton} disabled={request.status !== "ready"}
+                aria-label={`Sort by ${cell.column.header}, ${next}`}
+                onClick={() => processing.toggleSort(cell.column.id)}>
+                {cell.column.header}<span className={active ? styles.activeSort : styles.sortIcon} aria-hidden="true">
+                  {active ? processing.sort?.direction === "asc" ? "↑" : "↓" : "↕"}
+                </span></button> : cell.column.header}
+            </th>;
+          })}</tr></thead>
           <tbody>
             {request.status === "loading" && Array.from({ length: skeletonRows }, (_, index) => (
               <tr key={index} aria-hidden="true">{layout.cells.map(cell => <td key={cell.column.id}
@@ -103,6 +124,9 @@ function TableContent<T>({ data, columns, getRowId, caption,
           </tbody>
         </table>
       </div>
+      {processing.paginationEnabled && <PaginationControls caption={caption} page={processing.page}
+        totalRows={processing.totalRows} visibleCount={rows.length} sizes={processing.sizes}
+        disabled={request.status !== "ready" || processing.totalRows === 0} onChange={processing.changePage} />}
     </>
   );
 }
