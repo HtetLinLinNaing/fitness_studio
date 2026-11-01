@@ -1,0 +1,108 @@
+"use client";
+
+import { Button, Skeleton } from "@heroui/react";
+import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import type { ColumnDef, DataTableProps } from "./types";
+import styles from "./data-table.module.css";
+
+function displayValue(value: unknown): ReactNode {
+  if (value === null || value === undefined) return "—";
+  if (typeof value === "boolean") return value ? "Yes" : "No";
+  if (typeof value === "number") return Number.isFinite(value) ? value : "—";
+  if (value instanceof Date) return Number.isNaN(value.getTime()) ? "—" : value.toISOString();
+  return typeof value === "string" ? value : "—";
+}
+
+function renderCell<T>(column: ColumnDef<T>, row: T, rowId: string): ReactNode {
+  if (column.cell) return column.cell({ row, rowId });
+  return displayValue(column.accessorFn ? column.accessorFn(row) : row[column.accessorKey]);
+}
+
+export function DataTable<T>(props: DataTableProps<T>) {
+  // A new logical dataset resets local viewport state; ordinary array changes do not.
+  return <TableContent key={props.datasetKey} {...props} />;
+}
+
+function TableContent<T>({ data, columns, getRowId, caption,
+  request = { status: "ready" }, emptyMessage = "No records available.",
+}: DataTableProps<T>) {
+  const [scrolled, setScrolled] = useState(false);
+  const layout = useMemo(() => {
+    if (columns.length === 0) throw new Error("DataTable requires at least one column.");
+    const ids = new Set<string>();
+    const ordered = [...columns.filter(column => column.pinned === "left"),
+      ...columns.filter(column => column.pinned !== "left")];
+    let offset = 0;
+    const pinnedCount = ordered.filter(column => column.pinned === "left").length;
+    const cells = ordered.map((column, index) => {
+      if (!column.id || ids.has(column.id)) throw new Error("DataTable column IDs must be unique and non-empty.");
+      ids.add(column.id);
+      const width = Number.isFinite(column.width) && (column.width ?? 0) > 0 ? column.width! : 160;
+      if (column.width !== undefined && width !== column.width && process.env.NODE_ENV !== "production") {
+        console.warn(`Invalid width for column ${column.id}; using 160px.`);
+      }
+      const pinned = column.pinned === "left";
+      const left = offset;
+      if (pinned) offset += width;
+      return { column, width, pinned, left, edge: pinned && index === pinnedCount - 1 };
+    });
+    return { cells, pinnedWidth: offset,
+      totalWidth: cells.reduce((sum, cell) => sum + cell.width, 0),
+      unpinnedWidth: cells.filter(cell => !cell.pinned).reduce((sum, cell) => sum + cell.width, 0) };
+  }, [columns]);
+
+  const rows = useMemo(() => {
+    if (request.status !== "ready") return [];
+    const ids = new Set<string>();
+    return data.map(row => {
+      const id = getRowId(row);
+      if (typeof id !== "string" || !id || ids.has(id)) {
+        throw new Error("DataTable row IDs must be unique non-empty strings.");
+      }
+      ids.add(id);
+      return { row, id };
+    });
+  }, [data, getRowId, request.status]);
+
+  const skeletonRows = request.status === "loading" && Number.isSafeInteger(request.skeletonRows)
+    && (request.skeletonRows ?? 0) > 0 ? request.skeletonRows! : 10;
+  const cellStyle = (cell: typeof layout.cells[number]): CSSProperties | undefined =>
+    cell.pinned ? { left: cell.left } : undefined;
+  const cellClass = (cell: typeof layout.cells[number]) =>
+    [cell.pinned ? styles.pinned : "", cell.edge ? styles.edge : ""].filter(Boolean).join(" ");
+
+  return (
+    <>
+      <span className="sr-only" role="status" aria-live="polite">
+        {request.status === "loading" ? `Loading ${caption.toLowerCase()}…` : ""}
+      </span>
+      <div className={styles.viewport} role="region" aria-label={`${caption}, scrollable table`}
+        tabIndex={0} data-scrolled={scrolled}
+        onScroll={event => setScrolled(event.currentTarget.scrollLeft > 0)}>
+        <table className={styles.table} aria-busy={request.status === "loading"}
+          style={{ minWidth: layout.totalWidth, width: layout.unpinnedWidth ? "100%" : layout.totalWidth }}>
+          <caption className="sr-only">{caption}</caption>
+          <colgroup>{layout.cells.map(cell => <col key={cell.column.id} style={{ width: cell.pinned
+            ? cell.width : `calc((100% - ${layout.pinnedWidth}px) * ${cell.width / layout.unpinnedWidth})` }} />)}</colgroup>
+          <thead><tr>{layout.cells.map(cell => <th key={cell.column.id} scope="col"
+            className={cellClass(cell)} style={cellStyle(cell)}>{cell.column.header}</th>)}</tr></thead>
+          <tbody>
+            {request.status === "loading" && Array.from({ length: skeletonRows }, (_, index) => (
+              <tr key={index} aria-hidden="true">{layout.cells.map(cell => <td key={cell.column.id}
+                className={cellClass(cell)} style={cellStyle(cell)}><Skeleton className={styles.skeleton} /></td>)}</tr>
+            ))}
+            {request.status === "error" && <tr><td colSpan={layout.cells.length}>
+              <div className={styles.message} role="alert"><strong>Unable to load data</strong>
+                <p>{request.message}</p><Button variant="secondary" onPress={request.onRetry}>Retry</Button></div>
+            </td></tr>}
+            {request.status === "ready" && rows.length === 0 && <tr><td colSpan={layout.cells.length}>
+              <div className={styles.message}><strong>{emptyMessage}</strong><p>There’s nothing to display right now.</p></div>
+            </td></tr>}
+            {rows.map(({ row, id }) => <tr key={id}>{layout.cells.map(cell => <td key={cell.column.id}
+              className={cellClass(cell)} style={cellStyle(cell)}>{renderCell(cell.column, row, id)}</td>)}</tr>)}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}

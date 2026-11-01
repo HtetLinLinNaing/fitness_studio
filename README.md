@@ -1,6 +1,8 @@
 # HL Fitness Studio
 
-Project foundation and local mock-data layer for the reusable data table challenge.
+Reusable data table interview project with a working basic class timetable, local mock services, and an approved step-by-step roadmap.
+
+See the [project roadmap and skill usage](docs/superpowers/project-roadmap.md) for the complete 12-milestone proposal, approval status, and Superpowers skills used.
 
 ## Requirements
 
@@ -13,7 +15,7 @@ npm ci
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). The placeholder displays “Fitness Studio”, a setup message, and a disabled HeroUI button that verifies library integration.
+Open [localhost:3000](http://localhost:3000). The HL Fitness Studio timetable loads 12 mock classes and displays the approved Calm studio design in Singapore time.
 
 ## Verify
 
@@ -31,7 +33,7 @@ npm start
 
 ## Tests
 
-The testing tools are configured for meaningful feature and regression checks. Current unit tests protect mock-service behavior. Further tests will accompany the features they protect; there are no placeholder tests or test-count/coverage targets.
+The testing tools are configured for meaningful feature and regression checks. Current unit tests protect mock services, generic cells/request states, and timetable error/retry/cleanup behavior. Browser checks verify the production timetable on desktop and mobile, including actual pinned-column geometry and keyboard scrolling. Type-check fixtures also reject unavailable future sorting options. There are no placeholder tests or test-count/coverage targets.
 
 - Unit/component tests: `tests/unit/**/*.test.ts` or `.test.tsx` using Vitest, React Testing Library, DOM matchers, and user-event. React JSX, jsdom, automatic cleanup, and the `@/` source alias are configured. Import `test`, `expect`, and other test APIs from `vitest`; globals are disabled.
 - Browser tests: `tests/e2e/**/*.spec.ts` using Playwright. The same checks run in desktop Chromium and a 375px mobile Chromium viewport. The runner builds and starts the app on `127.0.0.1:3100` and closes that server when finished. It rejects an already occupied test port so it cannot silently exercise another server. Traces and screenshots are retained on failures.
@@ -43,7 +45,7 @@ npm run test:e2e:install
 npm run test:e2e
 ```
 
-Run the browser-install command once after installing packages, and again when a Playwright update requires a new browser version. Unit and browser test discovery are separate. Browser feature tests have not been added yet, so that runner currently reports no tests and exits unsuccessfully; missing tests are not disguised as a passing suite. Temporary tooling checks were removed after setup verification.
+Run the browser-install command once after installing packages, and again when a Playwright update requires a new browser version. Unit and browser discovery are separate, and both runners now contain feature checks. Temporary tooling probes were removed after setup verification.
 
 The browser HTML report is written to `playwright-report/`, with diagnostics under `test-results/`. These generated folders, as well as coverage output, are ignored by Git and ESLint.
 
@@ -84,7 +86,32 @@ Focused service tests cover fixture consistency, global sorting before paging, o
 
 ESLint 9 and TypeScript 5.9 are selected for compatibility with the installed Next.js lint plugins. At setup verification, npm reported 16 moderate development-tool findings propagated from `minimatch`; the runtime-only audit reported zero vulnerabilities. No forced downgrade or incompatible dependency override has been applied.
 
-HeroUI is reserved for non-table controls. The future table will use native HTML and custom behavior; no table/grid library is included.
+HeroUI supplies only non-table primitives (Skeleton and Retry Button). The table itself uses native HTML and custom layout; no table/grid library is included.
+
+## Basic table usage — Step 7
+
+`DataTable<T>` is in `src/components/data-table/`. Supply typed columns, data, a stable string row ID, dataset key, accessible caption, and optional request/empty state. A column chooses either a scalar property accessor or a scalar-producing function; custom cells receive the full typed row. Pinned columns require pixel widths and are grouped on the left. Unpinned columns share extra desktop space while preserving the declared minimum table width.
+
+```tsx
+const columns: readonly ColumnDef<Product>[] = [
+  { id: "name", accessorKey: "name", header: "Product", pinned: "left", width: 200 },
+  { id: "stock", accessorKey: "stock", header: "Stock", width: 140 },
+];
+
+<DataTable<Product>
+  caption="Products"
+  datasetKey="products:v1"
+  data={products}
+  columns={columns}
+  getRowId={row => row.id}
+  request={{ status: "ready" }}
+  emptyMessage="No products available."
+/>
+```
+
+Changing datasetKey resets local viewport state; new data arrays in the same scope do not. Loading uses column-matched skeleton rows and an accessible announcement; errors expose the caller's Retry callback. Duplicate/empty row and column identities produce developer configuration errors. The feature page owns asynchronous fetching, cancellation, and stale-result guards; the table imports no fixture or feature model.
+
+This milestone is the foundation subset of the approved API. All 12 classes currently render together. Sorting metadata/configuration, pagination, expansion, and the inventory demo screen are introduced in later approved steps; unsupported props are rejected rather than accepted without behavior. Navigation currently exposes only the implemented timetable route. Error/retry and empty states are covered by component checks; reviewer scenario controls belong to the later demo route.
 
 ## Approval workflow
 
@@ -92,4 +119,4 @@ Before each step, propose its scope and any dependency, style, or behavior decis
 
 Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
 
-Steps 1–6 (setup, PRD, visual design, API design, testing setup, and mock data/services) are accepted. The selected visual direction is Calm studio with the HL Fitness Studio name. Subsequent table/dashboard implementation steps require separate approval. See the [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [visual design](docs/superpowers/specs/2026-11-01-dashboard-visual-options.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 6 implementation record](docs/superpowers/plans/2026-11-01-mock-data-services.md).
+Steps 1–6 are accepted. Step 7 (basic table/timetable) is implemented and awaiting user review. The selected design is Calm studio with the HL Fitness Studio name. Future steps require separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [visual design](docs/superpowers/specs/2026-11-01-dashboard-visual-options.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [Step 7 execution record](docs/superpowers/plans/2026-11-01-basic-table-timetable.md).

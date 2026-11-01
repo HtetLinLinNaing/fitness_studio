@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–6 are complete and accepted, including the smaller mock-data/services implementation. Every subsequent step still requires separate user approval.
+Status: Steps 1–6 are accepted. The user approved Step 7 implementation; the basic table/timetable is implemented and undergoing final handoff for user review. Every subsequent step still requires separate user approval. The complete proposed roadmap and skill log are in `../project-roadmap.md`.
 Date: 2026-11-01
 
 ## Approval boundary
@@ -191,3 +191,5 @@ The user subsequently selected and approved A — Calm studio with the HL Fitnes
 The user approved Step 4 component API design with grouped configuration, completing that step. The approved types, mock-service interfaces, and usage examples are in `2026-11-01-data-table-api-design.md`; a fresh builder check found no blocking gaps.
 
 The user accepted lightweight testing following Step 5 setup with Vitest, React Testing Library, and Playwright. Temporary tooling checks were removed after verification. The user selected Singapore time/SGD and accepted the smaller Step 6 mock-data scope, then approved the completed implementation after its checks and review. Table and dashboard implementation remain separately gated.
+
+The user approved Step 7: a generic basic table and real timetable using the Calm studio design, pinned class column, skeleton loading, empty/error/retry states, and mock class data. Sorting, pagination, expansion, and the inventory demo UI remain later approved milestones. The foundation deliberately omits unimplemented sorting configuration from its current TypeScript API. Step 7 is delivered for review with its own commit.

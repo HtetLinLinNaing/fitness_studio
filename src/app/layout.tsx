@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Fitness Studio",
-  description: "Fitness Studio project foundation.",
+  title: "HL Fitness Studio | Class timetable",
+  description: "Explore the HL Fitness Studio class timetable in Singapore time.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

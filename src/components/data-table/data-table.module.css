@@ -1,0 +1,18 @@
+.viewport { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #c9d3c5 transparent; }
+.viewport:focus-visible { outline: 2px solid #285e4d; outline-offset: -3px; }
+.table { table-layout: fixed; border-collapse: separate; border-spacing: 0; color: #35483a; font-size: 14px; }
+.table th { height: 47px; background: #fafbf8; color: #657360; text-align: left; font-size: 12px; font-weight: 500; }
+.table td { height: 76px; background: #fff; }
+.table th, .table td { padding: 12px 24px; border-bottom: 1px solid #e8ece4; vertical-align: middle; overflow-wrap: anywhere; }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover td { background: #f9fbf6; }
+.table .pinned { position: sticky; z-index: 1; }
+.table th.pinned { z-index: 2; }
+.edge { border-right: 1px solid #e8ece4; }
+.viewport[data-scrolled="true"] .edge { box-shadow: 9px 0 12px -9px #30422f55; }
+.skeleton { height: 13px; width: 76%; border-radius: 4px; background: #e8ede3; }
+.message { position: sticky; left: 0; width: min(360px, calc(100vw - 96px)); padding: 38px 0; color: #53674e; }
+.message strong { font-size: 15px; font-weight: 550; }
+.message p { margin: 9px 0 18px; color: #6d7b65; font-size: 13px; line-height: 1.7; }
+@media (max-width: 600px) { .table th, .table td { padding-left: 18px; padding-right: 18px; } }
+@media (prefers-reduced-motion: reduce) { .skeleton, .skeleton::before, .skeleton::after { animation: none !important; } }
