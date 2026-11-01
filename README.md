@@ -2,8 +2,6 @@
 
 Reusable, typed data table built from scratch for a fitness studio assessment. The class timetable demonstrates inline attendees; the inventory page demonstrates lazy details and controlled client/simulated-server processing. No table/grid library or backend is used.
 
-See the [project roadmap and skill usage](docs/superpowers/project-roadmap.md) for the complete 12-milestone proposal, approval status, and Superpowers skills used.
-
 ## Requirements
 
 Node.js 24 or newer and npm 10 or newer. Setup is verified using Node.js 24.16.0.
@@ -226,4 +224,4 @@ Before each step, propose its scope and any dependency, style, or behavior decis
 
 Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
 
-Steps 1–10 are accepted. Step 11 verification/documentation is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Publication requires separate approval; see the [full roadmap and skill log](docs/superpowers/project-roadmap.md), [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [verification record](docs/verification.md).
+Steps 1–10 are accepted. Step 11 verification/documentation is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Publication requires separate approval; see the [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [verification record](docs/verification.md).
