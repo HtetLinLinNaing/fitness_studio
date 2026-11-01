@@ -3,11 +3,14 @@ node_modules/
 out/
 build/
 coverage/
+playwright-report/
+test-results/
 *.tsbuildinfo
 next-env.d.ts
 .env*
 !.env.example
 .vercel/
+.superpowers/
 *.log
 .DS_Store
 Thumbs.db
