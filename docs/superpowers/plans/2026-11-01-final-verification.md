@@ -54,3 +54,4 @@
 - Results: 31 unit checks pass; lint and typecheck pass; production build passes; 5 browser journeys pass, with the duplicate mobile-project tablet case intentionally skipped. Desktop/mobile/tablet screenshots inspected.
 - Fresh full implementation review: no Critical/Important findings, no deferred minors and no declined judgments. No fixes or behavior rulings required.
 - Performance: 5,000 shuffled records sorted/sliced in 16.439ms median and 34.470ms P95 on this Windows/Node environment. Production 100-item client sort samples (including two frames) ranged 8.6–34.6ms. Detailed methodology and limits are documented; no universal guarantee or unmeasured large-browser claim is made.
+- The user accepted Step 11 after commit `472b0c8` and requested removal of the roadmap document, completed in `984bcb4`. Publication/deployment remain separately gated Step 12.

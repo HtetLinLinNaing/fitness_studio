@@ -21,7 +21,7 @@ Verified on 2026-11-01 against the supplied “Part 2 — Component Engineering 
 | Responsive and keyboard behavior | Production Chromium checks at 1440px, 768px and 375px. Keyboard sorting, disclosure, scrolling and controls exercised. Tablet checks confirm one main/H1, labeled selects/buttons, column scopes, panel association and inert collapse. Screenshots inspected at all three widths. |
 | Larger dataset performance | Generated 5,000-row component check confirms global sorting and only 10 parent rows rendered before/after page navigation. Measurements below separate CPU processing from actual browser interaction. |
 | README deliverables | Setup, typed API/usage, client/manual strategy, both expansion modes, sticky approach, state ownership, assumptions and tradeoffs documented in README. |
-| Public repository / deployed URL | Pending Step 12. No publication claim is made by local verification. |
+| Public repository / deployed URL | Public GitHub publication approved after Step 11 acceptance. Repository: https://github.com/HtetLinLinNaing/fitness_studio. Vercel deployment and the live URL are handled by the user. |
 
 ## Commands and results
 
@@ -52,4 +52,4 @@ Normal/slow requests deliberately take 500ms/2s and are not included as sorting 
 
 The accessibility checks exercise semantics, names, keyboard interaction, inert hidden content, focus styling visible in screenshots and reduced motion. They are not a complete WCAG audit or a screen-reader compatibility certification. Browser checks currently use Chromium; other browser engines and real mobile hardware were not tested. No runtime code/dependency change was made during this milestone; previously documented development-tool audit findings remain separate from this functional verification.
 
-Generated browser reports/screenshots live in ignored `playwright-report/` and `test-results/`. Re-run the commands to regenerate them. The public repository and deployed website remain the final separately approved milestone.
+Generated browser reports/screenshots live in ignored `playwright-report/` and `test-results/`. Re-run the commands to regenerate them. The user approved publishing the source on GitHub and will deploy the website on Vercel personally; a deployed URL is not part of this local verification record yet.

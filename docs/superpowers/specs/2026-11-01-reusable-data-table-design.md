@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–10 are complete and accepted. Step 11 has approved scope and is verified, awaiting user review. Step 12 requires separate user approval.
+Status: Steps 1–11 are complete and accepted. Public GitHub publication is approved. The user will handle Vercel deployment personally.
 Date: 2026-11-01
 
 ## Approval boundary

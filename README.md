@@ -216,7 +216,7 @@ Assumptions: single-column sorting, English numeric-aware comparison, stable uni
 
 ## Release status
 
-Both routes run locally and production build verification is complete. A public repository and deployed URL have **not** been published. They are the remaining Step 12 deliverables and require the user's provider/account approval. Production entry points are `npm run build` and `npm start`; no secrets, database or application environment variables are required by this implementation.
+Source repository: [HtetLinLinNaing/fitness_studio](https://github.com/HtetLinLinNaing/fitness_studio). Both routes run locally and production build verification is complete. The user approved public GitHub publication and will handle Vercel deployment personally; a live deployment URL is not yet recorded here. Production entry points are `npm run build` and `npm start`; no secrets, database or application environment variables are required by this implementation.
 
 ## Approval workflow
 
@@ -224,4 +224,4 @@ Before each step, propose its scope and any dependency, style, or behavior decis
 
 Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
 
-Steps 1–10 are accepted. Step 11 verification/documentation is implemented and awaiting user review. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. Publication requires separate approval; see the [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [verification record](docs/verification.md).
+Steps 1–11 are accepted, and public GitHub publication is approved. Vercel deployment is handled by the user. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. See the [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [verification record](docs/verification.md).
