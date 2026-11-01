@@ -2,6 +2,8 @@
 
 Reusable, typed data table built from scratch for a fitness studio assessment. The class timetable demonstrates inline attendees; the inventory page demonstrates lazy details and controlled client/simulated-server processing. No table/grid library or backend is used.
 
+**Live demo:** [HL Fitness Studio](https://fitnessstudio-beta.vercel.app/) · [Inventory demo](https://fitnessstudio-beta.vercel.app/inventory)
+
 ## Requirements
 
 Node.js 24 or newer and npm 10 or newer. Setup is verified using Node.js 24.16.0.
@@ -216,7 +218,7 @@ Assumptions: single-column sorting, English numeric-aware comparison, stable uni
 
 ## Release status
 
-Source repository: [HtetLinLinNaing/fitness_studio](https://github.com/HtetLinLinNaing/fitness_studio). Both routes run locally and production build verification is complete. The user approved public GitHub publication and will handle Vercel deployment personally; a live deployment URL is not yet recorded here. Production entry points are `npm run build` and `npm start`; no secrets, database or application environment variables are required by this implementation.
+Source repository: [HtetLinLinNaing/fitness_studio](https://github.com/HtetLinLinNaing/fitness_studio). The user deployed the website on Vercel at [fitnessstudio-beta.vercel.app](https://fitnessstudio-beta.vercel.app/). Both public routes returned HTTP 200 with the expected page titles when checked. Production entry points are `npm run build` and `npm start`; no secrets, database or application environment variables are required by this implementation.
 
 ## Approval workflow
 
