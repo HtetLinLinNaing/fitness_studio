@@ -1,0 +1,846 @@
+[
+  {
+    "id": "class-001",
+    "name": "Yoga Flow",
+    "instructorName": "Emma Wilson",
+    "startsAt": "2026-11-02T08:00:00+08:00",
+    "endsAt": "2026-11-02T09:00:00+08:00",
+    "bookedCount": 12,
+    "capacity": 15,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-001-booking-01",
+        "customerName": "Jamie Tan",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-001-booking-02",
+        "customerName": "Alex Lim",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-03",
+        "customerName": "Sarah Wong",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-04",
+        "customerName": "Daniel Lee",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-001-booking-05",
+        "customerName": "Priya Nair",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-06",
+        "customerName": "Ryan Koh",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-07",
+        "customerName": "Mei Chen",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-001-booking-08",
+        "customerName": "Amir Rahman",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-09",
+        "customerName": "Chloe Ng",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-10",
+        "customerName": "Marcus Goh",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-001-booking-11",
+        "customerName": "Aisha Ali",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-12",
+        "customerName": "Ben Chua",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-001-booking-13",
+        "customerName": "Grace Teo",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-001-booking-14",
+        "customerName": "Ethan Low",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-002",
+    "name": "Reformer Pilates",
+    "instructorName": "Sarah Chen",
+    "startsAt": "2026-11-02T09:15:00+08:00",
+    "endsAt": "2026-11-02T10:15:00+08:00",
+    "bookedCount": 10,
+    "capacity": 10,
+    "status": "full",
+    "attendees": [
+      {
+        "id": "class-002-booking-01",
+        "customerName": "Daniel Lee",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-002-booking-02",
+        "customerName": "Priya Nair",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-002-booking-03",
+        "customerName": "Ryan Koh",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-002-booking-04",
+        "customerName": "Mei Chen",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-002-booking-05",
+        "customerName": "Amir Rahman",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-002-booking-06",
+        "customerName": "Chloe Ng",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-002-booking-07",
+        "customerName": "Marcus Goh",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-002-booking-08",
+        "customerName": "Aisha Ali",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-002-booking-09",
+        "customerName": "Ben Chua",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-002-booking-10",
+        "customerName": "Grace Teo",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-002-booking-11",
+        "customerName": "Ethan Low",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-002-booking-12",
+        "customerName": "Sofia Chan",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-003",
+    "name": "HIIT Express",
+    "instructorName": "James Miller",
+    "startsAt": "2026-11-02T10:30:00+08:00",
+    "endsAt": "2026-11-02T11:15:00+08:00",
+    "bookedCount": 8,
+    "capacity": 16,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-003-booking-01",
+        "customerName": "Mei Chen",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-003-booking-02",
+        "customerName": "Amir Rahman",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-003-booking-03",
+        "customerName": "Chloe Ng",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-003-booking-04",
+        "customerName": "Marcus Goh",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-003-booking-05",
+        "customerName": "Aisha Ali",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-003-booking-06",
+        "customerName": "Ben Chua",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-003-booking-07",
+        "customerName": "Grace Teo",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-003-booking-08",
+        "customerName": "Ethan Low",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-003-booking-09",
+        "customerName": "Sofia Chan",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-003-booking-10",
+        "customerName": "Adam Yeo",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-004",
+    "name": "Barre Foundations",
+    "instructorName": "Emma Wilson",
+    "startsAt": "2026-11-02T11:30:00+08:00",
+    "endsAt": "2026-11-02T12:30:00+08:00",
+    "bookedCount": 0,
+    "capacity": 12,
+    "status": "cancelled",
+    "attendees": []
+  },
+  {
+    "id": "class-005",
+    "name": "Strength Circuit",
+    "instructorName": "Marcus Taylor",
+    "startsAt": "2026-11-02T13:00:00+08:00",
+    "endsAt": "2026-11-02T14:00:00+08:00",
+    "bookedCount": 14,
+    "capacity": 18,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-005-booking-01",
+        "customerName": "Grace Teo",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-005-booking-02",
+        "customerName": "Ethan Low",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-03",
+        "customerName": "Sofia Chan",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-04",
+        "customerName": "Adam Yeo",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-005-booking-05",
+        "customerName": "Isabel Ho",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-06",
+        "customerName": "Nathan Sim",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-07",
+        "customerName": "Olivia Tay",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-005-booking-08",
+        "customerName": "Lucas Ong",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-09",
+        "customerName": "Jamie Tan",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-10",
+        "customerName": "Alex Lim",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-005-booking-11",
+        "customerName": "Sarah Wong",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-12",
+        "customerName": "Daniel Lee",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-13",
+        "customerName": "Priya Nair",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-005-booking-14",
+        "customerName": "Ryan Koh",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-005-booking-15",
+        "customerName": "Mei Chen",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-005-booking-16",
+        "customerName": "Amir Rahman",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-006",
+    "name": "Stretch & Restore",
+    "instructorName": "Sarah Chen",
+    "startsAt": "2026-11-02T14:15:00+08:00",
+    "endsAt": "2026-11-02T15:00:00+08:00",
+    "bookedCount": 6,
+    "capacity": 14,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-006-booking-01",
+        "customerName": "Adam Yeo",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-006-booking-02",
+        "customerName": "Isabel Ho",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-006-booking-03",
+        "customerName": "Nathan Sim",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-006-booking-04",
+        "customerName": "Olivia Tay",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-006-booking-05",
+        "customerName": "Lucas Ong",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-006-booking-06",
+        "customerName": "Jamie Tan",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-006-booking-07",
+        "customerName": "Alex Lim",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-006-booking-08",
+        "customerName": "Sarah Wong",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-007",
+    "name": "Spin Energy",
+    "instructorName": "James Miller",
+    "startsAt": "2026-11-02T15:15:00+08:00",
+    "endsAt": "2026-11-02T16:00:00+08:00",
+    "bookedCount": 15,
+    "capacity": 15,
+    "status": "full",
+    "attendees": [
+      {
+        "id": "class-007-booking-01",
+        "customerName": "Olivia Tay",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-007-booking-02",
+        "customerName": "Lucas Ong",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-03",
+        "customerName": "Jamie Tan",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-04",
+        "customerName": "Alex Lim",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-007-booking-05",
+        "customerName": "Sarah Wong",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-06",
+        "customerName": "Daniel Lee",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-07",
+        "customerName": "Priya Nair",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-007-booking-08",
+        "customerName": "Ryan Koh",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-09",
+        "customerName": "Mei Chen",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-10",
+        "customerName": "Amir Rahman",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-007-booking-11",
+        "customerName": "Chloe Ng",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-12",
+        "customerName": "Marcus Goh",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-13",
+        "customerName": "Aisha Ali",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-007-booking-14",
+        "customerName": "Ben Chua",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-15",
+        "customerName": "Grace Teo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-007-booking-16",
+        "customerName": "Ethan Low",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-007-booking-17",
+        "customerName": "Sofia Chan",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-008",
+    "name": "Mobility Basics",
+    "instructorName": "Marcus Taylor",
+    "startsAt": "2026-11-02T16:15:00+08:00",
+    "endsAt": "2026-11-02T17:00:00+08:00",
+    "bookedCount": 0,
+    "capacity": 12,
+    "status": "scheduled",
+    "attendees": []
+  },
+  {
+    "id": "class-009",
+    "name": "Mat Pilates",
+    "instructorName": "Sarah Chen",
+    "startsAt": "2026-11-02T17:15:00+08:00",
+    "endsAt": "2026-11-02T18:15:00+08:00",
+    "bookedCount": 9,
+    "capacity": 14,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-009-booking-01",
+        "customerName": "Priya Nair",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-009-booking-02",
+        "customerName": "Ryan Koh",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-009-booking-03",
+        "customerName": "Mei Chen",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-009-booking-04",
+        "customerName": "Amir Rahman",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-009-booking-05",
+        "customerName": "Chloe Ng",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-009-booking-06",
+        "customerName": "Marcus Goh",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-009-booking-07",
+        "customerName": "Aisha Ali",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-009-booking-08",
+        "customerName": "Ben Chua",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-009-booking-09",
+        "customerName": "Grace Teo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-009-booking-10",
+        "customerName": "Ethan Low",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-009-booking-11",
+        "customerName": "Sofia Chan",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-010",
+    "name": "Boxing Fundamentals",
+    "instructorName": "James Miller",
+    "startsAt": "2026-11-02T18:30:00+08:00",
+    "endsAt": "2026-11-02T19:15:00+08:00",
+    "bookedCount": 11,
+    "capacity": 16,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-010-booking-01",
+        "customerName": "Amir Rahman",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-010-booking-02",
+        "customerName": "Chloe Ng",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-03",
+        "customerName": "Marcus Goh",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-04",
+        "customerName": "Aisha Ali",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-010-booking-05",
+        "customerName": "Ben Chua",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-06",
+        "customerName": "Grace Teo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-07",
+        "customerName": "Ethan Low",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-010-booking-08",
+        "customerName": "Sofia Chan",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-09",
+        "customerName": "Adam Yeo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-10",
+        "customerName": "Isabel Ho",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-010-booking-11",
+        "customerName": "Nathan Sim",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-010-booking-12",
+        "customerName": "Olivia Tay",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-010-booking-13",
+        "customerName": "Lucas Ong",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-011",
+    "name": "Power Yoga",
+    "instructorName": "Emma Wilson",
+    "startsAt": "2026-11-02T19:30:00+08:00",
+    "endsAt": "2026-11-02T20:30:00+08:00",
+    "bookedCount": 7,
+    "capacity": 12,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-011-booking-01",
+        "customerName": "Aisha Ali",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-011-booking-02",
+        "customerName": "Ben Chua",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-011-booking-03",
+        "customerName": "Grace Teo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-011-booking-04",
+        "customerName": "Ethan Low",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-011-booking-05",
+        "customerName": "Sofia Chan",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-011-booking-06",
+        "customerName": "Adam Yeo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-011-booking-07",
+        "customerName": "Isabel Ho",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-011-booking-08",
+        "customerName": "Nathan Sim",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-011-booking-09",
+        "customerName": "Olivia Tay",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  },
+  {
+    "id": "class-012",
+    "name": "Evening Reset",
+    "instructorName": "Marcus Taylor",
+    "startsAt": "2026-11-02T20:45:00+08:00",
+    "endsAt": "2026-11-02T21:30:00+08:00",
+    "bookedCount": 5,
+    "capacity": 12,
+    "status": "scheduled",
+    "attendees": [
+      {
+        "id": "class-012-booking-01",
+        "customerName": "Ethan Low",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-012-booking-02",
+        "customerName": "Sofia Chan",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-012-booking-03",
+        "customerName": "Adam Yeo",
+        "paymentType": "one-time",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-012-booking-04",
+        "customerName": "Isabel Ho",
+        "paymentType": "membership",
+        "bookingStatus": "checked-in"
+      },
+      {
+        "id": "class-012-booking-05",
+        "customerName": "Nathan Sim",
+        "paymentType": "package",
+        "bookingStatus": "booked"
+      },
+      {
+        "id": "class-012-booking-06",
+        "customerName": "Olivia Tay",
+        "paymentType": "one-time",
+        "bookingStatus": "cancelled"
+      },
+      {
+        "id": "class-012-booking-07",
+        "customerName": "Lucas Ong",
+        "paymentType": "package",
+        "bookingStatus": "no-show"
+      }
+    ]
+  }
+]

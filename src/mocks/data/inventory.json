@@ -1,0 +1,802 @@
+[
+  {
+    "id": "item-001",
+    "name": "Yoga Mat — Classic",
+    "sku": "HLFS-0001",
+    "category": "Equipment",
+    "stock": 0,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-002",
+    "name": "Resistance Band — Classic",
+    "sku": "HLFS-0002",
+    "category": "Equipment",
+    "stock": 19,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-003",
+    "name": "Foam Roller — Classic",
+    "sku": "HLFS-0003",
+    "category": "Recovery",
+    "stock": 26,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-004",
+    "name": "Water Bottle — Classic",
+    "sku": "HLFS-0004",
+    "category": "Accessories",
+    "stock": 33,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-005",
+    "name": "Training Towel — Classic",
+    "sku": "HLFS-0005",
+    "category": "Accessories",
+    "stock": 40,
+    "unitPriceCents": 1000
+  },
+  {
+    "id": "item-006",
+    "name": "Pilates Ring — Classic",
+    "sku": "HLFS-0006",
+    "category": "Equipment",
+    "stock": 47,
+    "unitPriceCents": 3200
+  },
+  {
+    "id": "item-007",
+    "name": "Massage Ball — Classic",
+    "sku": "HLFS-0007",
+    "category": "Recovery",
+    "stock": 54,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-008",
+    "name": "Grip Socks — Classic",
+    "sku": "HLFS-0008",
+    "category": "Apparel",
+    "stock": 0,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-009",
+    "name": "Training Tee — Classic",
+    "sku": "HLFS-0009",
+    "category": "Apparel",
+    "stock": 7,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-010",
+    "name": "Yoga Block — Classic",
+    "sku": "HLFS-0010",
+    "category": "Equipment",
+    "stock": 14,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-011",
+    "name": "Stretch Strap — Classic",
+    "sku": "HLFS-0011",
+    "category": "Equipment",
+    "stock": 21,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-012",
+    "name": "Gym Bag — Classic",
+    "sku": "HLFS-0012",
+    "category": "Accessories",
+    "stock": 0,
+    "unitPriceCents": 4800
+  },
+  {
+    "id": "item-013",
+    "name": "Ankle Weights — Classic",
+    "sku": "HLFS-0013",
+    "category": "Equipment",
+    "stock": 35,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-014",
+    "name": "Recovery Wrap — Classic",
+    "sku": "HLFS-0014",
+    "category": "Recovery",
+    "stock": 42,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-015",
+    "name": "Protein Shaker — Classic",
+    "sku": "HLFS-0015",
+    "category": "Accessories",
+    "stock": 49,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-016",
+    "name": "Exercise Slider — Classic",
+    "sku": "HLFS-0016",
+    "category": "Equipment",
+    "stock": 56,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-017",
+    "name": "Cooling Towel — Classic",
+    "sku": "HLFS-0017",
+    "category": "Accessories",
+    "stock": 2,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-018",
+    "name": "Training Shorts — Classic",
+    "sku": "HLFS-0018",
+    "category": "Apparel",
+    "stock": 9,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-019",
+    "name": "Balance Pad — Classic",
+    "sku": "HLFS-0019",
+    "category": "Equipment",
+    "stock": 16,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-020",
+    "name": "Mini Band Set — Classic",
+    "sku": "HLFS-0020",
+    "category": "Equipment",
+    "stock": 23,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-021",
+    "name": "Yoga Mat — Studio",
+    "sku": "HLFS-0021",
+    "category": "Equipment",
+    "stock": 30,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-022",
+    "name": "Resistance Band — Studio",
+    "sku": "HLFS-0022",
+    "category": "Equipment",
+    "stock": 37,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-023",
+    "name": "Foam Roller — Studio",
+    "sku": "HLFS-0023",
+    "category": "Recovery",
+    "stock": 0,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-024",
+    "name": "Water Bottle — Studio",
+    "sku": "HLFS-0024",
+    "category": "Accessories",
+    "stock": 51,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-025",
+    "name": "Training Towel — Studio",
+    "sku": "HLFS-0025",
+    "category": "Accessories",
+    "stock": 58,
+    "unitPriceCents": 1000
+  },
+  {
+    "id": "item-026",
+    "name": "Pilates Ring — Studio",
+    "sku": "HLFS-0026",
+    "category": "Equipment",
+    "stock": 4,
+    "unitPriceCents": 3200
+  },
+  {
+    "id": "item-027",
+    "name": "Massage Ball — Studio",
+    "sku": "HLFS-0027",
+    "category": "Recovery",
+    "stock": 11,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-028",
+    "name": "Grip Socks — Studio",
+    "sku": "HLFS-0028",
+    "category": "Apparel",
+    "stock": 18,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-029",
+    "name": "Training Tee — Studio",
+    "sku": "HLFS-0029",
+    "category": "Apparel",
+    "stock": 25,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-030",
+    "name": "Yoga Block — Studio",
+    "sku": "HLFS-0030",
+    "category": "Equipment",
+    "stock": 32,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-031",
+    "name": "Stretch Strap — Studio",
+    "sku": "HLFS-0031",
+    "category": "Equipment",
+    "stock": 39,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-032",
+    "name": "Gym Bag — Studio",
+    "sku": "HLFS-0032",
+    "category": "Accessories",
+    "stock": 46,
+    "unitPriceCents": 4800
+  },
+  {
+    "id": "item-033",
+    "name": "Ankle Weights — Studio",
+    "sku": "HLFS-0033",
+    "category": "Equipment",
+    "stock": 53,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-034",
+    "name": "Recovery Wrap — Studio",
+    "sku": "HLFS-0034",
+    "category": "Recovery",
+    "stock": 0,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-035",
+    "name": "Protein Shaker — Studio",
+    "sku": "HLFS-0035",
+    "category": "Accessories",
+    "stock": 6,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-036",
+    "name": "Exercise Slider — Studio",
+    "sku": "HLFS-0036",
+    "category": "Equipment",
+    "stock": 13,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-037",
+    "name": "Cooling Towel — Studio",
+    "sku": "HLFS-0037",
+    "category": "Accessories",
+    "stock": 20,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-038",
+    "name": "Training Shorts — Studio",
+    "sku": "HLFS-0038",
+    "category": "Apparel",
+    "stock": 27,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-039",
+    "name": "Balance Pad — Studio",
+    "sku": "HLFS-0039",
+    "category": "Equipment",
+    "stock": 34,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-040",
+    "name": "Mini Band Set — Studio",
+    "sku": "HLFS-0040",
+    "category": "Equipment",
+    "stock": 41,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-041",
+    "name": "Yoga Mat — Essential",
+    "sku": "HLFS-0041",
+    "category": "Equipment",
+    "stock": 48,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-042",
+    "name": "Resistance Band — Essential",
+    "sku": "HLFS-0042",
+    "category": "Equipment",
+    "stock": 55,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-043",
+    "name": "Foam Roller — Essential",
+    "sku": "HLFS-0043",
+    "category": "Recovery",
+    "stock": 1,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-044",
+    "name": "Water Bottle — Essential",
+    "sku": "HLFS-0044",
+    "category": "Accessories",
+    "stock": 8,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-045",
+    "name": "Training Towel — Essential",
+    "sku": "HLFS-0045",
+    "category": "Accessories",
+    "stock": 0,
+    "unitPriceCents": 1000
+  },
+  {
+    "id": "item-046",
+    "name": "Pilates Ring — Essential",
+    "sku": "HLFS-0046",
+    "category": "Equipment",
+    "stock": 22,
+    "unitPriceCents": 3200
+  },
+  {
+    "id": "item-047",
+    "name": "Massage Ball — Essential",
+    "sku": "HLFS-0047",
+    "category": "Recovery",
+    "stock": 29,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-048",
+    "name": "Grip Socks — Essential",
+    "sku": "HLFS-0048",
+    "category": "Apparel",
+    "stock": 36,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-049",
+    "name": "Training Tee — Essential",
+    "sku": "HLFS-0049",
+    "category": "Apparel",
+    "stock": 43,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-050",
+    "name": "Yoga Block — Essential",
+    "sku": "HLFS-0050",
+    "category": "Equipment",
+    "stock": 50,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-051",
+    "name": "Stretch Strap — Essential",
+    "sku": "HLFS-0051",
+    "category": "Equipment",
+    "stock": 57,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-052",
+    "name": "Gym Bag — Essential",
+    "sku": "HLFS-0052",
+    "category": "Accessories",
+    "stock": 3,
+    "unitPriceCents": 4800
+  },
+  {
+    "id": "item-053",
+    "name": "Ankle Weights — Essential",
+    "sku": "HLFS-0053",
+    "category": "Equipment",
+    "stock": 10,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-054",
+    "name": "Recovery Wrap — Essential",
+    "sku": "HLFS-0054",
+    "category": "Recovery",
+    "stock": 17,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-055",
+    "name": "Protein Shaker — Essential",
+    "sku": "HLFS-0055",
+    "category": "Accessories",
+    "stock": 24,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-056",
+    "name": "Exercise Slider — Essential",
+    "sku": "HLFS-0056",
+    "category": "Equipment",
+    "stock": 0,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-057",
+    "name": "Cooling Towel — Essential",
+    "sku": "HLFS-0057",
+    "category": "Accessories",
+    "stock": 38,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-058",
+    "name": "Training Shorts — Essential",
+    "sku": "HLFS-0058",
+    "category": "Apparel",
+    "stock": 45,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-059",
+    "name": "Balance Pad — Essential",
+    "sku": "HLFS-0059",
+    "category": "Equipment",
+    "stock": 52,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-060",
+    "name": "Mini Band Set — Essential",
+    "sku": "HLFS-0060",
+    "category": "Equipment",
+    "stock": 59,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-061",
+    "name": "Yoga Mat — Pro",
+    "sku": "HLFS-0061",
+    "category": "Equipment",
+    "stock": 5,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-062",
+    "name": "Resistance Band — Pro",
+    "sku": "HLFS-0062",
+    "category": "Equipment",
+    "stock": 12,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-063",
+    "name": "Foam Roller — Pro",
+    "sku": "HLFS-0063",
+    "category": "Recovery",
+    "stock": 19,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-064",
+    "name": "Water Bottle — Pro",
+    "sku": "HLFS-0064",
+    "category": "Accessories",
+    "stock": 26,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-065",
+    "name": "Training Towel — Pro",
+    "sku": "HLFS-0065",
+    "category": "Accessories",
+    "stock": 33,
+    "unitPriceCents": 1000
+  },
+  {
+    "id": "item-066",
+    "name": "Pilates Ring — Pro",
+    "sku": "HLFS-0066",
+    "category": "Equipment",
+    "stock": 40,
+    "unitPriceCents": 3200
+  },
+  {
+    "id": "item-067",
+    "name": "Massage Ball — Pro",
+    "sku": "HLFS-0067",
+    "category": "Recovery",
+    "stock": 0,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-068",
+    "name": "Grip Socks — Pro",
+    "sku": "HLFS-0068",
+    "category": "Apparel",
+    "stock": 54,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-069",
+    "name": "Training Tee — Pro",
+    "sku": "HLFS-0069",
+    "category": "Apparel",
+    "stock": 0,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-070",
+    "name": "Yoga Block — Pro",
+    "sku": "HLFS-0070",
+    "category": "Equipment",
+    "stock": 7,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-071",
+    "name": "Stretch Strap — Pro",
+    "sku": "HLFS-0071",
+    "category": "Equipment",
+    "stock": 14,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-072",
+    "name": "Gym Bag — Pro",
+    "sku": "HLFS-0072",
+    "category": "Accessories",
+    "stock": 21,
+    "unitPriceCents": 4800
+  },
+  {
+    "id": "item-073",
+    "name": "Ankle Weights — Pro",
+    "sku": "HLFS-0073",
+    "category": "Equipment",
+    "stock": 28,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-074",
+    "name": "Recovery Wrap — Pro",
+    "sku": "HLFS-0074",
+    "category": "Recovery",
+    "stock": 35,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-075",
+    "name": "Protein Shaker — Pro",
+    "sku": "HLFS-0075",
+    "category": "Accessories",
+    "stock": 42,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-076",
+    "name": "Exercise Slider — Pro",
+    "sku": "HLFS-0076",
+    "category": "Equipment",
+    "stock": 49,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-077",
+    "name": "Cooling Towel — Pro",
+    "sku": "HLFS-0077",
+    "category": "Accessories",
+    "stock": 56,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-078",
+    "name": "Training Shorts — Pro",
+    "sku": "HLFS-0078",
+    "category": "Apparel",
+    "stock": 0,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-079",
+    "name": "Balance Pad — Pro",
+    "sku": "HLFS-0079",
+    "category": "Equipment",
+    "stock": 9,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-080",
+    "name": "Mini Band Set — Pro",
+    "sku": "HLFS-0080",
+    "category": "Equipment",
+    "stock": 16,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-081",
+    "name": "Yoga Mat — Travel",
+    "sku": "HLFS-0081",
+    "category": "Equipment",
+    "stock": 23,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-082",
+    "name": "Resistance Band — Travel",
+    "sku": "HLFS-0082",
+    "category": "Equipment",
+    "stock": 30,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-083",
+    "name": "Foam Roller — Travel",
+    "sku": "HLFS-0083",
+    "category": "Recovery",
+    "stock": 37,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-084",
+    "name": "Water Bottle — Travel",
+    "sku": "HLFS-0084",
+    "category": "Accessories",
+    "stock": 44,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-085",
+    "name": "Training Towel — Travel",
+    "sku": "HLFS-0085",
+    "category": "Accessories",
+    "stock": 51,
+    "unitPriceCents": 1000
+  },
+  {
+    "id": "item-086",
+    "name": "Pilates Ring — Travel",
+    "sku": "HLFS-0086",
+    "category": "Equipment",
+    "stock": 58,
+    "unitPriceCents": 3200
+  },
+  {
+    "id": "item-087",
+    "name": "Massage Ball — Travel",
+    "sku": "HLFS-0087",
+    "category": "Recovery",
+    "stock": 4,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-088",
+    "name": "Grip Socks — Travel",
+    "sku": "HLFS-0088",
+    "category": "Apparel",
+    "stock": 11,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-089",
+    "name": "Training Tee — Travel",
+    "sku": "HLFS-0089",
+    "category": "Apparel",
+    "stock": 0,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-090",
+    "name": "Yoga Block — Travel",
+    "sku": "HLFS-0090",
+    "category": "Equipment",
+    "stock": 25,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-091",
+    "name": "Stretch Strap — Travel",
+    "sku": "HLFS-0091",
+    "category": "Equipment",
+    "stock": 32,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-092",
+    "name": "Gym Bag — Travel",
+    "sku": "HLFS-0092",
+    "category": "Accessories",
+    "stock": 39,
+    "unitPriceCents": 4800
+  },
+  {
+    "id": "item-093",
+    "name": "Ankle Weights — Travel",
+    "sku": "HLFS-0093",
+    "category": "Equipment",
+    "stock": 46,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-094",
+    "name": "Recovery Wrap — Travel",
+    "sku": "HLFS-0094",
+    "category": "Recovery",
+    "stock": 53,
+    "unitPriceCents": 2800
+  },
+  {
+    "id": "item-095",
+    "name": "Protein Shaker — Travel",
+    "sku": "HLFS-0095",
+    "category": "Accessories",
+    "stock": 60,
+    "unitPriceCents": 1800
+  },
+  {
+    "id": "item-096",
+    "name": "Exercise Slider — Travel",
+    "sku": "HLFS-0096",
+    "category": "Equipment",
+    "stock": 6,
+    "unitPriceCents": 1200
+  },
+  {
+    "id": "item-097",
+    "name": "Cooling Towel — Travel",
+    "sku": "HLFS-0097",
+    "category": "Accessories",
+    "stock": 13,
+    "unitPriceCents": 1500
+  },
+  {
+    "id": "item-098",
+    "name": "Training Shorts — Travel",
+    "sku": "HLFS-0098",
+    "category": "Apparel",
+    "stock": 20,
+    "unitPriceCents": 3800
+  },
+  {
+    "id": "item-099",
+    "name": "Balance Pad — Travel",
+    "sku": "HLFS-0099",
+    "category": "Equipment",
+    "stock": 27,
+    "unitPriceCents": 3500
+  },
+  {
+    "id": "item-100",
+    "name": "Mini Band Set — Travel",
+    "sku": "HLFS-0100",
+    "category": "Equipment",
+    "stock": 0,
+    "unitPriceCents": 2800
+  }
+]

@@ -234,7 +234,7 @@ declare function loadStockMovements(
 ): Promise<readonly StockMovement[]>;
 ```
 
-The local JSON fixtures store these records; use explicit-offset date strings and integer minor currency units to avoid ambiguous dates or floating-point price storage. Formatting is feature-owned. Choose the studio timezone and sample inventory currency during mock-data review. Display them explicitly rather than inferring them from device settings. The proposed unitPriceCents field assumes a two-decimal demo currency.
+The local JSON fixtures store these records; use explicit-offset date strings and integer minor currency units to avoid ambiguous dates or floating-point price storage. Formatting is feature-owned. The user confirmed Singapore time (`Asia/Singapore`) and Singapore dollars (`SGD`, displayed as `S$`) during mock-data review. Use explicit `+08:00` offsets for Singapore fixture timestamps and integer Singapore-dollar cents for `unitPriceCents`. Display time and currency explicitly rather than inferring them from device settings.
 
 The revised user-approved fixtures contain 12 classes and 100 inventory items, replacing the earlier large-dataset proposal. A deterministic script generates the JSON; runtime services still read JSON records. Parent and child scenarios are configured independently, so a child failure does not break the parent request. Retry uses the same query/row ID and a one-shot injected failure, so it can recover without editing code or toggling away from the error scenario. Slow requests remain cancellable. Normal delay is 500ms and slow is 2,000ms.
 
@@ -335,7 +335,7 @@ User testing preference: concise test planning and meaningful behavior/regressio
 - The API accommodates the approved sort cycle, page resets, independent child failures, cached details, dataset scope resets, skeletons, and accessible labels.
 - No table library, global state library, endpoint, testing tool, or additional product feature is introduced.
 
-The user approved this API design after a fresh read-only builder check found no important unanswered planning questions or blocking API inconsistencies. Exact internal hooks, file decomposition, and verification commands belong to the later implementation plan. Test tools were subsequently approved and configured in Step 5; each implementation milestone still needs its own approval. Mock models, service signatures, table/column/expansion declarations, and usage examples remain design-only pending their approved implementation milestones.
+The user approved this API design after a fresh read-only builder check found no important unanswered planning questions or blocking API inconsistencies. Exact internal hooks, file decomposition, and verification commands belong to the later implementation plan. Test tools were subsequently approved and configured in Step 5; each implementation milestone still needs its own approval. Step 6 implements the agreed mock models and service signatures; table/column/expansion declarations and usage examples remain design-only pending table implementation.
 
 ## Documentation consulted
 

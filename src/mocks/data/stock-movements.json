@@ -1,0 +1,1808 @@
+[
+  {
+    "id": "item-001-movement-1",
+    "itemId": "item-001",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-001-movement-2",
+    "itemId": "item-001",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-001-movement-3",
+    "itemId": "item-001",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-002-movement-1",
+    "itemId": "item-002",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 24,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-002-movement-2",
+    "itemId": "item-002",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-002-movement-3",
+    "itemId": "item-002",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-003-movement-1",
+    "itemId": "item-003",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 31,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-003-movement-2",
+    "itemId": "item-003",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-003-movement-3",
+    "itemId": "item-003",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-004-movement-1",
+    "itemId": "item-004",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 38,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-004-movement-2",
+    "itemId": "item-004",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-004-movement-3",
+    "itemId": "item-004",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-005-movement-1",
+    "itemId": "item-005",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 45,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-005-movement-2",
+    "itemId": "item-005",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-005-movement-3",
+    "itemId": "item-005",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-006-movement-1",
+    "itemId": "item-006",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 52,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-006-movement-2",
+    "itemId": "item-006",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-006-movement-3",
+    "itemId": "item-006",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-007-movement-1",
+    "itemId": "item-007",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 59,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-007-movement-2",
+    "itemId": "item-007",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-007-movement-3",
+    "itemId": "item-007",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-009-movement-1",
+    "itemId": "item-009",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 12,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-009-movement-2",
+    "itemId": "item-009",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-009-movement-3",
+    "itemId": "item-009",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-010-movement-1",
+    "itemId": "item-010",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 19,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-010-movement-2",
+    "itemId": "item-010",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-010-movement-3",
+    "itemId": "item-010",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-011-movement-1",
+    "itemId": "item-011",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 26,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-011-movement-2",
+    "itemId": "item-011",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-011-movement-3",
+    "itemId": "item-011",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-012-movement-1",
+    "itemId": "item-012",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-012-movement-2",
+    "itemId": "item-012",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-012-movement-3",
+    "itemId": "item-012",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-013-movement-1",
+    "itemId": "item-013",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 40,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-013-movement-2",
+    "itemId": "item-013",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-013-movement-3",
+    "itemId": "item-013",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-014-movement-1",
+    "itemId": "item-014",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 47,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-014-movement-2",
+    "itemId": "item-014",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-014-movement-3",
+    "itemId": "item-014",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-016-movement-1",
+    "itemId": "item-016",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 61,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-016-movement-2",
+    "itemId": "item-016",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-016-movement-3",
+    "itemId": "item-016",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-017-movement-1",
+    "itemId": "item-017",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 7,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-017-movement-2",
+    "itemId": "item-017",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-017-movement-3",
+    "itemId": "item-017",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-018-movement-1",
+    "itemId": "item-018",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 14,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-018-movement-2",
+    "itemId": "item-018",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-018-movement-3",
+    "itemId": "item-018",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-019-movement-1",
+    "itemId": "item-019",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 21,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-019-movement-2",
+    "itemId": "item-019",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-019-movement-3",
+    "itemId": "item-019",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-020-movement-1",
+    "itemId": "item-020",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 28,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-020-movement-2",
+    "itemId": "item-020",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-020-movement-3",
+    "itemId": "item-020",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-021-movement-1",
+    "itemId": "item-021",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 35,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-021-movement-2",
+    "itemId": "item-021",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-021-movement-3",
+    "itemId": "item-021",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-023-movement-1",
+    "itemId": "item-023",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-023-movement-2",
+    "itemId": "item-023",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-023-movement-3",
+    "itemId": "item-023",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-024-movement-1",
+    "itemId": "item-024",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 56,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-024-movement-2",
+    "itemId": "item-024",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-024-movement-3",
+    "itemId": "item-024",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-025-movement-1",
+    "itemId": "item-025",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 63,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-025-movement-2",
+    "itemId": "item-025",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-025-movement-3",
+    "itemId": "item-025",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-026-movement-1",
+    "itemId": "item-026",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 9,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-026-movement-2",
+    "itemId": "item-026",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-026-movement-3",
+    "itemId": "item-026",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-027-movement-1",
+    "itemId": "item-027",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 16,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-027-movement-2",
+    "itemId": "item-027",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-027-movement-3",
+    "itemId": "item-027",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-028-movement-1",
+    "itemId": "item-028",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 23,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-028-movement-2",
+    "itemId": "item-028",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-028-movement-3",
+    "itemId": "item-028",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-030-movement-1",
+    "itemId": "item-030",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 37,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-030-movement-2",
+    "itemId": "item-030",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-030-movement-3",
+    "itemId": "item-030",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-031-movement-1",
+    "itemId": "item-031",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 44,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-031-movement-2",
+    "itemId": "item-031",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-031-movement-3",
+    "itemId": "item-031",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-032-movement-1",
+    "itemId": "item-032",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 51,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-032-movement-2",
+    "itemId": "item-032",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-032-movement-3",
+    "itemId": "item-032",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-033-movement-1",
+    "itemId": "item-033",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 58,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-033-movement-2",
+    "itemId": "item-033",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-033-movement-3",
+    "itemId": "item-033",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-034-movement-1",
+    "itemId": "item-034",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-034-movement-2",
+    "itemId": "item-034",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-034-movement-3",
+    "itemId": "item-034",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-035-movement-1",
+    "itemId": "item-035",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 11,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-035-movement-2",
+    "itemId": "item-035",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-035-movement-3",
+    "itemId": "item-035",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-037-movement-1",
+    "itemId": "item-037",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 25,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-037-movement-2",
+    "itemId": "item-037",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-037-movement-3",
+    "itemId": "item-037",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-038-movement-1",
+    "itemId": "item-038",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 32,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-038-movement-2",
+    "itemId": "item-038",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-038-movement-3",
+    "itemId": "item-038",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-039-movement-1",
+    "itemId": "item-039",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 39,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-039-movement-2",
+    "itemId": "item-039",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-039-movement-3",
+    "itemId": "item-039",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-040-movement-1",
+    "itemId": "item-040",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 46,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-040-movement-2",
+    "itemId": "item-040",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-040-movement-3",
+    "itemId": "item-040",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-041-movement-1",
+    "itemId": "item-041",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 53,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-041-movement-2",
+    "itemId": "item-041",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-041-movement-3",
+    "itemId": "item-041",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-042-movement-1",
+    "itemId": "item-042",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 60,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-042-movement-2",
+    "itemId": "item-042",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-042-movement-3",
+    "itemId": "item-042",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-044-movement-1",
+    "itemId": "item-044",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 13,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-044-movement-2",
+    "itemId": "item-044",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-044-movement-3",
+    "itemId": "item-044",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-045-movement-1",
+    "itemId": "item-045",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-045-movement-2",
+    "itemId": "item-045",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-045-movement-3",
+    "itemId": "item-045",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-046-movement-1",
+    "itemId": "item-046",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 27,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-046-movement-2",
+    "itemId": "item-046",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-046-movement-3",
+    "itemId": "item-046",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-047-movement-1",
+    "itemId": "item-047",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 34,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-047-movement-2",
+    "itemId": "item-047",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-047-movement-3",
+    "itemId": "item-047",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-048-movement-1",
+    "itemId": "item-048",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 41,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-048-movement-2",
+    "itemId": "item-048",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-048-movement-3",
+    "itemId": "item-048",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-049-movement-1",
+    "itemId": "item-049",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 48,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-049-movement-2",
+    "itemId": "item-049",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-049-movement-3",
+    "itemId": "item-049",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-051-movement-1",
+    "itemId": "item-051",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 62,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-051-movement-2",
+    "itemId": "item-051",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-051-movement-3",
+    "itemId": "item-051",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-052-movement-1",
+    "itemId": "item-052",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 8,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-052-movement-2",
+    "itemId": "item-052",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-052-movement-3",
+    "itemId": "item-052",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-053-movement-1",
+    "itemId": "item-053",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 15,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-053-movement-2",
+    "itemId": "item-053",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-053-movement-3",
+    "itemId": "item-053",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-054-movement-1",
+    "itemId": "item-054",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 22,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-054-movement-2",
+    "itemId": "item-054",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-054-movement-3",
+    "itemId": "item-054",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-055-movement-1",
+    "itemId": "item-055",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 29,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-055-movement-2",
+    "itemId": "item-055",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-055-movement-3",
+    "itemId": "item-055",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-056-movement-1",
+    "itemId": "item-056",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-056-movement-2",
+    "itemId": "item-056",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-056-movement-3",
+    "itemId": "item-056",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-058-movement-1",
+    "itemId": "item-058",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 50,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-058-movement-2",
+    "itemId": "item-058",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-058-movement-3",
+    "itemId": "item-058",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-059-movement-1",
+    "itemId": "item-059",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 57,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-059-movement-2",
+    "itemId": "item-059",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-059-movement-3",
+    "itemId": "item-059",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-060-movement-1",
+    "itemId": "item-060",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 64,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-060-movement-2",
+    "itemId": "item-060",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-060-movement-3",
+    "itemId": "item-060",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-061-movement-1",
+    "itemId": "item-061",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 10,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-061-movement-2",
+    "itemId": "item-061",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-061-movement-3",
+    "itemId": "item-061",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-062-movement-1",
+    "itemId": "item-062",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 17,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-062-movement-2",
+    "itemId": "item-062",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-062-movement-3",
+    "itemId": "item-062",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-063-movement-1",
+    "itemId": "item-063",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 24,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-063-movement-2",
+    "itemId": "item-063",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-063-movement-3",
+    "itemId": "item-063",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-065-movement-1",
+    "itemId": "item-065",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 38,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-065-movement-2",
+    "itemId": "item-065",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-065-movement-3",
+    "itemId": "item-065",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-066-movement-1",
+    "itemId": "item-066",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 45,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-066-movement-2",
+    "itemId": "item-066",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-066-movement-3",
+    "itemId": "item-066",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-067-movement-1",
+    "itemId": "item-067",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-067-movement-2",
+    "itemId": "item-067",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-067-movement-3",
+    "itemId": "item-067",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-068-movement-1",
+    "itemId": "item-068",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 59,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-068-movement-2",
+    "itemId": "item-068",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-068-movement-3",
+    "itemId": "item-068",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-069-movement-1",
+    "itemId": "item-069",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-069-movement-2",
+    "itemId": "item-069",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-069-movement-3",
+    "itemId": "item-069",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-070-movement-1",
+    "itemId": "item-070",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 12,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-070-movement-2",
+    "itemId": "item-070",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-070-movement-3",
+    "itemId": "item-070",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-072-movement-1",
+    "itemId": "item-072",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 26,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-072-movement-2",
+    "itemId": "item-072",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-072-movement-3",
+    "itemId": "item-072",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-073-movement-1",
+    "itemId": "item-073",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 33,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-073-movement-2",
+    "itemId": "item-073",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-073-movement-3",
+    "itemId": "item-073",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-074-movement-1",
+    "itemId": "item-074",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 40,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-074-movement-2",
+    "itemId": "item-074",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-074-movement-3",
+    "itemId": "item-074",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-075-movement-1",
+    "itemId": "item-075",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 47,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-075-movement-2",
+    "itemId": "item-075",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-075-movement-3",
+    "itemId": "item-075",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-076-movement-1",
+    "itemId": "item-076",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 54,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-076-movement-2",
+    "itemId": "item-076",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-076-movement-3",
+    "itemId": "item-076",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-077-movement-1",
+    "itemId": "item-077",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 61,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-077-movement-2",
+    "itemId": "item-077",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-077-movement-3",
+    "itemId": "item-077",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-079-movement-1",
+    "itemId": "item-079",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 14,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-079-movement-2",
+    "itemId": "item-079",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-079-movement-3",
+    "itemId": "item-079",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-080-movement-1",
+    "itemId": "item-080",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 21,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-080-movement-2",
+    "itemId": "item-080",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-080-movement-3",
+    "itemId": "item-080",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-081-movement-1",
+    "itemId": "item-081",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 28,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-081-movement-2",
+    "itemId": "item-081",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-081-movement-3",
+    "itemId": "item-081",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-082-movement-1",
+    "itemId": "item-082",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 35,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-082-movement-2",
+    "itemId": "item-082",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-082-movement-3",
+    "itemId": "item-082",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-083-movement-1",
+    "itemId": "item-083",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 42,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-083-movement-2",
+    "itemId": "item-083",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-083-movement-3",
+    "itemId": "item-083",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-084-movement-1",
+    "itemId": "item-084",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 49,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-084-movement-2",
+    "itemId": "item-084",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-084-movement-3",
+    "itemId": "item-084",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-086-movement-1",
+    "itemId": "item-086",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 63,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-086-movement-2",
+    "itemId": "item-086",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-086-movement-3",
+    "itemId": "item-086",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-087-movement-1",
+    "itemId": "item-087",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 9,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-087-movement-2",
+    "itemId": "item-087",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-087-movement-3",
+    "itemId": "item-087",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-088-movement-1",
+    "itemId": "item-088",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 16,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-088-movement-2",
+    "itemId": "item-088",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-088-movement-3",
+    "itemId": "item-088",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-089-movement-1",
+    "itemId": "item-089",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-089-movement-2",
+    "itemId": "item-089",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-089-movement-3",
+    "itemId": "item-089",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-090-movement-1",
+    "itemId": "item-090",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 30,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-090-movement-2",
+    "itemId": "item-090",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-090-movement-3",
+    "itemId": "item-090",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-091-movement-1",
+    "itemId": "item-091",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 37,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-091-movement-2",
+    "itemId": "item-091",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-091-movement-3",
+    "itemId": "item-091",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-093-movement-1",
+    "itemId": "item-093",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 51,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-093-movement-2",
+    "itemId": "item-093",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-093-movement-3",
+    "itemId": "item-093",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-094-movement-1",
+    "itemId": "item-094",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 58,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-094-movement-2",
+    "itemId": "item-094",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-094-movement-3",
+    "itemId": "item-094",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-095-movement-1",
+    "itemId": "item-095",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 65,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-095-movement-2",
+    "itemId": "item-095",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-095-movement-3",
+    "itemId": "item-095",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-096-movement-1",
+    "itemId": "item-096",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 11,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-096-movement-2",
+    "itemId": "item-096",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-096-movement-3",
+    "itemId": "item-096",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-097-movement-1",
+    "itemId": "item-097",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 18,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-097-movement-2",
+    "itemId": "item-097",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-097-movement-3",
+    "itemId": "item-097",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-098-movement-1",
+    "itemId": "item-098",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 25,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-098-movement-2",
+    "itemId": "item-098",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-098-movement-3",
+    "itemId": "item-098",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  },
+  {
+    "id": "item-100-movement-1",
+    "itemId": "item-100",
+    "occurredAt": "2026-11-01T09:00:00+08:00",
+    "quantityChange": 5,
+    "reason": "Opening stock"
+  },
+  {
+    "id": "item-100-movement-2",
+    "itemId": "item-100",
+    "occurredAt": "2026-11-01T10:00:00+08:00",
+    "quantityChange": -3,
+    "reason": "Studio shop sale"
+  },
+  {
+    "id": "item-100-movement-3",
+    "itemId": "item-100",
+    "occurredAt": "2026-11-01T11:00:00+08:00",
+    "quantityChange": -2,
+    "reason": "Class supply allocation"
+  }
+]

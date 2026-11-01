@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:e2e:install": "playwright install chromium"
+    "test:e2e:install": "playwright install chromium",
+    "mocks:generate": "node scripts/generate-mock-data.mjs"
   },
   "dependencies": {
     "@heroui/react": "3.2.7",

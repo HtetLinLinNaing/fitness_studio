@@ -1,6 +1,6 @@
 # HL Fitness Studio Data Table — PRD and Setup Design
 
-Status: Steps 1–5 are complete and accepted. Mock-data/services, table, and dashboard implementation require separate approval.
+Status: Steps 1–6 are complete and accepted, including the smaller mock-data/services implementation. Every subsequent step still requires separate user approval.
 Date: 2026-11-01
 
 ## Approval boundary
@@ -16,6 +16,10 @@ Requirements come from the supplied “Part 2 — Component Engineering Challeng
 The user confirmed the display name **HL Fitness Studio** with this exact spacing. Use it in the eventual application header and page title, with HL as the compact brand mark.
 
 Approved data clarification after the PRD review: local JSON fixtures store classes, attendees, inventory, and stock movements. Mocked async functions read those fixtures and simulate latency, failures, sorting, and pagination. On-demand details are delivered through the mock loader when a row expands. This simulates fetching behavior and does not require HTTP endpoints or a backend. The component receives data through its generic contract and does not import feature fixtures directly. Fixture schemas and implementation remain subject to their own step approval.
+
+The user confirmed the mock studio timezone as Singapore (`Asia/Singapore`) and the inventory currency as Singapore dollars (`SGD`, displayed as `S$`). Store timestamps with explicit offsets and prices as integer cents; format them explicitly for these settings rather than relying on the device timezone or currency.
+
+Approved scope amendment for Step 6: use **12 classes and 100 inventory items**, with attendees and separate stock movements. This replaces the earlier 10,000-record proposal because the user wants a smaller interview-assessment project. The original brief gives no required record count. Temporary generated performance data may be considered during later verification rather than shipped as a large fixture.
 
 ## Goals
 
