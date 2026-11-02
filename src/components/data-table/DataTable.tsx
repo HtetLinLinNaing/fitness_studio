@@ -92,7 +92,9 @@ function TableContent<T, TChild>({
         ? processing.page.pageSize
         : 10;
   const cellStyle = (cell: ColumnLayout<T>): CSSProperties | undefined =>
-    cell.pinned ? { left: cell.left } : undefined;
+    cell.pinned
+      ? { left: `calc(${cell.left}px * var(--pinned-scale))` }
+      : undefined;
   const cellClass = (cell: ColumnLayout<T>) =>
     [
       cell.pinned ? styles.pinned : "",
@@ -100,6 +102,8 @@ function TableContent<T, TChild>({
     ]
       .filter(Boolean)
       .join(" ");
+
+  const tableWidth = `calc(${layout.unpinnedWidth}px + ${layout.pinnedWidth}px * var(--pinned-scale))`;
 
   return (
     <>
@@ -120,8 +124,8 @@ function TableContent<T, TChild>({
           className={styles.table}
           aria-busy={request.status === "loading"}
           style={{
-            minWidth: layout.totalWidth,
-            width: layout.unpinnedWidth ? "100%" : layout.totalWidth,
+            minWidth: tableWidth,
+            width: layout.unpinnedWidth ? "100%" : tableWidth,
           }}
         >
           <caption className="sr-only">{caption}</caption>
@@ -131,8 +135,8 @@ function TableContent<T, TChild>({
                 key={cell.column.id}
                 style={{
                   width: cell.pinned
-                    ? cell.width
-                    : `calc((100% - ${layout.pinnedWidth}px) * ${cell.width / layout.unpinnedWidth})`,
+                    ? `calc(${cell.width}px * var(--pinned-scale))`
+                    : `calc((100% - ${layout.pinnedWidth}px * var(--pinned-scale)) * ${cell.width / layout.unpinnedWidth})`,
                 }}
               />
             ))}

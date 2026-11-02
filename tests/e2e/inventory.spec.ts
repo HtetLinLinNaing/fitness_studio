@@ -1,10 +1,15 @@
 import { expect, test } from "@playwright/test";
 
-test("inventory reuses the table across processing modes and independent recoverable scenarios", async ({ page }, testInfo) => {
-  const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
-  await page.goto("/classTimetable");
-  await page.getByRole("link", { name: "Inventory", exact: true }).click();
+test.beforeEach(async ({ page }) => {
+  await page.goto("/inventory");
+  await expect(page.getByRole("table", { name: "Studio inventory", exact: true })).toHaveAttribute("aria-busy", "false");
+});
+
+test.afterEach(async ({ page }) => {
+  expect(await page.pageErrors({ filter: "all" })).toEqual([]);
+});
+
+test("client and server modes agree on sorted pages", async ({ page }) => {
   await expect(page).toHaveTitle("HL Fitness Studio | Inventory");
   const table = page.getByRole("table", { name: "Studio inventory", exact: true });
   const parents = table.locator(":scope > tbody > tr[data-parent-row]");
@@ -28,7 +33,16 @@ test("inventory reuses the table across processing modes and independent recover
   await ready();
   await expect(parents).toHaveCount(25);
   await expect(page.getByText("1–25 of 100", { exact: true })).toBeVisible();
+});
 
+test("list failures retry and replaced slow responses stay hidden", async ({ page }) => {
+  const table = page.getByRole("table", { name: "Studio inventory", exact: true });
+  const parents = table.locator(":scope > tbody > tr[data-parent-row]");
+  const ready = () => expect(table).toHaveAttribute("aria-busy", "false");
+  await page.getByRole("combobox", { name: "Processing", exact: true }).selectOption("manual");
+  await ready();
+  await page.getByRole("combobox", { name: "Rows per page" }).selectOption("25");
+  await ready();
   await page.getByRole("combobox", { name: "List response" }).selectOption("error");
   await expect(table.getByRole("alert")).toContainText("Unable to load inventory");
   await page.getByRole("button", { name: "Retry", exact: true }).click();
@@ -43,7 +57,12 @@ test("inventory reuses the table across processing modes and independent recover
   await page.getByRole("button", { name: "Reset demo" }).click();
   await ready();
   await expect(page.getByRole("combobox", { name: "Processing", exact: true })).toHaveValue("client");
+});
 
+test("detail failures recover independently and scenario changes clear details", async ({ page }) => {
+  const table = page.getByRole("table", { name: "Studio inventory", exact: true });
+  const parents = table.locator(":scope > tbody > tr[data-parent-row]");
+  const ready = () => expect(table).toHaveAttribute("aria-busy", "false");
   await page.getByRole("combobox", { name: "Detail response" }).selectOption("error");
   await ready();
   const expand = page.getByRole("button", { name: "Expand Yoga Mat — Classic stock movements" });
@@ -65,7 +84,12 @@ test("inventory reuses the table across processing modes and independent recover
   await page.getByRole("combobox", { name: "Detail response" }).selectOption("normal");
   await ready();
   await expect(expand).toHaveAttribute("aria-expanded", "false");
+});
 
+test("pinned inventory cells scroll and navigation returns to the timetable", async ({ page }, testInfo) => {
+  const table = page.getByRole("table", { name: "Studio inventory", exact: true });
+  const parents = table.locator(":scope > tbody > tr[data-parent-row]");
+  const expand = page.getByRole("button", { name: "Expand Yoga Mat — Classic stock movements" });
   if ((page.viewportSize()?.width ?? 0) < 600) {
     const region = page.getByRole("region", { name: "Studio inventory, scrollable table" });
     const pinned = parents.first().locator("td:first-child");
@@ -85,5 +109,4 @@ test("inventory reuses the table across processing modes and independent recover
   await page.screenshot({ path: testInfo.outputPath("inventory.png"), fullPage: true });
   await page.getByRole("link", { name: "Class timetable", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Class timetable", exact: true })).toBeVisible();
-  expect(errors).toEqual([]);
 });

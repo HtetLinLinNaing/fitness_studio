@@ -11,10 +11,22 @@ const data: readonly Row[] = [
   { id: "b", label: "Beta", receipts: [] },
   { id: "c", label: "Gamma", receipts: [] },
 ];
-const columns: readonly ColumnDef<Row>[] = [{ id: "label", accessorKey: "label", header: "Label", sortable: true }];
-const base = { data, columns, caption: "Receipts", datasetKey: "receipts", getRowId: (row: Row) => row.id };
+const columns: readonly ColumnDef<Row>[] = [
+  { id: "label", accessorKey: "label", header: "Label", sortable: true },
+];
+const base = {
+  data,
+  columns,
+  caption: "Receipts",
+  datasetKey: "receipts",
+  getRowId: (row: Row) => row.id
+};
 const presentation = {
-  renderChildren: ({ children }: { children: readonly Receipt[] }) => <ul>{children.map(child => <li key={child.token}>{child.token}</li>)}</ul>,
+  renderChildren: ({ children }: { children: readonly Receipt[] }) => (
+    <ul>
+      {children.map(child => <li key={child.token}>{child.token}</li>)}
+    </ul>
+  ),
   emptyMessage: "No receipt records",
   getLabel: (row: Row, expanded: boolean) => `${expanded ? "Collapse" : "Expand"} ${row.label}`,
 };
@@ -27,8 +39,16 @@ function deferred<T>() {
 
 test("inline details keep record identity through sorting/paging and do not count as parent rows", async () => {
   const user = userEvent.setup();
-  render(<DataTable<Row, Receipt> {...base} pagination={{ defaultState: { pageIndex: 0, pageSize: 2 } }}
-    expansion={{ ...presentation, mode: "inline", getChildren: row => row.receipts, canExpand: row => row.id !== "c" }} />);
+  render(<DataTable<Row, Receipt>
+    {...base}
+    pagination={{ defaultState: { pageIndex: 0, pageSize: 2 } }}
+    expansion={{
+      ...presentation,
+      mode: "inline",
+      getChildren: row => row.receipts,
+      canExpand: row => row.id !== "c"
+    }}
+  />);
   await user.click(screen.getByRole("button", { name: "Expand Alpha" }));
   expect(screen.getByText("Receipt A")).toBeVisible();
   await user.click(screen.getByRole("button", { name: "Expand Beta" }));
@@ -49,7 +69,10 @@ test("lazy loading deduplicates collapse/reopen, caches completion, and never re
   const user = userEvent.setup();
   const pending = deferred<readonly Receipt[]>();
   const loadChildren = vi.fn(() => pending.promise);
-  render(<DataTable<Row, Receipt> {...base} expansion={{ ...presentation, mode: "lazy", loadChildren }} />);
+  render(<DataTable<Row, Receipt>
+    {...base}
+    expansion={{ ...presentation, mode: "lazy", loadChildren }}
+  />);
   expect(loadChildren).not.toHaveBeenCalled();
   await user.click(screen.getByRole("button", { name: "Expand Alpha" }));
   expect(screen.getByText("Loading details…")).toBeVisible();
@@ -74,7 +97,10 @@ test("row failures retry independently while another row loads; successful empty
     if (alphaAttempts++ === 0) throw new Error("Alpha details failed.");
     return Promise.resolve([{ token: "Recovered receipt" }]);
   });
-  render(<DataTable<Row, Receipt> {...base} expansion={{ ...presentation, mode: "lazy", loadChildren }} />);
+  render(<DataTable<Row, Receipt>
+    {...base}
+    expansion={{ ...presentation, mode: "lazy", loadChildren }}
+  />);
   await user.click(screen.getByRole("button", { name: "Expand Alpha" }));
   const error = await screen.findByRole("alert");
   expect(error).toHaveTextContent("Alpha details failed.");

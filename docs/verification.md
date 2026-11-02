@@ -16,7 +16,7 @@ Reviewed against the original “Part 2 — Component Engineering Challenge: Reu
 | On-demand attendees | The same timetable renderer uses `loadAttendees` in On-demand mode. Inventory demonstrates lazy stock history with a different child shape. |
 | Detail request states | Row-local loading skeletons, empty results, errors and Retry. Successful results, including empty lists, cache in the detail-state map. Tests cover concurrent rows, collapse/reopen, caching and stale responses. |
 | Full-width animated expansion | Details span all parent columns. Browser checks measure expanded/collapsed heights, associated panel IDs, inert hidden panels and reduced-motion behavior. |
-| Pinned column | Column widths and cumulative left offsets drive native sticky positioning. A scroll-dependent shadow indicates overlap. Mobile checks verify that the first column stays fixed while the table region scrolls. |
+| Pinned column | Column widths and cumulative left offsets drive native sticky positioning. A scroll-dependent shadow indicates overlap. Mobile checks verify that the first column stays fixed while the table region scrolls. At 320px and 375px, both datasets leave at least 110px beside the pinned column; pinning, overlap shadow and expansion remain functional. |
 | Initial loading/empty/error | Skeletons follow actual columns and page size. Loading replaces stale rows; failures retain a Retry action. Inventory controls reproduce normal, slow, empty and failed requests. |
 | Second dataset | `/classTimetable` displays 12 fictional classes; `/inventory` displays 100 inventory items using the same generic table. `/` redirects to `/classTimetable`. |
 | Responsive and accessible controls | Semantic tables, captions, header scope, labeled controls, keyboard sorting/disclosure/navigation, focus indicators and request announcements. Browser coverage uses desktop/mobile Chromium and a tablet viewport. |
@@ -31,7 +31,7 @@ Verified on Windows x64 with Node.js 24.16.0:
 - `npm run lint`: passed without warnings.
 - `npm run typecheck`: passed, including negative type-contract fixtures.
 - `npm test -- --reporter=dot`: 8 test files and 34 tests passed.
-- `npm run test:e2e`: production build succeeded; 7 browser tests passed. One duplicate tablet check was intentionally skipped in the mobile project.
+- `npm run test:e2e`: production build succeeded; 27 browser tests passed. One duplicate tablet check was intentionally skipped in the mobile project.
 - `git diff --check`: passed.
 
 Reproduce these checks with:
@@ -61,4 +61,12 @@ The browser suite records client sort timings over the shipped 100-row inventory
 
 ## Limits
 
-Browser coverage uses Chromium, including 1440px desktop, 768px tablet and 375px mobile layouts. Other engines, physical phones and lower-end hardware are not benchmarked. Accessibility checks cover semantics and keyboard interaction; they do not constitute a complete screen-reader or WCAG audit. The results above concern the local production build. Deployment availability and version parity must also be checked against the public URLs.
+Browser coverage uses Chromium, including 1440px desktop, 768px tablet and 320px and 375px mobile layouts. Other engines, physical phones and lower-end hardware are not benchmarked. Accessibility checks cover semantics and keyboard interaction; they do not constitute a complete screen-reader or WCAG audit. The results above concern the local production build. Deployment availability and version parity must also be checked against the public URLs.
+
+## Mobile layout and test readability follow-up
+
+Pinned widths and sticky offsets scale together to 65% below 520px. The timetable's pinned column is 169px on phones instead of 260px; inventory uses 143px instead of 220px. Desktop widths remain unchanged. A CSS variable drives column widths, total width and offsets consistently, including skeleton cells.
+
+The new browser regression failed on the original layout: at 320px, the timetable left only 26px beside the pinned column and inventory left 66px. The updated layout passes at 320px and 375px in both desktop and mobile Chromium projects. Browser tests also retain keyboard sorting, pagination, both expansion modes, reduced motion, cancellation and failure/retry coverage.
+
+The two long feature journeys are now eight independent browser tests with fresh navigation and uncaught-page-error checks. Dense table-processing and expansion fixtures/configurations are expanded for reading. The final follow-up checks passed: lint, TypeScript, all 34 unit tests, and the production browser suite (27 passed, one intentional duplicate tablet skip). Mobile and desktop timetable screenshots were generated; the mobile screenshot was visually inspected. These changes are local and have not been deployed by this follow-up.

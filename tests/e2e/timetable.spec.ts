@@ -1,10 +1,15 @@
 import { expect, test } from "@playwright/test";
 
-test("timetable renders real classes and keeps the class column pinned on narrow screens", async ({ page }, testInfo) => {
-  const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
+test.beforeEach(async ({ page }) => {
   await page.goto("/classTimetable");
+  await expect(page.getByRole("table", { name: "Class timetable", exact: true })).toHaveAttribute("aria-busy", "false");
+});
 
+test.afterEach(async ({ page }) => {
+  expect(await page.pageErrors({ filter: "all" })).toEqual([]);
+});
+
+test("inline attendees expand, collapse, and respect reduced motion", async ({ page }) => {
   await expect(page).toHaveTitle("HL Fitness Studio | Class timetable");
   await expect(page.getByRole("heading", { name: "Class timetable", exact: true })).toBeVisible();
   const table = page.getByRole("table", { name: "Class timetable", exact: true });
@@ -42,7 +47,11 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   expect(await parents.count()).toBe(2);
   await expect(page.getByText("11–12 of 12")).toBeVisible();
   await page.getByRole("button", { name: "Previous page" }).click();
+});
 
+test("keyboard sorting and pagination preserve timetable order", async ({ page }) => {
+  const table = page.getByRole("table", { name: "Class timetable", exact: true });
+  const parents = table.locator(":scope > tbody > tr[data-parent-row]");
   const sortClass = page.getByRole("button", { name: /^Sort by Class,/ });
   await sortClass.focus();
   await sortClass.press("Enter");
@@ -59,7 +68,11 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   await expect(page.getByRole("button", { name: "Next page" })).toBeDisabled();
   await page.getByRole("combobox", { name: "Rows per page" }).selectOption("10");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
 
+test("on-demand attendees load once and reset when switching modes", async ({ page }) => {
+  const expandYoga = page.getByRole("button", { name: "Expand Yoga Flow attendees" });
+  const attendees = page.getByRole("table", { name: "Yoga Flow attendees", exact: true });
   const attendeeMode = page.getByRole("combobox", { name: "Attendee loading" });
   await attendeeMode.focus();
   await attendeeMode.press("ArrowDown");
@@ -81,7 +94,12 @@ test("timetable renders real classes and keeps the class column pinned on narrow
   await expandYoga.click();
   await expect(attendees).toBeVisible();
   await page.getByRole("button", { name: "Collapse Yoga Flow attendees" }).click();
+});
 
+test("pinned class cells stay fixed while the table scrolls", async ({ page }, testInfo) => {
+  const table = page.getByRole("table", { name: "Class timetable", exact: true });
+  const parents = table.locator(":scope > tbody > tr[data-parent-row]");
+  const expandYoga = page.getByRole("button", { name: "Expand Yoga Flow attendees" });
   if ((page.viewportSize()?.width ?? 0) < 600) {
     const region = page.getByRole("region", { name: "Class timetable, scrollable table" });
     const pinnedCell = parents.first().locator(":scope > td").first();
@@ -97,7 +115,6 @@ test("timetable renders real classes and keeps the class column pinned on narrow
     await region.evaluate(element => { element.scrollLeft = 0; });
   }
 
-  expect(errors).toEqual([]);
   await expandYoga.click();
   const currentPanelId = await page.getByRole("button", { name: "Collapse Yoga Flow attendees" }).getAttribute("aria-controls");
   const currentPanel = page.locator(`[id="${currentPanelId}"]`);

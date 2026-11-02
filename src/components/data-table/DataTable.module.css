@@ -10,6 +10,7 @@
 }
 
 .table {
+  --pinned-scale: 1;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -307,6 +308,11 @@
 }
 
 @media (width < 520px) {
+  /* Scale widths and sticky offsets together, leaving room for scrolling cells. */
+  .table {
+    --pinned-scale: 0.65;
+  }
+
   .expandButton, .expandPlaceholder {
     height: 44px;
     width: 36px;
