@@ -59,7 +59,7 @@ test("empty results are meaningful and unmount cancels pending class requests", 
   expect(await screen.findByText("No classes available.")).toBeInTheDocument();
   first.unmount();
 
-  load.mockReturnValueOnce(new Promise(() => {}));
+  load.mockReturnValueOnce(new Promise(() => { }));
   const pending = render(<ClassTimetable />);
   const signal = load.mock.calls.at(-1)?.[0]?.signal;
   expect(signal?.aborted).toBe(false);

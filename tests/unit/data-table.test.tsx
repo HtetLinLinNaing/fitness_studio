@@ -8,8 +8,10 @@ type Sample = { id: string; label: string; amount: number };
 const data: readonly Sample[] = [{ id: "sample-1", label: "Balance pad", amount: 3500 }];
 const columns: readonly ColumnDef<Sample>[] = [
   { id: "label", accessorKey: "label", header: "Product", pinned: "left", width: 180 },
-  { id: "price", accessorFn: row => row.amount / 100, header: "Price",
-    cell: ({ row }) => `S$${(row.amount / 100).toFixed(2)}` },
+  {
+    id: "price", accessorFn: row => row.amount / 100, header: "Price",
+    cell: ({ row }) => `S$${(row.amount / 100).toFixed(2)}`
+  },
 ];
 const base = { data, columns, getRowId: (row: Sample) => row.id, datasetKey: "samples", caption: "Sample inventory" };
 

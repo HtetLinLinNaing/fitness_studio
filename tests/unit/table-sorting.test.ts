@@ -33,19 +33,23 @@ test("date, boolean, derived string and custom comparisons use the same stable m
     .toEqual(["c", "d", "a", "b", "e"]);
   expect(sortRows(rows, columns, { columnId: "active", direction: "asc" }).map(row => row.id))
     .toEqual(["b", "c", "e", "a", "d"]);
-  const strings: readonly ColumnDef<Row>[] = [{ id: "code", header: "Code", sortable: true,
-    accessorFn: row => ({ a: "item 10", b: "Item 2", c: "item 1", d: "ITEM 2", e: undefined })[row.id] }];
+  const strings: readonly ColumnDef<Row>[] = [{
+    id: "code", header: "Code", sortable: true,
+    accessorFn: row => ({ a: "item 10", b: "Item 2", c: "item 1", d: "ITEM 2", e: undefined })[row.id]
+  }];
   expect(sortRows(rows, strings, { columnId: "code", direction: "asc" }).map(row => row.id))
     .toEqual(["c", "b", "d", "a", "e"]);
-  const custom: readonly ColumnDef<Row>[] = [{ id: "value", accessorKey: "value", header: "Value",
-    sortable: true, compare: (left, right) => (right.value ?? 0) - (left.value ?? 0) }];
+  const custom: readonly ColumnDef<Row>[] = [{
+    id: "value", accessorKey: "value", header: "Value",
+    sortable: true, compare: (left, right) => (right.value ?? 0) - (left.value ?? 0)
+  }];
   expect(sortRows(rows, custom, { columnId: "value", direction: "asc" }).map(row => row.id))
     .toEqual(["a", "d", "c", "b", "e"]);
 });
 
 test("finite numeric extremes retain their real order without subtraction overflow", () => {
   const extremes = [{ ...rows[0], id: "max", value: Number.MAX_VALUE },
-    { ...rows[0], id: "min", value: -Number.MAX_VALUE }];
+  { ...rows[0], id: "min", value: -Number.MAX_VALUE }];
   expect(sortRows(extremes, columns, { columnId: "value", direction: "asc" }).map(row => row.id))
     .toEqual(["min", "max"]);
   expect(sortRows([...extremes].reverse(), columns, { columnId: "value", direction: "desc" }).map(row => row.id))
