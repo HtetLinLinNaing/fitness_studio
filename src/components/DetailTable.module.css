@@ -1,0 +1,87 @@
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 15px;
+  margin-bottom: 12px;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-studio);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.description {
+  color: var(--color-subtle);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: var(--color-detail-ink);
+  font-size: 13px;
+}
+
+.table > thead > tr > th {
+  border-bottom: 1px solid var(--color-detail-line);
+  padding: 9px 12px;
+  color: var(--color-muted);
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.table > tbody > tr > td {
+  height: 42px;
+  border-bottom: 1px solid var(--color-line);
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+}
+
+.table > tbody > tr:last-child > td {
+  border-bottom: 0;
+}
+
+.table > tbody > tr:hover > td {
+  background: var(--color-control-hover);
+}
+
+.bookingStatus {
+  display: inline-block;
+  border-radius: 4px;
+  background: var(--color-control-hover);
+  padding: 4px 7px;
+  color: var(--color-detail-ink);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.bookingStatus[data-booking-status="checked-in"] {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.bookingStatus[data-booking-status="cancelled"] {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.bookingStatus[data-booking-status="no-show"] {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.quantity {
+  color: var(--color-success);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.quantity[data-negative="true"] {
+  color: var(--color-danger);
+}

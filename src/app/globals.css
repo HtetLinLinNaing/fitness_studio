@@ -8,13 +8,26 @@
   --color-line: #e1e6e2;
   --color-studio: #145e42;
   --color-soft: #f7f9f7;
+  --color-title: #193b2b;
+  --color-muted: #4b6055;
+  --color-detail-ink: #354e40;
+  --color-detail-line: #ccdacd;
+  --color-control-border: #b6c9bc;
+  --color-control-hover: #e4eee6;
+  --color-skeleton: #d5dfd6;
+  --color-success: #245b35;
+  --color-success-soft: #edf6ef;
+  --color-warning: #76500a;
+  --color-warning-soft: #fbf3df;
+  --color-danger: #8b362d;
+  --color-danger-soft: #f9eeee;
 }
 
 @layer base {
   body {
     min-height: 100vh;
-    background: #f6f7f6;
-    color: #202923;
+    background: var(--color-canvas);
+    color: var(--color-ink);
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -27,36 +40,8 @@
     color-scheme: light;
   }
   :focus-visible {
-    outline: 2px solid #145e42;
+    outline: 2px solid var(--color-studio);
     outline-offset: 3px;
-  }
-}
-
-/* Direct-child selectors keep parent-row styling out of nested detail tables. */
-@layer components {
-  .data-table > thead > tr > th {
-    @apply h-[42px] bg-soft text-left text-xs font-medium text-subtle;
-  }
-
-  .data-table > tbody > tr > td {
-    @apply h-15 bg-white;
-  }
-
-  .data-table > thead > tr > th,
-  .data-table > tbody > tr > td {
-    @apply border-b border-line px-[18px] py-2.5 align-middle wrap-anywhere;
-  }
-
-  .data-table > tbody > tr:last-child > td {
-    border-bottom: 0;
-  }
-
-  .data-table > tbody > tr:hover > td:not(.data-table-detail) {
-    @apply bg-soft;
-  }
-
-  .data-table > tbody > tr > td.data-table-detail {
-    @apply h-auto border-b-0 bg-soft p-0;
   }
 }
 

@@ -1,59 +1,64 @@
 # Assessment verification
 
-Verified on 2026-11-01 against the supplied “Part 2 — Component Engineering Challenge: Reusable Data Table” brief and the approved scope amendments. Implementation base: `94c4d86`; this Step 11 adds verification and documentation, with no product behavior or styling changes.
+Reviewed against the original “Part 2 — Component Engineering Challenge: Reusable Data Table” brief. This record describes the final local submission on 2 November 2026.
 
-## Requirement evidence
+## Requirements and evidence
 
-| Requirement | Implementation / evidence |
+| Requirement | Implementation and evidence |
 | --- | --- |
-| React/Next.js, generic TypeScript, no table library | `src/components/data-table/` supplies native markup, typed columns and custom processing. Package manifest includes no table/grid engine. HeroUI supplies non-table primitives. |
-| Column definitions and custom cells | Typed scalar property/function accessors, header, width, pinned flag, sortable flag, custom cells/comparators. `tests/types/data-table-contract.ts` rejects invalid columns/configurations. |
-| Client sort asc/desc/none | Stable scalar sorting before slicing, original-order restoration, missing values last. Sorting/unit/browser checks cover numeric/text, ties, invalid IDs and finite numeric extremes. |
-| Controlled/uncontrolled sorting and pagination | Timetable uses table-owned state. Inventory uses parent-owned state in client/manual modes. Processing checks verify owner callbacks, page resets, clamping and trusted manual rows. |
-| Client pagination and optional server processing | Page sizes 10/25/50 and full parent counts. Inventory browser journey compares complete-dataset sort results across client/manual modes and navigates/changes page size. |
-| Inline expansion | Default timetable mode shows real attendees with independent customer/payment/status columns. Stable-ID expansion survives sort/page changes. |
-| Lazy expansion | Timetable On-demand mode loads attendees when a class expands; inventory independently loads stock movements. Loading/empty/error/retry remain row-local. Tests cover multiple concurrent rows, pending deduplication, cached empty results, collapse during loading, scope cancellation and ignored late results. |
-| Full-width animated details | Detail cell spans all parent columns; feature owns nested child markup. Browser checks measure open/closed height, disclosure ARIA and reduced-motion behavior. Collapsed panels are inert and hidden from assistive technology. |
-| Pinned left column / scroll cue | Explicit widths/cumulative offsets and sticky positioning. Desktop/mobile checks verify position, shadow, scroll state and contained overflow. |
-| Matching skeletons / list states | Skeleton cells follow actual columns and page size. Component checks verify stale rows are replaced. Inventory controls reproduce slow, empty, failed initial requests and recoverable detail failures. |
-| Invalid input / races | Invalid sort/page/type configurations, shrinking totals, independent child errors and list/detail stale-response guards have focused checks. |
-| Second dataset / real usage | `/` renders 12 real mock classes; `/inventory` renders 100 differently shaped items with controlled/manual/lazy behavior. Navigation is shared. |
-| Responsive and keyboard behavior | Production Chromium checks at 1440px, 768px and 375px. Keyboard sorting, disclosure, scrolling and controls exercised. Tablet checks confirm one main/H1, labeled selects/buttons, column scopes, panel association and inert collapse. Screenshots inspected at all three widths. |
-| Larger dataset performance | Generated 5,000-row component check confirms global sorting and only 10 parent rows rendered before/after page navigation. Measurements below separate CPU processing from actual browser interaction. |
-| README deliverables | Setup, typed API/usage, client/manual strategy, both expansion modes, sticky approach, state ownership, assumptions and tradeoffs documented in README. |
-| Public repository / deployed URL | Public repository: https://github.com/HtetLinLinNaing/fitness_studio. User-deployed website: https://fitnessstudio-beta.vercel.app/. Both `/` and `/inventory` returned HTTP 200 with their expected page titles on 2026-11-01. |
+| React/Next.js and generic TypeScript | Native table implementation in `src/components/data-table/`; `src/types/table.ts` defines typed columns, state ownership and expansion. No table/grid library is installed. HeroUI provides non-table primitives only. |
+| Column definitions | Property/function accessors, headings, custom cells, sortable flags, widths and left pinning. Timetable and inventory supply independent definitions. Type fixtures reject incompatible configurations. |
+| Client sorting | Ascending, descending and original-order cycle. Stable sorting processes the full dataset before pagination; null/invalid values remain last. Tests cover numeric, text, date, boolean, custom, invalid-key and finite-extreme cases. |
+| Client pagination | Page navigation and 10/25/50 size options; sort and size changes return to page 1. Invalid/out-of-range pages are normalized; empty data disables navigation. |
+| Controlled/uncontrolled state | Timetable uses table-owned sort/page state. Inventory uses parent-owned values in client and manual modes. Tests check callback ownership and shrinking totals. |
+| Simulated server processing | `queryInventory` receives sort/page parameters and returns the processed page plus total. The table renders manual rows without sorting or slicing them again. There are no HTTP API endpoints. |
+| Inline attendees | The timetable initially expands `row.attendees`, displaying customer, payment type and booking status. |
+| On-demand attendees | The same timetable renderer uses `loadAttendees` in On-demand mode. Inventory demonstrates lazy stock history with a different child shape. |
+| Detail request states | Row-local loading skeletons, empty results, errors and Retry. Successful results, including empty lists, cache in the detail-state map. Tests cover concurrent rows, collapse/reopen, caching and stale responses. |
+| Full-width animated expansion | Details span all parent columns. Browser checks measure expanded/collapsed heights, associated panel IDs, inert hidden panels and reduced-motion behavior. |
+| Pinned column | Column widths and cumulative left offsets drive native sticky positioning. A scroll-dependent shadow indicates overlap. Mobile checks verify that the first column stays fixed while the table region scrolls. |
+| Initial loading/empty/error | Skeletons follow actual columns and page size. Loading replaces stale rows; failures retain a Retry action. Inventory controls reproduce normal, slow, empty and failed requests. |
+| Second dataset | `/classTimetable` displays 12 fictional classes; `/inventory` displays 100 inventory items using the same generic table. `/` redirects to `/classTimetable`. |
+| Responsive and accessible controls | Semantic tables, captions, header scope, labeled controls, keyboard sorting/disclosure/navigation, focus indicators and request announcements. Browser coverage uses desktop/mobile Chromium and a tablet viewport. |
+| Larger datasets | A generated 5,000-row component test confirms global sorting and page-limited rendering. The measurement script separately measures in-memory sorting/slicing. This does not establish large-dataset browser scrolling performance. |
+| README | Setup, column API examples, client/manual processing, expansion, sticky behavior, state ownership, assumptions and trade-offs. |
+| Public delivery | Public repository and Vercel URLs are listed in the README. The production routes are `/classTimetable` and `/inventory`, with `/` redirecting to the timetable. |
 
-## Commands and results
+## Final validation
 
-- `npm test`: 33 unit/component checks passed after the attendee-mode follow-up, including real service integration, attendee source/cancellation behavior and the generated 5,000-row/page-limited rendering check.
-- `npm run lint`: passed with no warnings.
-- `npm run typecheck`: passed, including compile-time negative contract fixtures.
-- `npm run test:e2e`: production build succeeded; 5 browser journeys passed. One duplicate mobile-project tablet case is intentionally skipped because tablet verification runs once in the desktop Chromium project; both independent mobile journeys run and pass.
-- Fresh read-only whole-implementation review: no Critical/Important findings, deferred minors or declined judgments. No product corrections were needed.
+Verified on Windows x64 with Node.js 24.16.0:
 
-## Performance observations
+- `npm run lint`: passed without warnings.
+- `npm run typecheck`: passed, including negative type-contract fixtures.
+- `npm test -- --reporter=dot`: 8 test files and 34 tests passed.
+- `npm run test:e2e`: production build succeeded; 7 browser tests passed. One duplicate tablet check was intentionally skipped in the mobile project.
+- `git diff --check`: passed.
 
-Environment: Windows x64, Node 24.16.0, installed Playwright Chromium, production Next.js build. Shared development machine; no CPU/network throttling. These are observations, not portable timing guarantees.
+Reproduce these checks with:
 
-`node scripts/measure-table.mjs` generates deterministic shuffled string records, runs five warm-ups and 50 measured sort-and-slice samples with the actual `sortRows` implementation. Input immutability and the first sorted page are checked on every iteration.
+```sh
+npm run lint
+npm run typecheck
+npm test -- --reporter=dot
+node scripts/measure-table.mjs
+npm run test:e2e
+```
+
+The browser runner builds production output, starts it on `127.0.0.1:3100` and checks both routes. Its tablet-only test intentionally skips the duplicate mobile-project entry. Generated reports, screenshots and traces are ignored by Git.
+
+## Performance scope
+
+`scripts/measure-table.mjs` generates deterministic 100- and 5,000-row datasets in memory and performs five warm-ups followed by 50 timed sort-and-slice samples. It uses the actual `sortRows` implementation and checks input immutability and the first page. Results describe Node processing, not browser rendering.
 
 | Generated records | Median | P95 | Maximum |
 | --- | --- | --- | --- |
-| 100 | 0.260ms | 0.439ms | 2.023ms |
-| 5,000 | 16.439ms | 34.470ms | 40.951ms |
+| 100 | 0.104ms | 0.144ms | 0.558ms |
+| 5,000 | 13.488ms | 27.970ms | 30.167ms |
 
-This measures Node processing, not browser rendering of 5,000 records. Importing the source TypeScript with Node may emit a module-type detection warning; no package-mode change is required, and timing starts after module import.
+Measured on the shared development machine on 2 November 2026. These observations are not portable timing guarantees.
 
-The production inventory browser check measured six local client sort events over 100 records at 1440×900. Each sample includes the click, React update and two animation frames, excluding tool transport and artificial service latency: **14.5, 14.1, 15.5, 8.6, 21.6 and 34.6ms**. The DOM retains 10 parent rows. Raw samples are attached as `client-sort-timings` in the Playwright HTML report.
+The browser suite records client sort timings over the shipped 100-row inventory. Those samples include the event, React update and two animation frames, and exclude simulated request latency. Normal/slow requests deliberately take 500ms/2s. Pagination bounds parent-row rendering; there is no virtualization.
 
-Normal/slow requests deliberately take 500ms/2s and are not included as sorting cost. Pagination is the rendering bound; virtualization, remote request throughput and lower-end devices were not benchmarked. No larger fixture or stress UI was added to the app.
+## Limits
 
-## Verification limits
-
-The accessibility checks exercise semantics, names, keyboard interaction, inert hidden content, focus styling visible in screenshots and reduced motion. They are not a complete WCAG audit or a screen-reader compatibility certification. Browser checks currently use Chromium; other browser engines and real mobile hardware were not tested. No runtime code/dependency change was made during this milestone; previously documented development-tool audit findings remain separate from this functional verification.
-
-Generated browser reports/screenshots live in ignored `playwright-report/` and `test-results/`. Re-run the commands to regenerate them. The user deployed the website on Vercel. Live checks confirmed route availability and titles; the full interaction checks described above ran against the local production build.
-
-## Follow-up from the repeated brief check
-
-The brief specifically asks for attendee data to drive both expansion modes. After Step 11 acceptance, the user approved a timetable Inline / On-demand switch. The implementation now uses the same attendee renderer with either row.attendees or the new loadAttendees service. Switching resets the table/cache and aborts pending details; late responses cannot leak into the new mode. Focused checks exercise actual source selection, detached/empty service results, error/retry and cancellation. This closes the literal brief-alignment gap. The user accepted the implementation at `2db0243` and approved publication. A deployed version of this follow-up has not yet been verified.
+Browser coverage uses Chromium, including 1440px desktop, 768px tablet and 375px mobile layouts. Other engines, physical phones and lower-end hardware are not benchmarked. Accessibility checks cover semantics and keyboard interaction; they do not constitute a complete screen-reader or WCAG audit. The results above concern the local production build. Deployment availability and version parity must also be checked against the public URLs.

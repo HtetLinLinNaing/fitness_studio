@@ -18,15 +18,12 @@ export function useRowExpansion<T, TChild>(
     ReadonlyMap<string, ChildRequest<TChild>>
   >(() => new Map());
   const pending = useRef(new Map<string, AbortController>());
-  const cache = useRef(new Map<string, readonly TChild[]>());
 
   useEffect(() => {
     const activeRequests = pending.current;
-    const cachedResults = cache.current;
     return () => {
       activeRequests.forEach((controller) => controller.abort());
       activeRequests.clear();
-      cachedResults.clear();
     };
   }, []);
 
@@ -37,11 +34,8 @@ export function useRowExpansion<T, TChild>(
   function load(row: T, id: string) {
     if (!expansion || expansion.mode !== "lazy" || pending.current.has(id))
       return;
-    const cached = cache.current.get(id);
-    if (cached !== undefined) {
-      publish(id, { status: "success", children: cached });
-      return;
-    }
+    // Successful requests, including empty results, are the cache for this dataset.
+    if (requests.get(id)?.status === "success") return;
     const controller = new AbortController();
     const loader = expansion.loadChildren;
     pending.current.set(id, controller);
@@ -56,7 +50,6 @@ export function useRowExpansion<T, TChild>(
       .then((children) => {
         if (controller.signal.aborted || pending.current.get(id) !== controller)
           return;
-        cache.current.set(id, children);
         pending.current.delete(id);
         publish(id, { status: "success", children });
       })

@@ -1,0 +1,124 @@
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin: 0;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.statLabel {
+  color: var(--color-subtle);
+  font-size: 13px;
+}
+
+.statValue {
+  order: -1;
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.modeLabel {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--color-subtle);
+  font-size: 12px;
+}
+
+.modeSelect {
+  min-height: 34px;
+  cursor: pointer;
+  border: 1px solid var(--color-line);
+  border-radius: 5px;
+  background: white;
+  padding: 5px 10px;
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.classTitle {
+  display: block;
+  color: var(--color-title);
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.duration {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-subtle);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.instructor {
+  color: var(--color-detail-ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.time {
+  color: var(--color-detail-ink);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.attendance {
+  color: var(--color-subtle);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.attendance strong {
+  color: var(--color-studio);
+  font-weight: 700;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 5px;
+  background: var(--color-success-soft);
+  padding: 3px 8px;
+  color: var(--color-success);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status::before {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
+.status[data-status="full"] {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.status[data-status="cancelled"] {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+@media (width < 520px) {
+  .modeSelect {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+}

@@ -47,7 +47,7 @@ npm run test:e2e:install
 npm run test:e2e
 ```
 
-Run the browser-install command once after installing packages, and again when a Playwright update requires a new browser version. Unit and browser discovery are separate, and both runners now contain feature checks. Temporary tooling probes were removed after setup verification.
+Run the browser-install command once after installing packages, and again when a Playwright update requires a new browser version. Unit and browser discovery are separate.
 
 The browser HTML report is written to `playwright-report/`, with diagnostics under `test-results/`. These generated folders, as well as coverage output, are ignored by Git and ESLint.
 
@@ -55,13 +55,13 @@ The [verification record](docs/verification.md) maps the assessment requirements
 
 ## Mock data and services
 
-Local JSON under `src/mocks/data/` stores **12 classes** with inline attendees, **100 inventory items**, and separate per-item stock movements. There are no API endpoints or backend. This smaller dataset replaces the earlier large stress-test proposal.
+Local JSON under `src/mocks/data/` stores **12 classes** with inline attendees, **100 inventory items**, and separate per-item stock movements. There are no API endpoints or backend.
 
 `services.ts` imports the JSON directly. Each async service waits for the simulated request, handles the empty scenario, and returns a copy of its data. `request.ts` handles shared delays, cancellation and one-shot failures; `src/types/mock.ts` contains the small shared contracts. Fixture status values are checked by tests rather than a runtime validation layer for these owned JSON files.
 
 Shared types live in `src/types/`: `table.ts` defines the generic table contract and sort/page state, `timetable.ts` defines class/attendee models, `inventory.ts` defines inventory/stock-movement models, and `mock.ts` defines mock request contracts. Component-only props stay with their components.
 
-Styling uses Tailwind CSS 4 utilities in the components. `src/app/globals.css` is the only stylesheet: it defines shared color tokens, base defaults, direct-child table rules that avoid styling nested detail tables, and a reduced-motion fallback for loading skeletons. There are no CSS Modules or separate styles folder. Dynamic column widths and pinned offsets remain inline because they come from the table configuration.
+Styling uses colocated CSS Modules with descriptive class names and shared color tokens from `src/app/globals.css`. `Studio.module.css` owns the shared shell; `DataTable.module.css` owns table interactions; `DetailTable.module.css` provides shared nested-table presentation. Timetable and inventory each have a feature module. Direct-child selectors keep parent-table rules out of nested tables. Global CSS holds library imports, tokens, base defaults and the skeleton reduced-motion fallback. Tailwind remains available for small accessibility utilities. Dynamic column widths and pinned offsets remain inline because they come from the table configuration.
 
 The timetable formatter holds its locale (`en-SG`) and timezone (`Asia/Singapore`) locally. Inventory prices use Singapore dollars (`SGD`, shown as `S$`) in the inventory column formatter. Fixture timestamps include `+08:00`; inventory prices use integer cents. All records are fictional and deterministic.
 
@@ -76,7 +76,7 @@ Import these asynchronous services from `@/mocks/services`:
 
 Context accepts `{ scenario, signal }`. Scenarios are `normal` (500ms), `slow` (2,000ms), `empty`, and `error`. Empty/error requests use the normal delay. Errors fail once per operation, or per item for stock movements, so retrying the same request succeeds. Full and paged inventory share the same list operation. Parent and child failures are independent. Scenario controls should call `resetMockFailures()` before demonstrating a new failure cycle. An aborted request rejects with `AbortError` and does not consume a one-shot error.
 
-Page indexes are zero-based. Invalid/negative indexes fall back to zero; invalid sizes fall back to 10. An out-of-range page returns no rows and the true total so the future page owner can clamp and refetch. New results contain detached records to keep caller mutation and sorting from changing the fixture source. The page will own latest-request guards when the services are connected to the UI.
+Page indexes are zero-based. Invalid/negative indexes fall back to zero; invalid sizes fall back to 10. An out-of-range page returns no rows and the true total so the parent hook can clamp and refetch. New results contain detached records to keep caller mutation and sorting from changing the fixture source. The feature hooks own latest-request guards when connecting these services to the UI.
 
 To regenerate the same JSON fixtures:
 
@@ -94,8 +94,6 @@ Focused service tests cover fixture consistency, global sorting before paging, o
 - ESLint with the Next.js Core Web Vitals and TypeScript rules.
 - `src/app` for routes and layout; `@/*` resolves to `src/*`.
 - `npm run typecheck` generates route types before checking TypeScript, so it also works before the first build.
-
-ESLint 9 and TypeScript 5.9 are selected for compatibility with the installed Next.js lint plugins. At setup verification, npm reported 16 moderate development-tool findings propagated from `minimatch`; the runtime-only audit reported zero vulnerabilities. No forced downgrade or incompatible dependency override has been applied.
 
 HeroUI supplies only non-table primitives (Skeleton and Retry Button). The table itself uses native HTML and custom layout; no table/grid library is included.
 
@@ -132,9 +130,9 @@ Changing datasetKey resets local viewport and uncontrolled interaction state; ne
 
 Omitted sorting/pagination configuration defaults to client processing, no active sort, and 10 parent rows per page with 10/25/50 size options. `sorting={false}` or `pagination={false}` disables that feature independently. Sortable headers cycle ascending, descending, and original input order; sort happens over the full dataset before paging. Ties stay in original order, and null/undefined/non-finite numbers/invalid Dates stay last in both directions. String comparison is English, case-insensitive, and numeric-aware. Custom row comparators must return a finite ordering number; numeric default comparisons handle the full finite range without subtraction overflow. Input arrays are not mutated.
 
-Each group accepts either `defaultState` (table-owned state, optional notification callback), or `state` with required `onChange` (parent-owned state). State ownership is separate from processing: controlled values work in client mode too. Do not switch ownership on a mounted table; deliberately remount if required. Changes are emitted only from user actions, never while rendering. Sort/page-size actions reset to page index 0; controlled parents should compose sort and page callbacks using functional state updates.
+Each group accepts either `defaultState` (table-owned state, optional notification callback), or `state` with required `onChange` (parent-owned state). State ownership is separate from processing: controlled values work in client mode too. Do not switch ownership on a mounted table; deliberately remount if required. Change callbacks are emitted only from user actions. Sort/page-size actions reset to page index 0; controlled parents should compose sort and page callbacks using functional state updates.
 
-Manual sorting requires controlled state and trusts supplied row order. Manual pagination requires controlled state plus a non-negative integer `totalRows`, and renders supplied page data without slicing again. Combine it with manual or disabled sorting; client sorting of a partial server page is rejected by types and runtime validation. Manual sorting plus client pagination is supported when the parent supplies the complete sorted dataset. See the [API design's manual example](docs/superpowers/specs/2026-11-01-data-table-api-design.md) for callbacks and mock-service integration.
+Manual sorting requires controlled state and trusts supplied row order. Manual pagination requires controlled state plus a non-negative integer `totalRows`, and renders supplied page data without slicing again. Combine it with manual or disabled sorting; client sorting of a partial server page is rejected by types and runtime validation. Manual sorting plus client pagination is supported when the parent supplies the complete sorted dataset. The inventory example below shows the parent callbacks and mock-service integration.
 
 Page indexes are zero-based in the API and one-based in labels. Invalid sizes fall back to 10; options are sanitized/deduplicated and include the current valid size. Out-of-range client pages clamp to a valid page and stay clamped when data grows again. Controlled state is validated for display without repair callbacks; the manual parent owns normalization/refetch when totals shrink. Empty/loading/error states disable navigation, and pending/error requests disable sort headers. `aria-sort`, labeled buttons/selects, visible focus, and live range summaries support keyboard and screen-reader use.
 
@@ -173,7 +171,7 @@ The focused hook/component checks protect request races, page resets, manual cla
 
 ## Examples from the two datasets
 
-The runnable integrations are [Timetable](src/features/timetable/Timetable.tsx) with [class columns](src/features/timetable/columns.tsx), and [InventoryDemo](src/features/demo/InventoryDemo.tsx) with [inventory columns](src/features/demo/inventory-columns.tsx). Column accessors provide sortable scalars; cells and child renderers retain their full independent row types.
+The runnable integrations are [ClassTimetable](src/components/classTimetable/ClassTimetable.tsx) with [class columns](src/components/classTimetable/class-timetable-columns.tsx), and [Inventory](src/components/inventory/Inventory.tsx) with [inventory columns](src/components/inventory/inventory-columns.tsx). Column accessors provide sortable scalars; cells and child renderers retain their full independent row types.
 
 Timetable uses `DataTable<ClassRow, Attendee>` and table-owned sort/page state. Its default inline expansion group is:
 
@@ -194,17 +192,17 @@ On-demand mode replaces `mode`/`getChildren` with `mode: "lazy"` and `loadChildr
 Inventory uses `DataTable<InventoryRow, StockMovement>`. Its feature hook owns the query and fetches either complete rows or a single server-simulated page. In manual mode it passes:
 
 ```tsx
-sorting={{ mode: "manual", state: demo.query.sort, onChange: demo.changeSort }}
+sorting={{ mode: "manual", state: inventory.query.sort, onChange: inventory.changeSort }}
 pagination={{
   mode: "manual",
-  state: demo.query.pagination,
-  onChange: demo.changePage,
-  totalRows: demo.totalRows,
+  state: inventory.query.pagination,
+  onChange: inventory.changePage,
+  totalRows: inventory.totalRows,
 }}
 expansion={{
   mode: "lazy",
   loadChildren: (row, { signal }) =>
-    loadStockMovements(row.id, { signal, scenario: demo.childScenario }),
+    loadStockMovements(row.id, { signal, scenario: inventory.childScenario }),
   renderChildren: ({ row, children }) =>
     <StockMovementList itemName={row.name} movements={children} />,
   emptyMessage: "No stock movements",
@@ -227,14 +225,8 @@ These are configuration excerpts; the linked components include imports, columns
 
 Assumptions: single-column sorting, English numeric-aware comparison, stable unique string IDs, static fictional records, Singapore time and SGD integer cents. Viewing and inspection are the complete product scope; editing, authentication, persistence and inventory operations are excluded. HeroUI supplies only non-table primitives.
 
-## Release status
+## Deployment
 
-Source repository: [HtetLinLinNaing/fitness_studio](https://github.com/HtetLinLinNaing/fitness_studio). The user deployed the website on Vercel at [fitnessstudio-beta.vercel.app](https://fitnessstudio-beta.vercel.app/). Both public routes returned HTTP 200 with the expected page titles when checked. Production entry points are `npm run build` and `npm start`; no secrets, database or application environment variables are required by this implementation.
+Source repository: [HtetLinLinNaing/fitness_studio](https://github.com/HtetLinLinNaing/fitness_studio). Live application: [HL Fitness Studio](https://fitnessstudio-beta.vercel.app/).
 
-## Approval workflow
-
-Before each step, propose its scope and any dependency, style, or behavior decisions. Wait for user approval, build only the approved step, and stop for user review.
-
-Step 1 includes only setup and a plain placeholder. Dashboard styling, table implementation, mock data, demo routes, testing tools, repository publication, and deployment require approval in later steps.
-
-Steps 1–11 are accepted, and public GitHub publication is approved. Vercel deployment is handled by the user. The selected design uses stronger sans-serif typography/contrast and the HL Fitness Studio name. See the [approved PRD](docs/superpowers/specs/2026-11-01-reusable-data-table-design.md), [component API](docs/superpowers/specs/2026-11-01-data-table-api-design.md), and [verification record](docs/verification.md).
+The root route redirects to `/classTimetable`; inventory is available at `/inventory`. Production commands are `npm run build` and `npm start`. The application uses fictional local fixtures and requires no database, secrets or application environment variables. Vercel is connected to the GitHub repository; publish the final version to the production branch and verify both routes after deployment.

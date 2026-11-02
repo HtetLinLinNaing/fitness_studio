@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   loadInventory,
   queryInventory,
@@ -19,13 +19,17 @@ type Settings = {
   generation: number;
   attempt: number;
 };
+type InventoryRequest = {
+  datasetKey: string;
+  attempt: number;
+  scenario: MockScenario;
+  query: ListQuery | null;
+};
 type Result = {
-  key: string;
+  parameters: InventoryRequest;
   rows: readonly InventoryRow[];
   totalRows: number;
-  status: "ready" | "error";
-  message?: string;
-};
+} & ({ status: "ready" } | { status: "error"; message: string });
 const initialQuery = (): ListQuery => ({
   sort: null,
   pagination: { pageIndex: 0, pageSize: 10 },
@@ -39,30 +43,26 @@ const defaults = (): Settings => ({
   attempt: 0,
 });
 
-export function useInventoryDemo() {
+export function useInventory() {
   const [settings, setSettings] = useState(defaults);
   const [result, setResult] = useState<Result | null>(null);
   const { mode, query, listScenario, childScenario, generation, attempt } =
     settings;
   const datasetKey = `inventory:${generation}:${mode}:${listScenario}:${childScenario}`;
-  // Client sort/page changes use the loaded complete dataset, without refetching.
-  const requestKey = JSON.stringify([
-    datasetKey,
-    attempt,
-    mode === "manual" ? query : null,
-  ]);
+  // Client sorting/paging uses loaded rows; only manual queries trigger a fetch.
+  const manualQuery = mode === "manual" ? query : null;
+  const requestParameters = useMemo<InventoryRequest>(
+    () => ({ datasetKey, attempt, scenario: listScenario, query: manualQuery }),
+    [datasetKey, attempt, listScenario, manualQuery],
+  );
 
   useEffect(() => {
     const controller = new AbortController();
     let current = true;
-    const [, , manualQuery] = JSON.parse(requestKey) as [
-      string,
-      number,
-      ListQuery | null,
-    ];
-    const context = { signal: controller.signal, scenario: listScenario };
-    const pending = manualQuery
-      ? queryInventory(manualQuery, context)
+    const { query: requestedQuery, scenario } = requestParameters;
+    const context = { signal: controller.signal, scenario };
+    const pending = requestedQuery
+      ? queryInventory(requestedQuery, context)
       : loadInventory(context).then((rows) => ({
           rows,
           totalRows: rows.length,
@@ -70,12 +70,12 @@ export function useInventoryDemo() {
     pending
       .then((response) => {
         if (!current || controller.signal.aborted) return;
-        if (manualQuery) {
+        if (requestedQuery) {
           const lastPage = Math.max(
             0,
-            Math.ceil(response.totalRows / manualQuery.pagination.pageSize) - 1,
+            Math.ceil(response.totalRows / requestedQuery.pagination.pageSize) - 1,
           );
-          if (manualQuery.pagination.pageIndex > lastPage) {
+          if (requestedQuery.pagination.pageIndex > lastPage) {
             setSettings((previous) => ({
               ...previous,
               query: {
@@ -89,12 +89,16 @@ export function useInventoryDemo() {
             return;
           }
         }
-        setResult({ ...response, key: requestKey, status: "ready" });
+        setResult({
+          ...response,
+          parameters: requestParameters,
+          status: "ready",
+        });
       })
       .catch((error: unknown) => {
         if (!current || controller.signal.aborted) return;
         setResult({
-          key: requestKey,
+          parameters: requestParameters,
           status: "error",
           rows: [],
           totalRows: 0,
@@ -108,15 +112,15 @@ export function useInventoryDemo() {
       current = false;
       controller.abort();
     };
-  }, [requestKey, listScenario]);
+  }, [requestParameters]);
 
-  const current = result?.key === requestKey ? result : null;
+  const current = result?.parameters === requestParameters ? result : null;
   const request: RequestState = !current
     ? { status: "loading" }
     : current.status === "error"
       ? {
           status: "error",
-          message: current.message!,
+          message: current.message,
           onRetry: () =>
             setSettings((previous) => ({
               ...previous,

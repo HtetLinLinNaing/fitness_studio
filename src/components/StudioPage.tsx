@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import styles from "./Studio.module.css";
 
 type StudioPageProps = {
   title: string;
@@ -16,23 +17,14 @@ export function StudioPage({
   children,
 }: StudioPageProps) {
   return (
-    <main
-      className="w-full px-6 pt-7 pb-8 max-[520px]:px-4 max-[520px]:pt-[22px] max-[520px]:pb-6"
-      id="main-content"
-    >
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-        <h1 className="m-0 text-[28px] leading-tight font-bold tracking-[-0.8px] max-[520px]:text-[26px]">
-          {title}
-        </h1>
-        {context && <div className="text-[13px] text-subtle">{context}</div>}
+    <main className={styles.page} id="main-content">
+      <div className={styles.pageHeading}>
+        <h1 className={styles.pageTitle}>{title}</h1>
+        {context && <div className={styles.pageContext}>{context}</div>}
       </div>
-      {summary && (
-        <div className="mb-[26px] text-[13px] text-subtle max-[520px]:mb-5">
-          {summary}
-        </div>
-      )}
+      {summary && <div className={styles.pageSummary}>{summary}</div>}
       {children}
-      <p className="mt-[13px] mb-0 text-xs text-subtle">{footnote}</p>
+      <p className={styles.pageFootnote}>{footnote}</p>
     </main>
   );
 }

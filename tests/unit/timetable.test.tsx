@@ -1,7 +1,7 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, expect, test, vi } from "vitest";
-import { ClassTimetable } from "@/features/timetable/ClassTimetable";
+import { ClassTimetable } from "@/components/classTimetable/ClassTimetable";
 import { loadAttendees, loadClasses } from "@/mocks/services";
 import type { ClassRow } from "@/types/timetable";
 

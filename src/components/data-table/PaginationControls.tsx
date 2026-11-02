@@ -1,10 +1,8 @@
 import { useId } from "react";
 import type { PaginationState } from "@/types/table";
+import styles from "./DataTable.module.css";
 
-const pageButtonClassName =
-  "min-h-9 cursor-pointer rounded-md border border-[#b6c9bc] bg-white px-3 py-1.5 font-semibold text-[#245638] hover:enabled:border-[#7c9c87] hover:enabled:bg-[#e4eee6] disabled:cursor-default disabled:border-[#d7e0d9] disabled:bg-[#f3f6f3] disabled:text-[#798c80] max-[520px]:min-h-11";
-
-type Props = {
+type PaginationControlsProps = {
   caption: string;
   page: PaginationState;
   totalRows: number;
@@ -22,18 +20,18 @@ export function PaginationControls({
   sizes,
   disabled,
   onChange,
-}: Props) {
+}: PaginationControlsProps) {
   const id = useId();
   const pages = Math.max(1, Math.ceil(totalRows / page.pageSize));
   const start =
     visibleCount > 0 && totalRows > 0 ? page.pageIndex * page.pageSize + 1 : 0;
   const end = start ? Math.min(totalRows, start + visibleCount - 1) : 0;
   return (
-    <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3.5 border-t border-line bg-white px-[18px] py-[13px] text-xs text-subtle max-[520px]:gap-3.5 max-[520px]:py-4">
-      <div className="flex items-center gap-2.5">
+    <div className={styles.pagination}>
+      <div className={styles.pageSize}>
         <label htmlFor={id}>Rows per page</label>
         <select
-          className="min-h-9 min-w-[62px] cursor-pointer rounded-md border border-[#b6c9bc] bg-white px-2 py-[5px] text-[#244e36] disabled:cursor-default disabled:bg-[#f0f4f1] disabled:text-[#738579] max-[520px]:min-h-11 max-[520px]:text-base"
+          className={styles.pageSelect}
           id={id}
           value={page.pageSize}
           disabled={disabled}
@@ -48,15 +46,15 @@ export function PaginationControls({
           ))}
         </select>
       </div>
-      <span className="tabular-nums" aria-live="polite">
+      <span className={styles.range} aria-live="polite">
         {start}–{end} of {totalRows}
       </span>
       <nav
-        className="flex items-center gap-[13px] max-[520px]:w-full max-[520px]:justify-between max-[520px]:gap-2"
+        className={styles.pageNavigation}
         aria-label={`${caption} pagination`}
       >
         <button
-          className={pageButtonClassName}
+          className={styles.pageButton}
           type="button"
           aria-label="Previous page"
           disabled={disabled || page.pageIndex === 0}
@@ -64,11 +62,11 @@ export function PaginationControls({
         >
           Previous
         </button>
-        <span className="whitespace-nowrap tabular-nums">
+        <span className={styles.pageNumber}>
           Page {page.pageIndex + 1} of {pages}
         </span>
         <button
-          className={pageButtonClassName}
+          className={styles.pageButton}
           type="button"
           aria-label="Next page"
           disabled={disabled || page.pageIndex >= pages - 1}

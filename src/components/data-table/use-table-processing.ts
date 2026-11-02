@@ -90,7 +90,6 @@ export function useTableProcessing<T>({
       ? (pagination.defaultState ?? { pageIndex: 0, pageSize: 10 })
       : { pageIndex: 0, pageSize: 10 },
   );
-  const [observedTotal, setObservedTotal] = useState<number | null>(null);
   const sortingEnabled = sorting !== false;
   const paginationEnabled = pagination !== false;
   const controlledSort = sorting !== false && sorting?.state !== undefined;
@@ -129,20 +128,16 @@ export function useTableProcessing<T>({
     [sorted, manualPage, paginationEnabled, page.pageIndex, page.pageSize],
   );
 
-  // Adjust only this hook's uncontrolled state when the ready dataset count changes.
-  // Parent callbacks remain event-only; controlled values are never copied locally.
+  // Remember a clamped page so later data growth cannot restore an invalid page.
+  // The guard only adjusts local state; parent callbacks remain event-only.
   if (
     ready &&
     paginationEnabled &&
     !controlledPage &&
-    observedTotal !== totalRows
+    (localPage.pageIndex !== page.pageIndex ||
+      localPage.pageSize !== page.pageSize)
   ) {
-    setObservedTotal(totalRows);
-    if (
-      localPage.pageIndex !== page.pageIndex ||
-      localPage.pageSize !== page.pageSize
-    )
-      setLocalPage(page);
+    setLocalPage(page);
   }
 
   function changePage(next: PaginationState) {

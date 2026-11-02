@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Skeleton } from "@heroui/react";
+import { Skeleton } from "@heroui/react";
 import {
   Fragment,
   useId,
@@ -16,6 +16,9 @@ import { useRowExpansion } from "./use-row-expansion";
 import { RowDetails } from "./RowDetails";
 import { createColumnLayout, type ColumnLayout } from "./column-layout";
 import { SortHeader } from "./SortHeader";
+import { TableMessage } from "./TableMessage";
+import { ExpandableCell } from "./ExpandableCell";
+import styles from "./DataTable.module.css";
 
 function displayValue(value: unknown): ReactNode {
   if (value === null || value === undefined) return "—";
@@ -92,10 +95,8 @@ function TableContent<T, TChild>({
     cell.pinned ? { left: cell.left } : undefined;
   const cellClass = (cell: ColumnLayout<T>) =>
     [
-      cell.pinned ? "sticky z-1" : "",
-      cell.edge
-        ? "border-r border-r-transparent group-data-[scrolled=true]/table:shadow-[9px_0_12px_-9px_#153d295c]"
-        : "",
+      cell.pinned ? styles.pinned : "",
+      cell.edge ? styles.pinnedEdge : "",
     ]
       .filter(Boolean)
       .join(" ");
@@ -108,7 +109,7 @@ function TableContent<T, TChild>({
           : ""}
       </span>
       <div
-        className="group/table overflow-x-auto overscroll-x-contain [scrollbar-width:thin] [scrollbar-color:#9fb4a5_transparent] focus-visible:outline-offset-[-3px]"
+        className={styles.scrollRegion}
         role="region"
         aria-label={`${caption}, scrollable table`}
         tabIndex={0}
@@ -116,7 +117,7 @@ function TableContent<T, TChild>({
         onScroll={(event) => setScrolled(event.currentTarget.scrollLeft > 0)}
       >
         <table
-          className="data-table table-fixed border-separate border-spacing-0 text-[14px] text-ink"
+          className={styles.table}
           aria-busy={request.status === "loading"}
           style={{
             minWidth: layout.totalWidth,
@@ -155,7 +156,7 @@ function TableContent<T, TChild>({
                   <th
                     key={cell.column.id}
                     scope="col"
-                    className={`${cellClass(cell)} z-2`}
+                    className={cellClass(cell)}
                     style={cellStyle(cell)}
                     aria-sort={sortDirection}
                   >
@@ -185,7 +186,7 @@ function TableContent<T, TChild>({
                       className={cellClass(cell)}
                       style={cellStyle(cell)}
                     >
-                      <Skeleton className="table-skeleton h-[13px] w-[76%] rounded bg-[#d5dfd6]" />
+                      <Skeleton className={`table-skeleton ${styles.skeleton}`} />
                     </td>
                   ))}
                 </tr>
@@ -193,40 +194,27 @@ function TableContent<T, TChild>({
             {request.status === "error" && (
               <tr>
                 <td colSpan={layout.cells.length}>
-                  <div
-                    className="sticky left-0 w-[min(360px,calc(100vw-96px))] py-[38px] text-[#304e3b]"
-                    role="alert"
-                  >
-                    <strong className="text-[15px] font-semibold">
-                      Unable to load data
-                    </strong>
-                    <p className="mt-[9px] mb-[18px] text-sm leading-[1.7] text-[#4b6055]">
-                      {request.message}
-                    </p>
-                    <Button variant="secondary" onPress={request.onRetry}>
-                      Retry
-                    </Button>
-                  </div>
+                  <TableMessage
+                    title="Unable to load data"
+                    message={request.message}
+                    onRetry={request.onRetry}
+                  />
                 </td>
               </tr>
             )}
             {request.status === "ready" && rows.length === 0 && (
               <tr>
                 <td colSpan={layout.cells.length}>
-                  <div className="sticky left-0 w-[min(360px,calc(100vw-96px))] py-[38px] text-[#304e3b]">
-                    <strong className="text-[15px] font-semibold">
-                      {emptyMessage}
-                    </strong>
-                    <p className="mt-[9px] mb-[18px] text-sm leading-[1.7] text-[#4b6055]">
-                      There’s nothing to display right now.
-                    </p>
-                  </div>
+                  <TableMessage
+                    title={emptyMessage}
+                    message="There’s nothing to display right now."
+                  />
                 </td>
               </tr>
             )}
             {rows.map(({ row, id }) => {
               const canExpand =
-                expansion && (expansion.canExpand?.(row) ?? true);
+                !!expansion && (expansion.canExpand?.(row) ?? true);
               const expanded = details.openRows.has(id);
               const detailId = `${detailPrefix}-details-${encodeURIComponent(id)}`;
               return (
@@ -239,36 +227,19 @@ function TableContent<T, TChild>({
                         style={cellStyle(cell)}
                       >
                         {index === 0 && expansion ? (
-                          <div className="flex items-center gap-2">
-                            {canExpand ? (
-                              <button
-                                type="button"
-                                className="group/expand grid h-8 w-7 shrink-0 basis-7 cursor-pointer place-items-center rounded-[5px] border border-transparent bg-transparent text-[#245638] [font:inherit] hover:border-[#bacdbf] hover:bg-[#dcebe0] max-[520px]:h-11 max-[520px]:w-9 max-[520px]:basis-9"
-                                aria-label={
-                                  expansion.getLabel?.(row, expanded) ??
-                                  `${expanded ? "Collapse" : "Expand"} details`
-                                }
-                                aria-expanded={expanded}
-                                aria-controls={detailId}
-                                onClick={() => details.toggle(row, id)}
-                              >
-                                <span
-                                  className="inline-block text-[23px] leading-none transition-transform duration-180 ease-[ease] group-aria-expanded/expand:rotate-90 motion-reduce:transition-none motion-reduce:duration-0"
-                                  aria-hidden="true"
-                                >
-                                  ›
-                                </span>
-                              </button>
-                            ) : (
-                              <span
-                                className="h-8 w-7 shrink-0 basis-7 max-[520px]:h-11 max-[520px]:w-9 max-[520px]:basis-9"
-                                aria-hidden="true"
-                              />
-                            )}
-                            <div className="min-w-0 flex-1">
-                              {renderCell(cell.column, row, id)}
-                            </div>
-                          </div>
+                          <ExpandableCell
+                            canExpand={canExpand}
+                            expanded={expanded}
+                            detailsId={detailId}
+                            label={
+                              canExpand
+                                ? expansion.getLabel?.(row, expanded)
+                                : undefined
+                            }
+                            onToggle={() => details.toggle(row, id)}
+                          >
+                            {renderCell(cell.column, row, id)}
+                          </ExpandableCell>
                         ) : (
                           renderCell(cell.column, row, id)
                         )}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClassTimetable } from "@/features/timetable/ClassTimetable";
+import { ClassTimetable } from "@/components/classTimetable/ClassTimetable";
 
 export const metadata: Metadata = {
   title: "HL Fitness Studio | Class timetable",

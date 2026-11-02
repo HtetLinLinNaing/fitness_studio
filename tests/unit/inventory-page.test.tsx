@@ -1,13 +1,13 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, expect, test } from "vitest";
-import { InventoryDemo } from "@/features/demo/InventoryDemo";
+import { Inventory } from "@/components/inventory/Inventory";
 import { resetMockFailures } from "@/mocks/services";
 
 beforeEach(resetMockFailures);
 test("inventory formats SGD and retries detail errors without disabling the parent table", async () => {
   const user = userEvent.setup();
-  render(<InventoryDemo />);
+  render(<Inventory />);
   await screen.findByText("S$28.00");
   await user.selectOptions(screen.getByRole("combobox", { name: "Detail response" }), "error");
   const toggle = await screen.findByRole("button", { name: "Expand Yoga Mat — Classic stock movements" });

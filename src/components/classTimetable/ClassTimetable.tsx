@@ -5,12 +5,13 @@ import { DataTable } from "@/components/data-table/DataTable";
 import { StudioPage } from "@/components/StudioPage";
 import { SectionCard } from "@/components/SectionCard";
 import { loadAttendees } from "@/mocks/services";
-import { classColumns } from "./columns";
-import { formatClassDay } from "./formatters";
+import { classColumns } from "./class-timetable-columns";
+import { formatClassDay } from "./class-timetable-formatters";
 import type { Attendee, ClassRow } from "@/types/timetable";
 import type { ExpansionConfig } from "@/types/table";
 import { AttendeeList } from "./AttendeeList";
 import { useClassTimetable } from "./use-class-timetable";
+import styles from "./ClassTimetable.module.css";
 
 const getRowId = (row: ClassRow) => row.id;
 const presentation: Pick<
@@ -48,62 +49,59 @@ export function ClassTimetable() {
       value: new Set(rows.map((row) => row.instructorName)).size,
     },
   ];
+  const pageContext =
+    ready && rows[0] ? (
+      <time dateTime={rows[0].startsAt.slice(0, 10)}>
+        {formatClassDay(rows[0].startsAt)}
+      </time>
+    ) : (
+      "Singapore time"
+    );
+  const pageSummary = (
+    <dl className={styles.summary}>
+      {stats.map((stat) => (
+        <div key={stat.label} className={styles.stat}>
+          <dt className={styles.statLabel}>{stat.label}</dt>
+          <dd className={styles.statValue}>{ready ? stat.value : "—"}</dd>
+        </div>
+      ))}
+    </dl>
+  );
 
   return (
     <StudioPage
       title="Class timetable"
-      context={
-        ready && rows[0] ? (
-          <time dateTime={rows[0].startsAt.slice(0, 10)}>
-            {formatClassDay(rows[0].startsAt)}
-          </time>
-        ) : (
-          "Singapore time"
-        )
-      }
+      context={pageContext}
       footnote="Sample timetable · Fictional studio data"
-      summary={
-        <dl className="m-0 flex flex-wrap gap-x-22px gap-y-3">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex items-baseline gap-[5px]">
-              <dt className="text-[13px] text-subtle">{stat.label}</dt>
-              <dd className="order-first m-0 text-sm font-semibold text-ink tabular-nums">
-                {ready ? stat.value : "—"}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      }
+      summary={pageSummary}
     >
       <SectionCard
         titleId="schedule-title"
         title="Class schedule"
         description="SGT · UTC+08:00"
         actions={
-          <>
-            <div>
-              <label className="flex items-center gap-[9px] text-xs text-subtle">
-                Attendee loading
-                <select
-                  className="min-h-34px cursor-pointer rounded-[5px] border border-line bg-white px-2.5 py-[5px] text-[13px] text-ink max-[520px]:min-h-11 max-[520px]:text-base"
-                  value={attendeeMode}
-                  aria-describedby="attendee-mode-hint"
-                  onChange={(event) =>
-                    setAttendeeMode(
-                      event.target.value === "lazy" ? "lazy" : "inline",
-                    )
-                  }
-                >
-                  <option value="inline">Inline</option>
-                  <option value="lazy">On-demand</option>
-                </select>
-              </label>
-              <p className="sr-only" id="attendee-mode-hint">
-                On-demand loads attendees when expanded. Switching modes resets
-                the table.
-              </p>
-            </div>
-          </>
+          <div>
+            <label className={styles.modeLabel}>
+              Attendee loading
+              <select
+                className={styles.modeSelect}
+                value={attendeeMode}
+                aria-describedby="attendee-mode-hint"
+                onChange={(event) =>
+                  setAttendeeMode(
+                    event.target.value === "lazy" ? "lazy" : "inline",
+                  )
+                }
+              >
+                <option value="inline">Inline</option>
+                <option value="lazy">On-demand</option>
+              </select>
+            </label>
+            <p className="sr-only" id="attendee-mode-hint">
+              On-demand loads attendees when expanded. Switching modes resets
+              the table.
+            </p>
+          </div>
         }
       >
         <DataTable<ClassRow, Attendee>

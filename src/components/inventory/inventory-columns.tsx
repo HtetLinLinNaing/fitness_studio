@@ -1,5 +1,6 @@
 import type { ColumnDef } from "@/types/table";
 import type { InventoryRow } from "@/types/inventory";
+import styles from "./Inventory.module.css";
 
 const currency = new Intl.NumberFormat("en-SG", {
   style: "currency",
@@ -15,7 +16,7 @@ export const inventoryColumns: readonly ColumnDef<InventoryRow>[] = [
     width: 220,
     sortable: true,
     cell: ({ row }) => (
-      <strong className="text-sm leading-normal font-semibold text-[#193b2b]">
+      <strong className={styles.itemName}>
         {row.name}
       </strong>
     ),
@@ -36,11 +37,11 @@ export const inventoryColumns: readonly ColumnDef<InventoryRow>[] = [
     sortable: true,
     cell: ({ row }) => (
       <span
-        className="font-semibold tabular-nums data-[empty=true]:text-[#8b362d]"
+        className={styles.stock}
         data-empty={row.stock === 0}
       >
         {row.stock}{" "}
-        <span className="text-xs font-normal text-[#52685a]">units</span>
+        <span className={styles.units}>units</span>
       </span>
     ),
   },
@@ -51,7 +52,7 @@ export const inventoryColumns: readonly ColumnDef<InventoryRow>[] = [
     width: 140,
     sortable: true,
     cell: ({ row }) => (
-      <span className="font-semibold tabular-nums">
+      <span className={styles.price}>
         S{currency.format(row.unitPriceCents / 100)}
       </span>
     ),

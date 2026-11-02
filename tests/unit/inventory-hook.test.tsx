@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, expect, test, vi } from "vitest";
-import { useInventoryDemo } from "@/features/demo/use-inventory-demo";
+import { useInventory } from "@/components/inventory/use-inventory";
 import { loadInventory, queryInventory } from "@/mocks/services";
 import type { InventoryRow } from "@/types/inventory";
 
@@ -19,7 +19,7 @@ beforeEach(() => {
 });
 
 test("client data stays complete, controlled sort resets page, manual mode supplies only one page", async () => {
-  const { result } = renderHook(() => useInventoryDemo());
+  const { result } = renderHook(() => useInventory());
   await waitFor(() => expect(result.current.rows).toHaveLength(100));
   act(() => result.current.changePage({ pageIndex: 3, pageSize: 10 }));
   expect(result.current.rows).toHaveLength(100);
@@ -41,7 +41,7 @@ test("client data stays complete, controlled sort resets page, manual mode suppl
 test("a cancelled loader that resolves late cannot overwrite the latest scenario", async () => {
   let complete!: (value: readonly InventoryRow[]) => void;
   vi.mocked(loadInventory).mockReturnValueOnce(new Promise(resolve => { complete = resolve; }));
-  const { result, unmount } = renderHook(() => useInventoryDemo());
+  const { result, unmount } = renderHook(() => useInventory());
   const oldSignal = vi.mocked(loadInventory).mock.calls[0][0]?.signal;
   const oldKey = result.current.datasetKey;
   vi.mocked(loadInventory).mockResolvedValueOnce([]);
@@ -61,7 +61,7 @@ test("a cancelled loader that resolves late cannot overwrite the latest scenario
 });
 
 test("retry preserves the manual query and shrinking totals refetch the valid page", async () => {
-  const { result } = renderHook(() => useInventoryDemo());
+  const { result } = renderHook(() => useInventory());
   await waitFor(() => expect(result.current.request.status).toBe("ready"));
   act(() => result.current.changeMode("manual"));
   await waitFor(() => expect(result.current.request.status).toBe("ready"));

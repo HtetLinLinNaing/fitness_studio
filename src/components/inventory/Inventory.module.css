@@ -1,0 +1,118 @@
+.controls {
+  margin-bottom: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: 9px;
+  background: white;
+  padding: 16px 18px;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.description {
+  color: var(--color-subtle);
+  font-size: 12px;
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--color-detail-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.select, .reset {
+  min-height: 40px;
+  cursor: pointer;
+  border: 1px solid var(--color-control-border);
+  border-radius: 6px;
+  background: white;
+  padding: 8px 12px;
+  color: var(--color-studio);
+  font-size: 13px;
+}
+
+.select {
+  min-width: 158px;
+}
+
+.reset {
+  font-weight: 600;
+}
+
+.reset:hover {
+  background: var(--color-control-hover);
+}
+
+.hint {
+  margin: 15px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.itemName {
+  color: var(--color-title);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.stock, .price {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stock[data-empty="true"] {
+  color: var(--color-danger);
+}
+
+.units {
+  color: var(--color-subtle);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+@media (width < 520px) {
+  .controls {
+    padding: 18px;
+  }
+
+  .fields {
+    gap: 14px;
+  }
+
+  .label {
+    flex: 1 1 100%;
+  }
+
+  .select, .reset {
+    min-height: 44px;
+  }
+
+  .select {
+    width: 100%;
+    font-size: 16px;
+  }
+
+}

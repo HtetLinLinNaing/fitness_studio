@@ -4,8 +4,9 @@ import { Button, Skeleton } from "@heroui/react";
 import { useEffect, useState } from "react";
 import type { ExpansionConfig } from "@/types/table";
 import type { ChildRequest } from "./use-row-expansion";
+import styles from "./DataTable.module.css";
 
-type Props<T, TChild> = {
+type RowDetailsProps<T, TChild> = {
   row: T;
   id: string;
   columns: number;
@@ -20,25 +21,20 @@ function DetailContent<T, TChild>({
   expansion,
   request,
   onRetry,
-}: Props<T, TChild>) {
+}: RowDetailsProps<T, TChild>) {
   if (expansion.mode === "lazy" && (!request || request.status === "loading")) {
     return (
-      <div className="sticky left-0 w-[min(360px,calc(100vw-96px))] text-[13px] leading-[1.6] text-[#365340]">
-        <p className="mt-0 mb-3" role="status">
-          Loading details…
-        </p>
-        <Skeleton className="table-skeleton mt-2.5 h-[11px] w-[85%] rounded bg-[#d5e2d8] last:w-3/5" />
-        <Skeleton className="table-skeleton mt-2.5 h-[11px] w-[85%] rounded bg-[#d5e2d8] last:w-3/5" />
+      <div className={styles.detailMessage}>
+        <p role="status">Loading details…</p>
+        <Skeleton className={`table-skeleton ${styles.detailSkeleton}`} />
+        <Skeleton className={`table-skeleton ${styles.detailSkeleton}`} />
       </div>
     );
   }
   if (expansion.mode === "lazy" && request?.status === "error") {
     return (
-      <div
-        className="sticky left-0 w-[min(360px,calc(100vw-96px))] text-[13px] leading-[1.6] text-[#365340]"
-        role="alert"
-      >
-        <p className="mt-0 mb-3">{request.message}</p>
+      <div className={styles.detailMessage} role="alert">
+        <p>{request.message}</p>
         <Button size="sm" variant="secondary" onPress={onRetry}>
           Retry details
         </Button>
@@ -54,13 +50,13 @@ function DetailContent<T, TChild>({
   return children.length > 0 ? (
     expansion.renderChildren({ row, children })
   ) : (
-    <p className="sticky left-0 m-0 w-[min(360px,calc(100vw-96px))] py-2 text-[13px] leading-[1.6] text-[#365340]">
+    <p className={`${styles.detailMessage} ${styles.detailEmpty}`}>
       {expansion.emptyMessage ?? "No details available."}
     </p>
   );
 }
 
-export function RowDetails<T, TChild>(props: Props<T, TChild>) {
+export function RowDetails<T, TChild>(props: RowDetailsProps<T, TChild>) {
   const [showContent, setShowContent] = useState(props.expanded);
   if (props.expanded && !showContent) setShowContent(true);
   useEffect(() => {
@@ -74,17 +70,17 @@ export function RowDetails<T, TChild>(props: Props<T, TChild>) {
 
   return (
     <tr data-detail-row aria-hidden={!props.expanded}>
-      <td colSpan={props.columns} className="data-table-detail">
+      <td colSpan={props.columns} className={styles.detailCell}>
         <div
           id={props.id}
-          className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-180 ease-[ease] data-[expanded=true]:grid-rows-[1fr] data-[expanded=true]:opacity-100 motion-reduce:transition-none motion-reduce:duration-0"
+          className={styles.detailPanel}
           data-expanded={props.expanded}
           inert={!props.expanded}
           aria-busy={loading}
         >
-          <div className="min-h-0 overflow-hidden">
+          <div className={styles.detailClip}>
             {showContent && (
-              <div className="px-6 pt-5 pb-6 max-[600px]:p-[18px]">
+              <div className={styles.detailContent}>
                 <DetailContent {...props} />
               </div>
             )}

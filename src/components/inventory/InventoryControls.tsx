@@ -1,4 +1,5 @@
 import type { MockScenario } from "@/types/mock";
+import styles from "./Inventory.module.css";
 
 type InventoryControlsProps = {
   mode: "client" | "manual";
@@ -9,11 +10,6 @@ type InventoryControlsProps = {
   changeChildScenario: (scenario: MockScenario) => void;
   reset: () => void;
 };
-
-const labelClassName =
-  "flex flex-col gap-[7px] text-xs font-semibold text-[#344e40] max-[520px]:flex-[1_1_100%]";
-const selectClassName =
-  "min-h-10 min-w-[158px] cursor-pointer rounded-md border border-[#9db8a5] bg-white px-3 py-2 text-[13px] text-[#244e36] max-[520px]:min-h-11 max-[520px]:w-full max-[520px]:text-base";
 
 const scenarios: readonly { value: MockScenario; label: string }[] = [
   { value: "normal", label: "Normal (500ms)" },
@@ -31,10 +27,10 @@ function ScenarioSelect({
   onChange: (value: MockScenario) => void;
 }) {
   return (
-    <label className={labelClassName}>
+    <label className={styles.label}>
       {label}
       <select
-        className={selectClassName}
+        className={styles.select}
         value={value}
         onChange={(event) => {
           const selected = scenarios.find(
@@ -63,22 +59,22 @@ export function InventoryControls({
 }: InventoryControlsProps) {
   return (
     <section
-      className="mb-[18px] rounded-[9px] border border-line bg-white px-[18px] py-4 max-[520px]:p-[18px]"
+      className={styles.controls}
       aria-labelledby="demo-controls-title"
     >
-      <div className="flex flex-wrap items-baseline gap-4">
-        <h2 id="demo-controls-title" className="m-0 text-sm font-semibold">
+      <div className={styles.heading}>
+        <h2 id="demo-controls-title" className={styles.title}>
           Demo controls
         </h2>
-        <span className="text-xs text-subtle">
+        <span className={styles.description}>
           Simulated responses · Local mock data
         </span>
       </div>
-      <div className="mt-[18px] flex flex-wrap items-end gap-4 max-[520px]:gap-3.5">
-        <label className={labelClassName}>
+      <div className={styles.fields}>
+        <label className={styles.label}>
           Processing
           <select
-            className={selectClassName}
+            className={styles.select}
             value={mode}
             onChange={(event) =>
               changeMode(event.target.value === "manual" ? "manual" : "client")
@@ -101,12 +97,12 @@ export function InventoryControls({
         <button
           type="button"
           onClick={reset}
-          className="min-h-10 cursor-pointer rounded-md border border-[#9db8a5] bg-white px-3 py-2 text-[13px] font-semibold text-[#244e36] hover:bg-[#edf5ef] max-[520px]:min-h-11"
+          className={styles.reset}
         >
           Reset demo
         </button>
       </div>
-      <p className="mt-[15px] mb-0 text-xs leading-[1.6] text-[#4b6055]">
+      <p className={styles.hint}>
         Changing demo settings returns to page 1 and clears open details. Error
         responses recover with Retry.
       </p>
